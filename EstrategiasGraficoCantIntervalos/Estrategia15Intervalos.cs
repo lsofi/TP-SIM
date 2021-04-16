@@ -29,5 +29,10 @@ namespace GeneracionDeNumerosAleatorios.EstrategiasGraficoCantIntervalos
             }
             return intervalos;
         }
+
+        public override int cantInt()
+        {
+            return 15;
+        }
     }
 }

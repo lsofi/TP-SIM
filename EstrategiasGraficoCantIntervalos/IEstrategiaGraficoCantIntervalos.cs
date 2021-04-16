@@ -16,5 +16,10 @@ namespace GeneracionDeNumerosAleatorios.EstrategiasGraficoCantIntervalos
         {
             return null;
         }
+
+        public virtual int cantInt()
+        {
+            return 0;
+        }
     }
 }
