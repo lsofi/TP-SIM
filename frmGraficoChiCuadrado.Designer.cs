@@ -38,15 +38,23 @@
             this.btn20 = new System.Windows.Forms.RadioButton();
             this.btnGenerar = new System.Windows.Forms.Button();
             this.dgvTabla = new System.Windows.Forms.DataGridView();
-            this.chrtDistribucion = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.desde = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hasta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.marcaClase = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.frecuenciaObservada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.probabilidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.frecuenciaEsperada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chrtDistribucion = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.dgvChiCuadrado = new System.Windows.Forms.DataGridView();
+            this.desde2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hasta2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.frecuenciaO2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.frecuenciaE2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.c = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cAcumulativo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrtDistribucion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvChiCuadrado)).BeginInit();
             this.SuspendLayout();
             // 
             // txtIntervalos
@@ -128,28 +136,12 @@
             this.frecuenciaObservada,
             this.probabilidad,
             this.frecuenciaEsperada});
-            this.dgvTabla.Location = new System.Drawing.Point(149, 69);
+            this.dgvTabla.Location = new System.Drawing.Point(14, 69);
             this.dgvTabla.Name = "dgvTabla";
             this.dgvTabla.ReadOnly = true;
             this.dgvTabla.RowTemplate.Height = 25;
             this.dgvTabla.Size = new System.Drawing.Size(703, 265);
             this.dgvTabla.TabIndex = 6;
-            // 
-            // chrtDistribucion
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chrtDistribucion.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chrtDistribucion.Legends.Add(legend1);
-            this.chrtDistribucion.Location = new System.Drawing.Point(86, 351);
-            this.chrtDistribucion.Name = "chrtDistribucion";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chrtDistribucion.Series.Add(series1);
-            this.chrtDistribucion.Size = new System.Drawing.Size(828, 499);
-            this.chrtDistribucion.TabIndex = 7;
-            this.chrtDistribucion.Text = "chart1";
             // 
             // desde
             // 
@@ -193,11 +185,89 @@
             this.frecuenciaEsperada.Name = "frecuenciaEsperada";
             this.frecuenciaEsperada.ReadOnly = true;
             // 
+            // chrtDistribucion
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chrtDistribucion.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chrtDistribucion.Legends.Add(legend1);
+            this.chrtDistribucion.Location = new System.Drawing.Point(279, 349);
+            this.chrtDistribucion.Name = "chrtDistribucion";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chrtDistribucion.Series.Add(series1);
+            this.chrtDistribucion.Size = new System.Drawing.Size(828, 499);
+            this.chrtDistribucion.TabIndex = 7;
+            this.chrtDistribucion.Text = "chart1";
+            this.chrtDistribucion.Visible = false;
+            // 
+            // dgvChiCuadrado
+            // 
+            this.dgvChiCuadrado.AllowUserToAddRows = false;
+            this.dgvChiCuadrado.AllowUserToDeleteRows = false;
+            this.dgvChiCuadrado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvChiCuadrado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.desde2,
+            this.hasta2,
+            this.frecuenciaO2,
+            this.frecuenciaE2,
+            this.c,
+            this.cAcumulativo});
+            this.dgvChiCuadrado.Location = new System.Drawing.Point(762, 69);
+            this.dgvChiCuadrado.Name = "dgvChiCuadrado";
+            this.dgvChiCuadrado.ReadOnly = true;
+            this.dgvChiCuadrado.Size = new System.Drawing.Size(705, 265);
+            this.dgvChiCuadrado.TabIndex = 8;
+            // 
+            // desde2
+            // 
+            this.desde2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.desde2.HeaderText = "Desde";
+            this.desde2.Name = "desde2";
+            this.desde2.ReadOnly = true;
+            // 
+            // hasta2
+            // 
+            this.hasta2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.hasta2.HeaderText = "Hasta";
+            this.hasta2.Name = "hasta2";
+            this.hasta2.ReadOnly = true;
+            // 
+            // frecuenciaO2
+            // 
+            this.frecuenciaO2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.frecuenciaO2.HeaderText = "Frecuencia Observada";
+            this.frecuenciaO2.Name = "frecuenciaO2";
+            this.frecuenciaO2.ReadOnly = true;
+            // 
+            // frecuenciaE2
+            // 
+            this.frecuenciaE2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.frecuenciaE2.HeaderText = "Frecuencia Esperada";
+            this.frecuenciaE2.Name = "frecuenciaE2";
+            this.frecuenciaE2.ReadOnly = true;
+            // 
+            // c
+            // 
+            this.c.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.c.HeaderText = "C()";
+            this.c.Name = "c";
+            this.c.ReadOnly = true;
+            // 
+            // cAcumulativo
+            // 
+            this.cAcumulativo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cAcumulativo.HeaderText = "C() Acum";
+            this.cAcumulativo.Name = "cAcumulativo";
+            this.cAcumulativo.ReadOnly = true;
+            // 
             // frmGraficoChiCuadrado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1075, 877);
+            this.ClientSize = new System.Drawing.Size(1497, 877);
+            this.Controls.Add(this.dgvChiCuadrado);
             this.Controls.Add(this.chrtDistribucion);
             this.Controls.Add(this.dgvTabla);
             this.Controls.Add(this.btnGenerar);
@@ -210,6 +280,7 @@
             this.Text = "frmGraficoChiCuadrado";
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrtDistribucion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvChiCuadrado)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,5 +302,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn frecuenciaObservada;
         private System.Windows.Forms.DataGridViewTextBoxColumn probabilidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn frecuenciaEsperada;
+        private System.Windows.Forms.DataGridView dgvChiCuadrado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn desde2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hasta2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn frecuenciaO2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn frecuenciaE2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn c;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cAcumulativo;
     }
 }

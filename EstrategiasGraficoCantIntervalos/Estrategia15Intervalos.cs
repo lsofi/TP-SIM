@@ -12,7 +12,7 @@ namespace GeneracionDeNumerosAleatorios.EstrategiasGraficoCantIntervalos
             List<int> fo = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             for (int i = 0; i < valoresAleatorios.Count; i++)
             {
-                int posicion = (int)Math.Truncate((float)valoresAleatorios[i] / (float)0.06667);
+                int posicion = (int)Math.Truncate((float)valoresAleatorios[i] / (float)0.06666666667);
                 fo[posicion] = fo[posicion] + 1;
             }
 
@@ -24,8 +24,8 @@ namespace GeneracionDeNumerosAleatorios.EstrategiasGraficoCantIntervalos
             float[,] intervalos = new float[15, 2];
             for (int i = 0; i < 15; i++)
             {
-                intervalos[i, 0] = (float)0.06667 * i;
-                intervalos[i, 1] = (float)(0.06667 * i + 0.06666);
+                intervalos[i, 0] = (float)0.06666666667 * i;
+                intervalos[i, 1] = (float)(0.06666666667 * i + 0.06666666666);
             }
             return intervalos;
         }

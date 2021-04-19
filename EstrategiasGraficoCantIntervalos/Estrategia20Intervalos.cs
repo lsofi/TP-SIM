@@ -25,7 +25,7 @@ namespace GeneracionDeNumerosAleatorios.EstrategiasGraficoCantIntervalos
             for (int i = 0; i < 20; i++)
             {
                 intervalos[i, 0] = (float)0.05 * i;
-                intervalos[i, 1] = (float)(0.05 * i + 0.0499);
+                intervalos[i, 1] = (float)(0.05 * i + 0.049999999);
             }
             return intervalos;
         }
