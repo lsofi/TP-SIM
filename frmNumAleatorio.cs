@@ -227,6 +227,7 @@ namespace GeneracionDeNumerosAleatorios
             txtM.Enabled = true;
             txtG.Enabled = true;
             txtC.Enabled = true;
+            txtX0.Enabled = true;
             dgvTabla.Rows.Clear();
             btnProximo.Enabled = false;
             

@@ -63,6 +63,14 @@ namespace GeneracionDeNumerosAleatorios
             }
 
             generarGrafico(intervalos, frecuenciaObservada);
+            chiCuadrado();
+            lblCalculadoRes.Text = getAcumulado().ToString();
+            lblCalculadoRes.Visible = true;
+            lblTablaRes.Text = tablaChiCuadrado().ToString();
+            lblTablaRes.Visible = true;
+            conclusion();
+
+
         }
 
         public void generarGrafico(float[,] intervalos, List<int> frecuencia)
@@ -73,12 +81,12 @@ namespace GeneracionDeNumerosAleatorios
             chrtDistribucion.Series["Series2"].LegendText = "Frecuencia esperada";
 
             Dictionary<string, int> dic = new Dictionary<string, int>();
-            Dictionary<string, float> dick = new Dictionary<string, float>();
+            Dictionary<string, float> dic2 = new Dictionary<string, float>();
 
             for (int i = 0; i < frecuencia.Count; i++)
             {
                 dic.Add(intervalos[i, 0] + " - " + intervalos[i, 1], frecuencia[i]);
-                dick.Add(intervalos[i, 0] + " - " + intervalos[i, 1],calcularFrecuenciaEsperada(calcularProbabilidad(intervalos[i, 0], intervalos[i, 1]), numeros.Rows.Count));
+                dic2.Add(intervalos[i, 0] + " - " + intervalos[i, 1],calcularFrecuenciaEsperada(calcularProbabilidad(intervalos[i, 0], intervalos[i, 1]), numeros.Rows.Count));
             }
 
             foreach (KeyValuePair<string, int> d in dic)
@@ -86,12 +94,12 @@ namespace GeneracionDeNumerosAleatorios
                 chrtDistribucion.Series["Series1"].Points.AddXY(d.Key, d.Value);
             }
 
-            foreach (KeyValuePair<string, float> d in dick)
+            foreach (KeyValuePair<string, float> d in dic2)
             {
                 chrtDistribucion.Series["Series2"].Points.AddXY(d.Key, d.Value);
             }
 
-            chiCuadrado();
+            
 
         }
 
@@ -113,7 +121,7 @@ namespace GeneracionDeNumerosAleatorios
             {
                 string desde = dgvTabla.Rows[i].Cells["desde"].Value.ToString();
                 string hasta = dgvTabla.Rows[i].Cells["hasta"].Value.ToString();
-                float sumaEsperada = Convert.ToInt32(dgvTabla.Rows[i].Cells["frecuenciaEsperada"].Value);
+                float sumaEsperada = (float) Convert.ToDouble(dgvTabla.Rows[i].Cells["frecuenciaEsperada"].Value);
                 int sumaObservada = Convert.ToInt32(dgvTabla.Rows[i].Cells["frecuenciaObservada"].Value);
 
                 while (sumaEsperada < 5 || verificarProximos(i))
@@ -146,13 +154,30 @@ namespace GeneracionDeNumerosAleatorios
 
         public float getAcumulado()
         {
-            return (float)Convert.ToDouble(dgvChiCuadrado.Rows[dgvChiCuadrado.Rows.Count - 1].Cells["cAcumulativo"]);
+            return (float)Convert.ToDouble(dgvChiCuadrado.Rows[dgvChiCuadrado.Rows.Count - 1].Cells["cAcumulativo"].Value);
         }
 
 
         public float tablaChiCuadrado()
         {
-            return (float) ChiSquared.InvCDF(dgvChiCuadrado.Rows.Count - 1, 0.95);
+            return (float) Math.Round(ChiSquared.InvCDF(dgvChiCuadrado.Rows.Count - 1, 0.95),4);
+        }
+
+        private void lblTabla_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void conclusion()
+        {
+            string txt;
+            if (getAcumulado() < tablaChiCuadrado())
+                txt = "La hipótesis se acepta, los datos se aproximan a una distribución uniforme.";
+            else
+                txt = "La hipótesis no se acepta, los datos no se aproximan a una distribución uniforme.";
+
+            lblConclusion.Text += txt;
+            lblConclusion.Visible = true;
         }
     }
 }

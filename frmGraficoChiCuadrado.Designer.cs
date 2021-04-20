@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.txtIntervalos = new System.Windows.Forms.Label();
             this.btn5 = new System.Windows.Forms.RadioButton();
             this.btn10 = new System.Windows.Forms.RadioButton();
@@ -52,6 +52,11 @@
             this.frecuenciaE2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cAcumulativo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblTabla = new System.Windows.Forms.Label();
+            this.lblCalculado = new System.Windows.Forms.Label();
+            this.lblCalculadoRes = new System.Windows.Forms.Label();
+            this.lblTablaRes = new System.Windows.Forms.Label();
+            this.lblConclusion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrtDistribucion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiCuadrado)).BeginInit();
@@ -187,16 +192,16 @@
             // 
             // chrtDistribucion
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chrtDistribucion.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chrtDistribucion.Legends.Add(legend1);
-            this.chrtDistribucion.Location = new System.Drawing.Point(279, 349);
+            chartArea7.Name = "ChartArea1";
+            this.chrtDistribucion.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.chrtDistribucion.Legends.Add(legend7);
+            this.chrtDistribucion.Location = new System.Drawing.Point(351, 366);
             this.chrtDistribucion.Name = "chrtDistribucion";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chrtDistribucion.Series.Add(series1);
+            series7.ChartArea = "ChartArea1";
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            this.chrtDistribucion.Series.Add(series7);
             this.chrtDistribucion.Size = new System.Drawing.Size(828, 499);
             this.chrtDistribucion.TabIndex = 7;
             this.chrtDistribucion.Text = "chart1";
@@ -262,11 +267,65 @@
             this.cAcumulativo.Name = "cAcumulativo";
             this.cAcumulativo.ReadOnly = true;
             // 
+            // lblTabla
+            // 
+            this.lblTabla.AutoSize = true;
+            this.lblTabla.Location = new System.Drawing.Point(1312, 377);
+            this.lblTabla.Name = "lblTabla";
+            this.lblTabla.Size = new System.Drawing.Size(60, 13);
+            this.lblTabla.TabIndex = 10;
+            this.lblTabla.Text = "Valor tabla:";
+            this.lblTabla.Click += new System.EventHandler(this.lblTabla_Click);
+            // 
+            // lblCalculado
+            // 
+            this.lblCalculado.AutoSize = true;
+            this.lblCalculado.Location = new System.Drawing.Point(1312, 349);
+            this.lblCalculado.Name = "lblCalculado";
+            this.lblCalculado.Size = new System.Drawing.Size(83, 13);
+            this.lblCalculado.TabIndex = 11;
+            this.lblCalculado.Text = "Valor calculado:";
+            // 
+            // lblCalculadoRes
+            // 
+            this.lblCalculadoRes.AutoSize = true;
+            this.lblCalculadoRes.Location = new System.Drawing.Point(1401, 349);
+            this.lblCalculadoRes.Name = "lblCalculadoRes";
+            this.lblCalculadoRes.Size = new System.Drawing.Size(22, 13);
+            this.lblCalculadoRes.TabIndex = 12;
+            this.lblCalculadoRes.Text = "0.0";
+            this.lblCalculadoRes.Visible = false;
+            // 
+            // lblTablaRes
+            // 
+            this.lblTablaRes.AutoSize = true;
+            this.lblTablaRes.Location = new System.Drawing.Point(1401, 377);
+            this.lblTablaRes.Name = "lblTablaRes";
+            this.lblTablaRes.Size = new System.Drawing.Size(22, 13);
+            this.lblTablaRes.TabIndex = 13;
+            this.lblTablaRes.Text = "0.0";
+            this.lblTablaRes.Visible = false;
+            // 
+            // lblConclusion
+            // 
+            this.lblConclusion.AutoSize = true;
+            this.lblConclusion.Location = new System.Drawing.Point(1206, 414);
+            this.lblConclusion.Name = "lblConclusion";
+            this.lblConclusion.Size = new System.Drawing.Size(65, 13);
+            this.lblConclusion.TabIndex = 14;
+            this.lblConclusion.Text = "Conclusión: ";
+            this.lblConclusion.Visible = false;
+            // 
             // frmGraficoChiCuadrado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1497, 877);
+            this.Controls.Add(this.lblConclusion);
+            this.Controls.Add(this.lblTablaRes);
+            this.Controls.Add(this.lblCalculadoRes);
+            this.Controls.Add(this.lblCalculado);
+            this.Controls.Add(this.lblTabla);
             this.Controls.Add(this.dgvChiCuadrado);
             this.Controls.Add(this.chrtDistribucion);
             this.Controls.Add(this.dgvTabla);
@@ -309,5 +368,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn frecuenciaE2;
         private System.Windows.Forms.DataGridViewTextBoxColumn c;
         private System.Windows.Forms.DataGridViewTextBoxColumn cAcumulativo;
+        private System.Windows.Forms.Label lblTabla;
+        private System.Windows.Forms.Label lblCalculado;
+        private System.Windows.Forms.Label lblCalculadoRes;
+        private System.Windows.Forms.Label lblTablaRes;
+        private System.Windows.Forms.Label lblConclusion;
     }
 }
