@@ -172,11 +172,11 @@ namespace GeneracionDeNumerosAleatorios
         {
             string txt;
             if (getAcumulado() < tablaChiCuadrado())
-                txt = "La hipótesis se acepta, los datos se aproximan a una distribución uniforme.";
+                txt = "Conclusión: La hipótesis se acepta, los datos se aproximan a una distribución uniforme.";
             else
-                txt = "La hipótesis no se acepta, los datos no se aproximan a una distribución uniforme.";
+                txt = "Conclusión: La hipótesis no se acepta, los datos no se aproximan a una distribución uniforme.";
 
-            lblConclusion.Text += txt;
+            lblConclusion.Text = txt;
             lblConclusion.Visible = true;
         }
     }

@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGraficoChiCuadrado));
             this.txtIntervalos = new System.Windows.Forms.Label();
             this.btn5 = new System.Windows.Forms.RadioButton();
             this.btn10 = new System.Windows.Forms.RadioButton();
@@ -65,18 +66,20 @@
             // txtIntervalos
             // 
             this.txtIntervalos.AutoSize = true;
-            this.txtIntervalos.Location = new System.Drawing.Point(11, 11);
+            this.txtIntervalos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIntervalos.Location = new System.Drawing.Point(480, 22);
             this.txtIntervalos.Name = "txtIntervalos";
-            this.txtIntervalos.Size = new System.Drawing.Size(116, 13);
+            this.txtIntervalos.Size = new System.Drawing.Size(157, 18);
             this.txtIntervalos.TabIndex = 0;
             this.txtIntervalos.Text = "Cantidad de Intervalos:";
             // 
             // btn5
             // 
             this.btn5.AutoSize = true;
-            this.btn5.Location = new System.Drawing.Point(149, 11);
+            this.btn5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn5.Location = new System.Drawing.Point(641, 20);
             this.btn5.Name = "btn5";
-            this.btn5.Size = new System.Drawing.Size(80, 17);
+            this.btn5.Size = new System.Drawing.Size(101, 22);
             this.btn5.TabIndex = 1;
             this.btn5.TabStop = true;
             this.btn5.Text = "5 Intervalos";
@@ -86,9 +89,10 @@
             // btn10
             // 
             this.btn10.AutoSize = true;
-            this.btn10.Location = new System.Drawing.Point(253, 11);
+            this.btn10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn10.Location = new System.Drawing.Point(763, 20);
             this.btn10.Name = "btn10";
-            this.btn10.Size = new System.Drawing.Size(86, 17);
+            this.btn10.Size = new System.Drawing.Size(109, 22);
             this.btn10.TabIndex = 2;
             this.btn10.TabStop = true;
             this.btn10.Text = "10 Intervalos";
@@ -98,9 +102,10 @@
             // btn15
             // 
             this.btn15.AutoSize = true;
-            this.btn15.Location = new System.Drawing.Point(363, 11);
+            this.btn15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn15.Location = new System.Drawing.Point(890, 20);
             this.btn15.Name = "btn15";
-            this.btn15.Size = new System.Drawing.Size(86, 17);
+            this.btn15.Size = new System.Drawing.Size(109, 22);
             this.btn15.TabIndex = 3;
             this.btn15.TabStop = true;
             this.btn15.Text = "15 Intervalos";
@@ -110,9 +115,10 @@
             // btn20
             // 
             this.btn20.AutoSize = true;
-            this.btn20.Location = new System.Drawing.Point(483, 11);
+            this.btn20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn20.Location = new System.Drawing.Point(1030, 20);
             this.btn20.Name = "btn20";
-            this.btn20.Size = new System.Drawing.Size(86, 17);
+            this.btn20.Size = new System.Drawing.Size(109, 22);
             this.btn20.TabIndex = 4;
             this.btn20.TabStop = true;
             this.btn20.Text = "20 Intervalos";
@@ -121,9 +127,10 @@
             // 
             // btnGenerar
             // 
-            this.btnGenerar.Location = new System.Drawing.Point(288, 33);
+            this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerar.Location = new System.Drawing.Point(735, 48);
             this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(110, 30);
+            this.btnGenerar.Size = new System.Drawing.Size(128, 34);
             this.btnGenerar.TabIndex = 5;
             this.btnGenerar.Text = "Generar Informe";
             this.btnGenerar.UseVisualStyleBackColor = true;
@@ -141,11 +148,11 @@
             this.frecuenciaObservada,
             this.probabilidad,
             this.frecuenciaEsperada});
-            this.dgvTabla.Location = new System.Drawing.Point(14, 69);
+            this.dgvTabla.Location = new System.Drawing.Point(12, 100);
             this.dgvTabla.Name = "dgvTabla";
             this.dgvTabla.ReadOnly = true;
             this.dgvTabla.RowTemplate.Height = 25;
-            this.dgvTabla.Size = new System.Drawing.Size(703, 265);
+            this.dgvTabla.Size = new System.Drawing.Size(773, 306);
             this.dgvTabla.TabIndex = 6;
             // 
             // desde
@@ -192,17 +199,17 @@
             // 
             // chrtDistribucion
             // 
-            chartArea7.Name = "ChartArea1";
-            this.chrtDistribucion.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.chrtDistribucion.Legends.Add(legend7);
-            this.chrtDistribucion.Location = new System.Drawing.Point(351, 366);
+            chartArea5.Name = "ChartArea1";
+            this.chrtDistribucion.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.chrtDistribucion.Legends.Add(legend5);
+            this.chrtDistribucion.Location = new System.Drawing.Point(12, 412);
             this.chrtDistribucion.Name = "chrtDistribucion";
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.chrtDistribucion.Series.Add(series7);
-            this.chrtDistribucion.Size = new System.Drawing.Size(828, 499);
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.chrtDistribucion.Series.Add(series5);
+            this.chrtDistribucion.Size = new System.Drawing.Size(966, 576);
             this.chrtDistribucion.TabIndex = 7;
             this.chrtDistribucion.Text = "chart1";
             this.chrtDistribucion.Visible = false;
@@ -219,10 +226,10 @@
             this.frecuenciaE2,
             this.c,
             this.cAcumulativo});
-            this.dgvChiCuadrado.Location = new System.Drawing.Point(762, 69);
+            this.dgvChiCuadrado.Location = new System.Drawing.Point(820, 100);
             this.dgvChiCuadrado.Name = "dgvChiCuadrado";
             this.dgvChiCuadrado.ReadOnly = true;
-            this.dgvChiCuadrado.Size = new System.Drawing.Size(705, 265);
+            this.dgvChiCuadrado.Size = new System.Drawing.Size(730, 306);
             this.dgvChiCuadrado.TabIndex = 8;
             // 
             // desde2
@@ -270,9 +277,10 @@
             // lblTabla
             // 
             this.lblTabla.AutoSize = true;
-            this.lblTabla.Location = new System.Drawing.Point(1312, 377);
+            this.lblTabla.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTabla.Location = new System.Drawing.Point(1195, 492);
             this.lblTabla.Name = "lblTabla";
-            this.lblTabla.Size = new System.Drawing.Size(60, 13);
+            this.lblTabla.Size = new System.Drawing.Size(81, 18);
             this.lblTabla.TabIndex = 10;
             this.lblTabla.Text = "Valor tabla:";
             this.lblTabla.Click += new System.EventHandler(this.lblTabla_Click);
@@ -280,18 +288,20 @@
             // lblCalculado
             // 
             this.lblCalculado.AutoSize = true;
-            this.lblCalculado.Location = new System.Drawing.Point(1312, 349);
+            this.lblCalculado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCalculado.Location = new System.Drawing.Point(1195, 461);
             this.lblCalculado.Name = "lblCalculado";
-            this.lblCalculado.Size = new System.Drawing.Size(83, 13);
+            this.lblCalculado.Size = new System.Drawing.Size(113, 18);
             this.lblCalculado.TabIndex = 11;
             this.lblCalculado.Text = "Valor calculado:";
             // 
             // lblCalculadoRes
             // 
             this.lblCalculadoRes.AutoSize = true;
-            this.lblCalculadoRes.Location = new System.Drawing.Point(1401, 349);
+            this.lblCalculadoRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCalculadoRes.Location = new System.Drawing.Point(1314, 461);
             this.lblCalculadoRes.Name = "lblCalculadoRes";
-            this.lblCalculadoRes.Size = new System.Drawing.Size(22, 13);
+            this.lblCalculadoRes.Size = new System.Drawing.Size(28, 18);
             this.lblCalculadoRes.TabIndex = 12;
             this.lblCalculadoRes.Text = "0.0";
             this.lblCalculadoRes.Visible = false;
@@ -299,28 +309,29 @@
             // lblTablaRes
             // 
             this.lblTablaRes.AutoSize = true;
-            this.lblTablaRes.Location = new System.Drawing.Point(1401, 377);
+            this.lblTablaRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTablaRes.Location = new System.Drawing.Point(1314, 492);
             this.lblTablaRes.Name = "lblTablaRes";
-            this.lblTablaRes.Size = new System.Drawing.Size(22, 13);
+            this.lblTablaRes.Size = new System.Drawing.Size(28, 18);
             this.lblTablaRes.TabIndex = 13;
             this.lblTablaRes.Text = "0.0";
             this.lblTablaRes.Visible = false;
             // 
             // lblConclusion
             // 
-            this.lblConclusion.AutoSize = true;
-            this.lblConclusion.Location = new System.Drawing.Point(1206, 414);
+            this.lblConclusion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConclusion.Location = new System.Drawing.Point(1066, 545);
             this.lblConclusion.Name = "lblConclusion";
-            this.lblConclusion.Size = new System.Drawing.Size(65, 13);
+            this.lblConclusion.Size = new System.Drawing.Size(421, 57);
             this.lblConclusion.TabIndex = 14;
             this.lblConclusion.Text = "Conclusión: ";
             this.lblConclusion.Visible = false;
             // 
             // frmGraficoChiCuadrado
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1497, 877);
+            this.ClientSize = new System.Drawing.Size(1607, 1000);
             this.Controls.Add(this.lblConclusion);
             this.Controls.Add(this.lblTablaRes);
             this.Controls.Add(this.lblCalculadoRes);
@@ -335,8 +346,10 @@
             this.Controls.Add(this.btn10);
             this.Controls.Add(this.btn5);
             this.Controls.Add(this.txtIntervalos);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmGraficoChiCuadrado";
-            this.Text = "frmGraficoChiCuadrado";
+            this.Text = "Calculo y Grafico del ChiCuadrado";
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrtDistribucion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiCuadrado)).EndInit();
