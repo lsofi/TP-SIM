@@ -30,6 +30,18 @@ namespace TP3.Distribuciones
             return vector[0];
         }
 
+        public float calcularProbabilidad(double mc, double desde, double hasta)
+        {
+            float probabilidad = (float) (((Math.Exp((-0.5) * Math.Pow(((mc - media) / desviacionEstandar), 2))) / (desviacionEstandar * Sqrt(2 * PI)))*(hasta-desde));
+
+            return probabilidad;
+        }
+
+        public int getDatosEmpiricos()
+        {
+            return 2;
+        }
+
 
 
     }

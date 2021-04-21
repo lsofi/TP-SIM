@@ -9,5 +9,10 @@ namespace TP3.Distribuciones
     public interface IDistribucion
     {
         public abstract double getRandomVar();
+
+        public abstract float calcularProbabilidad(double mc, double desde, double hasta);
+
+        public abstract int getDatosEmpiricos();
     }
+
 }

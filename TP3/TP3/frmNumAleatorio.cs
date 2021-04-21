@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MathNet.Numerics.Distributions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,9 +16,12 @@ namespace TP3
     {
 
         IDistribucion distribucion;
+        private int cantNumeros;
+        double[] numeros;
         public frmNumAleatorio()
         {
             InitializeComponent();
+            
         }
 
         private void btnGenerar_Click(object sender, EventArgs e)
@@ -25,11 +29,14 @@ namespace TP3
             if (validarCampos())
             {
                 dgvTabla.Rows.Clear();
+                numeros = new double[Convert.ToInt32(txtN.Text)];
                 for (int i = 0; i < Convert.ToInt32(txtN.Text); i++)
-                    {
-                        dgvTabla.Rows.Add(i, Math.Round(distribucion.getRandomVar(),4));
-                    }
+                {
+                    numeros[i] = Math.Round(distribucion.getRandomVar(), 4);
+                    dgvTabla.Rows.Add(i, Math.Round(distribucion.getRandomVar(),4));
+                }
             }
+            btnGenerarGrafico.Enabled = true;
         }
 
         private void btnNormalMuller_CheckedChanged(object sender, EventArgs e)
@@ -168,7 +175,7 @@ namespace TP3
                 {
                     if (double.TryParse(txtLambda.Text, out double l) && l > 0)
                     {
-                        distribucion = new Poisson(l);
+                        distribucion = new PoissonDis(l);
                         return true;
                     }
                     else
@@ -189,6 +196,15 @@ namespace TP3
             txtN.Clear();
             txtLambda.Clear();
             txtDE.Clear();
+        }
+
+        private void btnGenerarGrafico_Click(object sender, EventArgs e)
+        {
+            if(!btnPoisson.Checked)
+            {
+                frmGraficoChiCuadrado grafico = new frmGraficoChiCuadrado(numeros, distribucion);
+                grafico.Show();
+            }
         }
 
 

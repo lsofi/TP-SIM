@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TP3.Distribuciones
 {
-    public class Poisson : IDistribucion
+    public class PoissonDis : IDistribucion
     {
         private double lambda;
         private Random random = new Random();
 
 
-        public Poisson(double lambda)
+        public PoissonDis(double lambda)
         {
             this.lambda = lambda;
         }
@@ -29,6 +29,24 @@ namespace TP3.Distribuciones
             }
             while (p >= a);
             return x;
+        }
+
+        public float calcularProbabilidad(double mc, double desde, double hasta)
+        {
+            double factorial = 1;
+            for (int i = 1; i <= mc; i++)
+            {
+                factorial *= i;
+            }
+
+            float probabilidad = (float) ((Math.Pow(lambda, mc) * Math.Exp(-lambda)) / factorial);
+
+            return probabilidad;
+        }
+
+        public int getDatosEmpiricos()
+        {
+            return 1;
         }
     }
 }

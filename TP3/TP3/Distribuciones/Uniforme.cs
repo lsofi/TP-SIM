@@ -21,6 +21,18 @@ namespace TP3.Distribuciones
             double x = a + random.NextDouble() * (b - a);
             return x;
         }
+
+        public float calcularProbabilidad(double mc, double desde, double hasta)
+        {
+            float probabilidad = (float) (1/(hasta-desde));
+
+            return probabilidad;
+        }
+
+        public int getDatosEmpiricos()
+        {
+            return 0;
+        }
     }
 
 }
