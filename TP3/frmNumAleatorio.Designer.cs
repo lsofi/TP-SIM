@@ -32,6 +32,7 @@ namespace TP3
             this.titulo = new System.Windows.Forms.Panel();
             this.titulo1 = new System.Windows.Forms.Label();
             this.ingresoDeNumeros = new System.Windows.Forms.Panel();
+            this.btnNormalConvolucion = new System.Windows.Forms.RadioButton();
             this.txtN = new System.Windows.Forms.TextBox();
             this.lblN = new System.Windows.Forms.Label();
             this.btnPoisson = new System.Windows.Forms.RadioButton();
@@ -48,7 +49,7 @@ namespace TP3
             this.txtMedia = new System.Windows.Forms.TextBox();
             this.lblMedia = new System.Windows.Forms.Label();
             this.btnUniforme = new System.Windows.Forms.RadioButton();
-            this.btnNormal = new System.Windows.Forms.RadioButton();
+            this.btnNormalMuller = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnGenerarGrafico = new System.Windows.Forms.Button();
             this.dgvTabla = new System.Windows.Forms.DataGridView();
@@ -84,6 +85,7 @@ namespace TP3
             // 
             // ingresoDeNumeros
             // 
+            this.ingresoDeNumeros.Controls.Add(this.btnNormalConvolucion);
             this.ingresoDeNumeros.Controls.Add(this.txtN);
             this.ingresoDeNumeros.Controls.Add(this.lblN);
             this.ingresoDeNumeros.Controls.Add(this.btnPoisson);
@@ -100,12 +102,25 @@ namespace TP3
             this.ingresoDeNumeros.Controls.Add(this.txtMedia);
             this.ingresoDeNumeros.Controls.Add(this.lblMedia);
             this.ingresoDeNumeros.Controls.Add(this.btnUniforme);
-            this.ingresoDeNumeros.Controls.Add(this.btnNormal);
+            this.ingresoDeNumeros.Controls.Add(this.btnNormalMuller);
             this.ingresoDeNumeros.Dock = System.Windows.Forms.DockStyle.Top;
             this.ingresoDeNumeros.Location = new System.Drawing.Point(0, 56);
             this.ingresoDeNumeros.Name = "ingresoDeNumeros";
             this.ingresoDeNumeros.Size = new System.Drawing.Size(743, 211);
             this.ingresoDeNumeros.TabIndex = 1;
+            // 
+            // btnNormalConvolucion
+            // 
+            this.btnNormalConvolucion.AutoSize = true;
+            this.btnNormalConvolucion.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnNormalConvolucion.Location = new System.Drawing.Point(71, 15);
+            this.btnNormalConvolucion.Name = "btnNormalConvolucion";
+            this.btnNormalConvolucion.Size = new System.Drawing.Size(130, 25);
+            this.btnNormalConvolucion.TabIndex = 17;
+            this.btnNormalConvolucion.TabStop = true;
+            this.btnNormalConvolucion.Text = "N.Convolución";
+            this.btnNormalConvolucion.UseVisualStyleBackColor = true;
+            this.btnNormalConvolucion.CheckedChanged += new System.EventHandler(this.btnNormalConvolucion_CheckedChanged);
             // 
             // txtN
             // 
@@ -130,7 +145,7 @@ namespace TP3
             // 
             this.btnPoisson.AutoSize = true;
             this.btnPoisson.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnPoisson.Location = new System.Drawing.Point(578, 15);
+            this.btnPoisson.Location = new System.Drawing.Point(623, 15);
             this.btnPoisson.Name = "btnPoisson";
             this.btnPoisson.Size = new System.Drawing.Size(81, 25);
             this.btnPoisson.TabIndex = 14;
@@ -143,7 +158,7 @@ namespace TP3
             // 
             this.btnExponencial.AutoSize = true;
             this.btnExponencial.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnExponencial.Location = new System.Drawing.Point(402, 15);
+            this.btnExponencial.Location = new System.Drawing.Point(474, 15);
             this.btnExponencial.Name = "btnExponencial";
             this.btnExponencial.Size = new System.Drawing.Size(110, 25);
             this.btnExponencial.TabIndex = 13;
@@ -169,6 +184,7 @@ namespace TP3
             this.txtLambda.Name = "txtLambda";
             this.txtLambda.Size = new System.Drawing.Size(100, 29);
             this.txtLambda.TabIndex = 3;
+            this.txtLambda.Leave += new System.EventHandler(this.txtLambda_Leave);
             // 
             // btnGenerar
             // 
@@ -248,6 +264,7 @@ namespace TP3
             this.txtMedia.Name = "txtMedia";
             this.txtMedia.Size = new System.Drawing.Size(100, 29);
             this.txtMedia.TabIndex = 1;
+            this.txtMedia.Leave += new System.EventHandler(this.txtMedia_Leave);
             // 
             // lblMedia
             // 
@@ -263,7 +280,7 @@ namespace TP3
             // 
             this.btnUniforme.AutoSize = true;
             this.btnUniforme.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnUniforme.Location = new System.Drawing.Point(239, 15);
+            this.btnUniforme.Location = new System.Drawing.Point(345, 15);
             this.btnUniforme.Name = "btnUniforme";
             this.btnUniforme.Size = new System.Drawing.Size(94, 25);
             this.btnUniforme.TabIndex = 1;
@@ -272,18 +289,18 @@ namespace TP3
             this.btnUniforme.UseVisualStyleBackColor = true;
             this.btnUniforme.CheckedChanged += new System.EventHandler(this.btnUniforme_CheckedChanged);
             // 
-            // btnNormal
+            // btnNormalMuller
             // 
-            this.btnNormal.AutoSize = true;
-            this.btnNormal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnNormal.Location = new System.Drawing.Point(101, 15);
-            this.btnNormal.Name = "btnNormal";
-            this.btnNormal.Size = new System.Drawing.Size(81, 25);
-            this.btnNormal.TabIndex = 0;
-            this.btnNormal.TabStop = true;
-            this.btnNormal.Text = "Normal";
-            this.btnNormal.UseVisualStyleBackColor = true;
-            this.btnNormal.CheckedChanged += new System.EventHandler(this.btnNormal_CheckedChanged);
+            this.btnNormalMuller.AutoSize = true;
+            this.btnNormalMuller.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnNormalMuller.Location = new System.Drawing.Point(215, 15);
+            this.btnNormalMuller.Name = "btnNormalMuller";
+            this.btnNormalMuller.Size = new System.Drawing.Size(88, 25);
+            this.btnNormalMuller.TabIndex = 0;
+            this.btnNormalMuller.TabStop = true;
+            this.btnNormalMuller.Text = "N.Muller";
+            this.btnNormalMuller.UseVisualStyleBackColor = true;
+            this.btnNormalMuller.CheckedChanged += new System.EventHandler(this.btnNormalMuller_CheckedChanged);
             // 
             // panel1
             // 
@@ -331,7 +348,7 @@ namespace TP3
             // numAleatorio
             // 
             this.numAleatorio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.numAleatorio.HeaderText = "N° Aleatorio (RND)";
+            this.numAleatorio.HeaderText = "N° Aleatorio";
             this.numAleatorio.Name = "numAleatorio";
             this.numAleatorio.ReadOnly = true;
             this.numAleatorio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -373,16 +390,17 @@ namespace TP3
         private System.Windows.Forms.TextBox txtMedia;
         private System.Windows.Forms.Label lblMedia;
         private System.Windows.Forms.RadioButton btnUniforme;
-        private System.Windows.Forms.RadioButton btnNormal;
+        private System.Windows.Forms.RadioButton btnNormalMuller;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dgvTabla;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iteracion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numAleatorio;
         private System.Windows.Forms.Button btnGenerarGrafico;
         private System.Windows.Forms.RadioButton btnPoisson;
         private System.Windows.Forms.RadioButton btnExponencial;
         private System.Windows.Forms.TextBox txtN;
         private System.Windows.Forms.Label lblN;
+        private System.Windows.Forms.RadioButton btnNormalConvolucion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iteracion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numAleatorio;
     }
 }
 

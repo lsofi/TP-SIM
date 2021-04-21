@@ -10,6 +10,12 @@ namespace TP3.Distribuciones
     {
         private double lambda;
         private Random random = new Random();
+
+
+        public Poisson(double lambda)
+        {
+            this.lambda = lambda;
+        }
         public double getRandomVar()
         {
             double p = 1;

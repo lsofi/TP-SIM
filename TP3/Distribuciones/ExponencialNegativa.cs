@@ -22,5 +22,6 @@ namespace TP3.Distribuciones
             double x1 = -(1 / lambda) * Log(1.0 - random.NextDouble());
             return x1;
         }
+
     }
 }

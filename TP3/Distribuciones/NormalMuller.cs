@@ -7,18 +7,18 @@ using static System.Math;
 
 namespace TP3.Distribuciones
 {
-    public class Normal
+    public class NormalMuller : IDistribucion
     {
         private double media;
         private double desviacionEstandar;
         private Random random = new Random();
-        public Normal(double media, double desviacionEstandar)
+        public NormalMuller(double media, double desviacionEstandar)
         {
             this.media = media;
             this.desviacionEstandar = desviacionEstandar;
         }
 
-        public double[] getRandomVarBoxMuller()
+        public double getRandomVar()
         {
             double[] vector = new double[2];
             double RND1 = random.NextDouble();
@@ -27,20 +27,10 @@ namespace TP3.Distribuciones
             double y = Sqrt(-2 * Log(RND1)) * Sin(2 * PI * RND2);
             vector[0] = x * desviacionEstandar + media;
             vector[1] = y * desviacionEstandar + media;
-            return vector;
+            return vector[0];
         }
 
-        public double getRandomVarConvolucion()
-        {
-            double ac = 0.0;
-            for (int i = 0; i < 12; i++)
-            {
-                ac += random.NextDouble();
-            }
-            ac -= 6.0;
-            
-            double x = ac*desviacionEstandar + media;
-            return x;
-        }
+
+
     }
 }
