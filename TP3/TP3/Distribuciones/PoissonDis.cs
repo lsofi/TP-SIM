@@ -28,7 +28,7 @@ namespace TP3.Distribuciones
                 x += 1;
             }
             while (p >= a);
-            return x;
+            return (int) x;
         }
 
         public float calcularProbabilidad(double mc, double desde, double hasta)
@@ -39,7 +39,7 @@ namespace TP3.Distribuciones
                 factorial *= i;
             }
 
-            float probabilidad = (float) ((Math.Pow(lambda, mc) * Math.Exp(-lambda)) / factorial);
+            float probabilidad = (float) (((Math.Pow(lambda, mc) * Math.Exp(-lambda))) / factorial);
 
             return probabilidad;
         }

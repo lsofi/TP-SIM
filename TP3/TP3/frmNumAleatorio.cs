@@ -205,6 +205,11 @@ namespace TP3
                 frmGraficoChiCuadrado grafico = new frmGraficoChiCuadrado(numeros, distribucion);
                 grafico.Show();
             }
+            else
+            {
+                frmGraficoChiCuadradoPoisson grafico = new frmGraficoChiCuadradoPoisson(numeros, distribucion);
+                grafico.Show();
+            }    
         }
 
 

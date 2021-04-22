@@ -60,6 +60,12 @@
     <Compile Include="Distribuciones\NormalMuller.cs" />
     <Compile Include="Distribuciones\PoissonDis.cs" />
     <Compile Include="Distribuciones\Uniforme.cs" />
+    <Compile Include="frmGraficoChiCuadradoPoisson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGraficoChiCuadradoPoisson.Designer.cs">
+      <DependentUpon>frmGraficoChiCuadradoPoisson.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmGraficoChiCuadrado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmGraficoChiCuadradoPoisson.resx">
+      <DependentUpon>frmGraficoChiCuadradoPoisson.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmGraficoChiCuadrado.resx">
       <DependentUpon>frmGraficoChiCuadrado.cs</DependentUpon>
     </EmbeddedResource>
