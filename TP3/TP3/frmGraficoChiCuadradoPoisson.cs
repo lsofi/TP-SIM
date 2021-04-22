@@ -19,6 +19,8 @@ namespace TP3
         private IDistribucion distribucion;
         private int cantIntervalos;
         Series Series2 = new Series();
+        Series Series3 = new Series();
+
 
         public frmGraficoChiCuadradoPoisson(double[] numeros, IDistribucion distribucion)
         {
@@ -26,8 +28,8 @@ namespace TP3
             this.numeros = numeros;
             this.distribucion = distribucion;
             chrtDistribucion.Series.Add(Series2);
-            chrtChi.Series.Add(Series2);
-
+            chrtChi.Series.Add(Series3);
+           
         }
 
         private void btnGenerar_Click_1(object sender, EventArgs e)

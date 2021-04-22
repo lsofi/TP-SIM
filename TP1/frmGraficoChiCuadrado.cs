@@ -12,13 +12,14 @@ namespace GeneracionDeNumerosAleatorios
         private DataGridView numeros;
         private IEstrategiaGraficoCantIntervalos estrategia;
         Series Series2 = new Series();
+        Series Series3 = new Series();
 
         public frmGraficoChiCuadrado(DataGridView numeros)
         {
             InitializeComponent();
             this.numeros = numeros;
             chrtDistribucion.Series.Add(Series2);
-            chrtChi.Series.Add(Series2);
+            chrtChi.Series.Add(Series3);
         }
 
         private void btn5_CheckedChanged(object sender, EventArgs e)

@@ -19,6 +19,7 @@ namespace TP3
         private IDistribucion distribucion;
         private int cantIntervalos;
         Series Series2 = new Series();
+        Series Series3 = new Series();
 
         public frmGraficoChiCuadrado(double[] numeros, IDistribucion distribucion)
         {
@@ -26,7 +27,7 @@ namespace TP3
             this.numeros = numeros;
             this.distribucion = distribucion;
             chrtDistribucion.Series.Add(Series2);
-            chrtChi.Series.Add(Series2);
+            chrtChi.Series.Add(Series3);
 
         }
 
@@ -165,7 +166,7 @@ namespace TP3
             Dictionary<string, float> dic4 = new Dictionary<string, float>();
 
             int i = 0;
-            while (!(intervalos[i, 0] == null))
+            while (i < intervalos.GetLength(0) && !(intervalos[i, 0] == null))
             {
                 dic3.Add(intervalos[i, 0] + " - " + intervalos[i, 1], Convert.ToInt32(intervalos[i, 2]));
                 dic4.Add(intervalos[i, 0] + " - " + intervalos[i, 1], (float)Convert.ToDouble(intervalos[i, 3]));
