@@ -31,6 +31,9 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGraficoChiCuadrado));
             this.txtIntervalos = new System.Windows.Forms.Label();
             this.btn5 = new System.Windows.Forms.RadioButton();
@@ -58,9 +61,11 @@
             this.lblCalculadoRes = new System.Windows.Forms.Label();
             this.lblTablaRes = new System.Windows.Forms.Label();
             this.lblConclusion = new System.Windows.Forms.Label();
+            this.chrtChi = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrtDistribucion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiCuadrado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtChi)).BeginInit();
             this.SuspendLayout();
             // 
             // txtIntervalos
@@ -278,7 +283,7 @@
             // 
             this.lblTabla.AutoSize = true;
             this.lblTabla.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTabla.Location = new System.Drawing.Point(1058, 492);
+            this.lblTabla.Location = new System.Drawing.Point(732, 453);
             this.lblTabla.Name = "lblTabla";
             this.lblTabla.Size = new System.Drawing.Size(81, 18);
             this.lblTabla.TabIndex = 10;
@@ -289,7 +294,7 @@
             // 
             this.lblCalculado.AutoSize = true;
             this.lblCalculado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCalculado.Location = new System.Drawing.Point(1058, 461);
+            this.lblCalculado.Location = new System.Drawing.Point(732, 422);
             this.lblCalculado.Name = "lblCalculado";
             this.lblCalculado.Size = new System.Drawing.Size(113, 18);
             this.lblCalculado.TabIndex = 11;
@@ -299,7 +304,7 @@
             // 
             this.lblCalculadoRes.AutoSize = true;
             this.lblCalculadoRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCalculadoRes.Location = new System.Drawing.Point(1212, 461);
+            this.lblCalculadoRes.Location = new System.Drawing.Point(886, 422);
             this.lblCalculadoRes.Name = "lblCalculadoRes";
             this.lblCalculadoRes.Size = new System.Drawing.Size(28, 18);
             this.lblCalculadoRes.TabIndex = 12;
@@ -310,7 +315,7 @@
             // 
             this.lblTablaRes.AutoSize = true;
             this.lblTablaRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTablaRes.Location = new System.Drawing.Point(1212, 492);
+            this.lblTablaRes.Location = new System.Drawing.Point(886, 453);
             this.lblTablaRes.Name = "lblTablaRes";
             this.lblTablaRes.Size = new System.Drawing.Size(28, 18);
             this.lblTablaRes.TabIndex = 13;
@@ -320,18 +325,35 @@
             // lblConclusion
             // 
             this.lblConclusion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConclusion.Location = new System.Drawing.Point(732, 510);
+            this.lblConclusion.Location = new System.Drawing.Point(732, 481);
             this.lblConclusion.Name = "lblConclusion";
             this.lblConclusion.Size = new System.Drawing.Size(421, 57);
             this.lblConclusion.TabIndex = 14;
             this.lblConclusion.Text = "Conclusión: ";
             this.lblConclusion.Visible = false;
             // 
+            // chrtChi
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.chrtChi.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chrtChi.Legends.Add(legend2);
+            this.chrtChi.Location = new System.Drawing.Point(735, 515);
+            this.chrtChi.Name = "chrtChi";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chrtChi.Series.Add(series2);
+            this.chrtChi.Size = new System.Drawing.Size(607, 222);
+            this.chrtChi.TabIndex = 15;
+            this.chrtChi.Text = "chart1";
+            // 
             // frmGraficoChiCuadrado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.chrtChi);
             this.Controls.Add(this.lblConclusion);
             this.Controls.Add(this.lblTablaRes);
             this.Controls.Add(this.lblCalculadoRes);
@@ -353,6 +375,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrtDistribucion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiCuadrado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtChi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -386,5 +409,6 @@
         private System.Windows.Forms.Label lblCalculadoRes;
         private System.Windows.Forms.Label lblTablaRes;
         private System.Windows.Forms.Label lblConclusion;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chrtChi;
     }
 }

@@ -31,8 +31,15 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGraficoChiCuadradoPoisson));
             this.dgvTabla = new System.Windows.Forms.DataGridView();
+            this.valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.frecuenciaObservada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.probabilidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.frecuenciaEsperada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblConclusion = new System.Windows.Forms.Label();
             this.lblTablaRes = new System.Windows.Forms.Label();
             this.lblCalculadoRes = new System.Windows.Forms.Label();
@@ -46,13 +53,11 @@
             this.cAcumulativo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnGenerar = new System.Windows.Forms.Button();
             this.chrtDistribucion = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.frecuenciaObservada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.probabilidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.frecuenciaEsperada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chrtChi = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiCuadrado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrtDistribucion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtChi)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvTabla
@@ -71,6 +76,34 @@
             this.dgvTabla.RowTemplate.Height = 25;
             this.dgvTabla.Size = new System.Drawing.Size(500, 219);
             this.dgvTabla.TabIndex = 9;
+            // 
+            // valor
+            // 
+            this.valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.valor.HeaderText = "Valor";
+            this.valor.Name = "valor";
+            this.valor.ReadOnly = true;
+            // 
+            // frecuenciaObservada
+            // 
+            this.frecuenciaObservada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.frecuenciaObservada.HeaderText = "Frecuencia Observada";
+            this.frecuenciaObservada.Name = "frecuenciaObservada";
+            this.frecuenciaObservada.ReadOnly = true;
+            // 
+            // probabilidad
+            // 
+            this.probabilidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.probabilidad.HeaderText = "Probabilidad";
+            this.probabilidad.Name = "probabilidad";
+            this.probabilidad.ReadOnly = true;
+            // 
+            // frecuenciaEsperada
+            // 
+            this.frecuenciaEsperada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.frecuenciaEsperada.HeaderText = "Frecuencia Esperada";
+            this.frecuenciaEsperada.Name = "frecuenciaEsperada";
+            this.frecuenciaEsperada.ReadOnly = true;
             // 
             // lblConclusion
             // 
@@ -203,39 +236,28 @@
             this.chrtDistribucion.TabIndex = 22;
             this.chrtDistribucion.Text = "chart1";
             // 
-            // valor
+            // chrtChi
             // 
-            this.valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.valor.HeaderText = "Valor";
-            this.valor.Name = "valor";
-            this.valor.ReadOnly = true;
-            // 
-            // frecuenciaObservada
-            // 
-            this.frecuenciaObservada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.frecuenciaObservada.HeaderText = "Frecuencia Observada";
-            this.frecuenciaObservada.Name = "frecuenciaObservada";
-            this.frecuenciaObservada.ReadOnly = true;
-            // 
-            // probabilidad
-            // 
-            this.probabilidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.probabilidad.HeaderText = "Probabilidad";
-            this.probabilidad.Name = "probabilidad";
-            this.probabilidad.ReadOnly = true;
-            // 
-            // frecuenciaEsperada
-            // 
-            this.frecuenciaEsperada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.frecuenciaEsperada.HeaderText = "Frecuencia Esperada";
-            this.frecuenciaEsperada.Name = "frecuenciaEsperada";
-            this.frecuenciaEsperada.ReadOnly = true;
+            chartArea2.Name = "ChartArea1";
+            this.chrtChi.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chrtChi.Legends.Add(legend2);
+            this.chrtChi.Location = new System.Drawing.Point(594, 405);
+            this.chrtChi.Name = "chrtChi";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chrtChi.Series.Add(series2);
+            this.chrtChi.Size = new System.Drawing.Size(379, 205);
+            this.chrtChi.TabIndex = 23;
+            this.chrtChi.Text = "chart1";
             // 
             // frmGraficoChiCuadradoPoisson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1047, 629);
+            this.Controls.Add(this.chrtChi);
             this.Controls.Add(this.chrtDistribucion);
             this.Controls.Add(this.dgvChiCuadrado);
             this.Controls.Add(this.btnGenerar);
@@ -251,6 +273,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiCuadrado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrtDistribucion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtChi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,5 +299,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn frecuenciaObservada;
         private System.Windows.Forms.DataGridViewTextBoxColumn probabilidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn frecuenciaEsperada;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chrtChi;
     }
 }

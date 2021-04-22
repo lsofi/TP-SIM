@@ -26,6 +26,7 @@ namespace TP3
             this.numeros = numeros;
             this.distribucion = distribucion;
             chrtDistribucion.Series.Add(Series2);
+            chrtChi.Series.Add(Series2);
 
         }
 
@@ -49,7 +50,8 @@ namespace TP3
             }
 
             generarGrafico(intervalos, frecuenciaObservada);
-            chiCuadrado();
+            string[,] intervalosChi = chiCuadrado();
+            generarGraficoChi(intervalosChi);
             lblCalculadoRes.Text = getAcumulado().ToString();
             lblCalculadoRes.Visible = true;
             lblTablaRes.Text = tablaChiCuadrado().ToString();
@@ -152,9 +154,41 @@ namespace TP3
 
         }
 
-        public void chiCuadrado()
+        public void generarGraficoChi(string[,] intervalos)
+        {
+            chrtChi.Series["Series1"].Points.Clear();
+            chrtChi.Series["Series2"].Points.Clear();
+            chrtChi.Series["Series1"].LegendText = "Frecuencia observada";
+            chrtChi.Series["Series2"].LegendText = "Frecuencia esperada";
+
+            Dictionary<string, int> dic3 = new Dictionary<string, int>();
+            Dictionary<string, float> dic4 = new Dictionary<string, float>();
+
+            int i = 0;
+            while (!(intervalos[i, 0] == null))
+            {
+                dic3.Add(intervalos[i, 0] + " - " + intervalos[i, 1], Convert.ToInt32(intervalos[i, 2]));
+                dic4.Add(intervalos[i, 0] + " - " + intervalos[i, 1], (float)Convert.ToDouble(intervalos[i, 3]));
+                i++;
+            }
+
+            foreach (KeyValuePair<string, int> d in dic3)
+            {
+                chrtChi.Series["Series1"].Points.AddXY(d.Key, d.Value);
+            }
+
+            foreach (KeyValuePair<string, float> d in dic4)
+            {
+                chrtChi.Series["Series2"].Points.AddXY(d.Key, d.Value);
+            }
+
+        }
+
+        public string[,] chiCuadrado()
         {
             float cAcum = 0;
+            String[,] intervalos = new String[dgvTabla.Rows.Count, 4];
+            int j = 0;
             for (int i = 0; i < dgvTabla.Rows.Count; i++)
             {
                 string desde = dgvTabla.Rows[i].Cells["desde"].Value.ToString();
@@ -170,11 +204,20 @@ namespace TP3
                     sumaEsperada += (float)Convert.ToDouble(dgvTabla.Rows[i].Cells["frecuenciaEsperada"].Value);
                     sumaObservada += Convert.ToInt32(dgvTabla.Rows[i].Cells["frecuenciaObservada"].Value);
                     hasta = dgvTabla.Rows[i].Cells["hasta"].Value.ToString();
+
                 }
                 float c = (float)Math.Pow(((float)sumaEsperada - (float)sumaObservada), 2) / sumaEsperada;
                 cAcum += c;
                 dgvChiCuadrado.Rows.Add(desde, hasta, sumaObservada, sumaEsperada, Math.Truncate(10000 * c) / 10000, Math.Truncate(10000 * cAcum) / 10000);
+                intervalos[j, 0] = desde;
+                intervalos[j, 1] = hasta;
+                intervalos[j, 2] = sumaObservada.ToString();
+                intervalos[j, 3] = sumaEsperada.ToString();
+                j++;
             }
+
+            return intervalos;
+
         }
 
         public bool verificarProximos(int i)

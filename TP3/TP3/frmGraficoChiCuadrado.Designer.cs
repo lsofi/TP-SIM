@@ -31,6 +31,9 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGraficoChiCuadrado));
             this.dgvTabla = new System.Windows.Forms.DataGridView();
             this.desde = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,9 +58,11 @@
             this.btnGenerar = new System.Windows.Forms.Button();
             this.chrtDistribucion = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.txtCantInter = new System.Windows.Forms.TextBox();
+            this.chrtChi = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiCuadrado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrtDistribucion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtChi)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvTabla
@@ -278,11 +283,28 @@
             this.txtCantInter.TabIndex = 23;
             this.txtCantInter.Leave += new System.EventHandler(this.txtCantInter_Leave);
             // 
+            // chrtChi
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.chrtChi.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chrtChi.Legends.Add(legend2);
+            this.chrtChi.Location = new System.Drawing.Point(625, 409);
+            this.chrtChi.Name = "chrtChi";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chrtChi.Series.Add(series2);
+            this.chrtChi.Size = new System.Drawing.Size(398, 203);
+            this.chrtChi.TabIndex = 24;
+            this.chrtChi.Text = "chart1";
+            // 
             // frmGraficoChiCuadrado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1088, 627);
+            this.Controls.Add(this.chrtChi);
             this.Controls.Add(this.txtCantInter);
             this.Controls.Add(this.chrtDistribucion);
             this.Controls.Add(this.dgvChiCuadrado);
@@ -300,6 +322,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiCuadrado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrtDistribucion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtChi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -330,5 +353,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn frecuenciaObservada;
         private System.Windows.Forms.DataGridViewTextBoxColumn probabilidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn frecuenciaEsperada;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chrtChi;
     }
 }
