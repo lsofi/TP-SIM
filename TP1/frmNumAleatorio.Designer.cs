@@ -54,6 +54,7 @@ namespace GeneracionDeNumerosAleatorios
             this.dgvTabla = new System.Windows.Forms.DataGridView();
             this.iteracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numAleatorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnLenguaje = new System.Windows.Forms.RadioButton();
             this.titulo.SuspendLayout();
             this.ingresoDeNumeros.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -84,6 +85,7 @@ namespace GeneracionDeNumerosAleatorios
             // 
             // ingresoDeNumeros
             // 
+            this.ingresoDeNumeros.Controls.Add(this.btnLenguaje);
             this.ingresoDeNumeros.Controls.Add(this.txtG);
             this.ingresoDeNumeros.Controls.Add(this.txtK);
             this.ingresoDeNumeros.Controls.Add(this.btnGenerar);
@@ -249,7 +251,7 @@ namespace GeneracionDeNumerosAleatorios
             this.btnMultiplicativo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnMultiplicativo.AutoSize = true;
             this.btnMultiplicativo.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnMultiplicativo.Location = new System.Drawing.Point(359, 23);
+            this.btnMultiplicativo.Location = new System.Drawing.Point(263, 23);
             this.btnMultiplicativo.Name = "btnMultiplicativo";
             this.btnMultiplicativo.Size = new System.Drawing.Size(122, 25);
             this.btnMultiplicativo.TabIndex = 1;
@@ -263,7 +265,7 @@ namespace GeneracionDeNumerosAleatorios
             this.btnMixto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnMixto.AutoSize = true;
             this.btnMixto.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnMixto.Location = new System.Drawing.Point(164, 23);
+            this.btnMixto.Location = new System.Drawing.Point(110, 23);
             this.btnMixto.Name = "btnMixto";
             this.btnMixto.Size = new System.Drawing.Size(67, 25);
             this.btnMixto.TabIndex = 0;
@@ -345,6 +347,20 @@ namespace GeneracionDeNumerosAleatorios
             this.numAleatorio.ReadOnly = true;
             this.numAleatorio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
+            // btnLenguaje
+            // 
+            this.btnLenguaje.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnLenguaje.AutoSize = true;
+            this.btnLenguaje.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.btnLenguaje.Location = new System.Drawing.Point(463, 23);
+            this.btnLenguaje.Name = "btnLenguaje";
+            this.btnLenguaje.Size = new System.Drawing.Size(91, 25);
+            this.btnLenguaje.TabIndex = 13;
+            this.btnLenguaje.TabStop = true;
+            this.btnLenguaje.Text = "Lenguaje";
+            this.btnLenguaje.UseVisualStyleBackColor = true;
+            this.btnLenguaje.CheckedChanged += new System.EventHandler(this.btnLenguaje_CheckedChanged);
+            // 
             // frmNumAleatorio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -392,6 +408,7 @@ namespace GeneracionDeNumerosAleatorios
         private System.Windows.Forms.DataGridViewTextBoxColumn numAleatorio;
         private FontAwesome.Sharp.IconButton btnProximo;
         private System.Windows.Forms.Button btnGenerarGrafico;
+        private System.Windows.Forms.RadioButton btnLenguaje;
     }
 }
 

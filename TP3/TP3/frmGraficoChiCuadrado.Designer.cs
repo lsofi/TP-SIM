@@ -76,7 +76,7 @@
             this.dgvTabla.Name = "dgvTabla";
             this.dgvTabla.ReadOnly = true;
             this.dgvTabla.RowTemplate.Height = 25;
-            this.dgvTabla.Size = new System.Drawing.Size(500, 250);
+            this.dgvTabla.Size = new System.Drawing.Size(617, 250);
             this.dgvTabla.TabIndex = 9;
             // 
             // desde
@@ -134,7 +134,7 @@
             // lblConclusion
             // 
             this.lblConclusion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConclusion.Location = new System.Drawing.Point(561, 379);
+            this.lblConclusion.Location = new System.Drawing.Point(753, 378);
             this.lblConclusion.Name = "lblConclusion";
             this.lblConclusion.Size = new System.Drawing.Size(442, 89);
             this.lblConclusion.TabIndex = 19;
@@ -145,7 +145,7 @@
             // 
             this.lblTablaRes.AutoSize = true;
             this.lblTablaRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTablaRes.Location = new System.Drawing.Point(680, 349);
+            this.lblTablaRes.Location = new System.Drawing.Point(872, 349);
             this.lblTablaRes.Name = "lblTablaRes";
             this.lblTablaRes.Size = new System.Drawing.Size(28, 18);
             this.lblTablaRes.TabIndex = 18;
@@ -156,7 +156,7 @@
             // 
             this.lblCalculadoRes.AutoSize = true;
             this.lblCalculadoRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCalculadoRes.Location = new System.Drawing.Point(680, 318);
+            this.lblCalculadoRes.Location = new System.Drawing.Point(872, 318);
             this.lblCalculadoRes.Name = "lblCalculadoRes";
             this.lblCalculadoRes.Size = new System.Drawing.Size(28, 18);
             this.lblCalculadoRes.TabIndex = 17;
@@ -167,7 +167,7 @@
             // 
             this.lblCalculado.AutoSize = true;
             this.lblCalculado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCalculado.Location = new System.Drawing.Point(561, 318);
+            this.lblCalculado.Location = new System.Drawing.Point(753, 318);
             this.lblCalculado.Name = "lblCalculado";
             this.lblCalculado.Size = new System.Drawing.Size(113, 18);
             this.lblCalculado.TabIndex = 16;
@@ -177,7 +177,7 @@
             // 
             this.lblTabla.AutoSize = true;
             this.lblTabla.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTabla.Location = new System.Drawing.Point(561, 349);
+            this.lblTabla.Location = new System.Drawing.Point(753, 349);
             this.lblTabla.Name = "lblTabla";
             this.lblTabla.Size = new System.Drawing.Size(81, 18);
             this.lblTabla.TabIndex = 15;
@@ -195,10 +195,10 @@
             this.frecuenciaE2,
             this.c,
             this.cAcumulativo});
-            this.dgvChiCuadrado.Location = new System.Drawing.Point(564, 51);
+            this.dgvChiCuadrado.Location = new System.Drawing.Point(710, 51);
             this.dgvChiCuadrado.Name = "dgvChiCuadrado";
             this.dgvChiCuadrado.ReadOnly = true;
-            this.dgvChiCuadrado.Size = new System.Drawing.Size(500, 250);
+            this.dgvChiCuadrado.Size = new System.Drawing.Size(636, 250);
             this.dgvChiCuadrado.TabIndex = 21;
             // 
             // desde2
@@ -266,7 +266,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chrtDistribucion.Series.Add(series1);
-            this.chrtDistribucion.Size = new System.Drawing.Size(500, 305);
+            this.chrtDistribucion.Size = new System.Drawing.Size(688, 392);
             this.chrtDistribucion.TabIndex = 22;
             this.chrtDistribucion.Text = "chart1";
             // 
@@ -282,7 +282,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1088, 635);
+            this.ClientSize = new System.Drawing.Size(1358, 735);
             this.Controls.Add(this.txtCantInter);
             this.Controls.Add(this.chrtDistribucion);
             this.Controls.Add(this.dgvChiCuadrado);
