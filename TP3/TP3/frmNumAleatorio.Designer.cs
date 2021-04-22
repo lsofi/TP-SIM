@@ -56,6 +56,7 @@ namespace TP3
             this.dgvTabla = new System.Windows.Forms.DataGridView();
             this.iteracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numAleatorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblDistribuciones = new System.Windows.Forms.Label();
             this.titulo.SuspendLayout();
             this.ingresoDeNumeros.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -86,6 +87,7 @@ namespace TP3
             // 
             // ingresoDeNumeros
             // 
+            this.ingresoDeNumeros.Controls.Add(this.lblDistribuciones);
             this.ingresoDeNumeros.Controls.Add(this.btnNormalConvolucion);
             this.ingresoDeNumeros.Controls.Add(this.txtN);
             this.ingresoDeNumeros.Controls.Add(this.lblN);
@@ -107,14 +109,14 @@ namespace TP3
             this.ingresoDeNumeros.Dock = System.Windows.Forms.DockStyle.Top;
             this.ingresoDeNumeros.Location = new System.Drawing.Point(0, 49);
             this.ingresoDeNumeros.Name = "ingresoDeNumeros";
-            this.ingresoDeNumeros.Size = new System.Drawing.Size(654, 197);
+            this.ingresoDeNumeros.Size = new System.Drawing.Size(654, 237);
             this.ingresoDeNumeros.TabIndex = 1;
             // 
             // btnNormalConvolucion
             // 
             this.btnNormalConvolucion.AutoSize = true;
             this.btnNormalConvolucion.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnNormalConvolucion.Location = new System.Drawing.Point(37, 13);
+            this.btnNormalConvolucion.Location = new System.Drawing.Point(37, 54);
             this.btnNormalConvolucion.Name = "btnNormalConvolucion";
             this.btnNormalConvolucion.Size = new System.Drawing.Size(130, 25);
             this.btnNormalConvolucion.TabIndex = 17;
@@ -126,7 +128,7 @@ namespace TP3
             // txtN
             // 
             this.txtN.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtN.Location = new System.Drawing.Point(495, 103);
+            this.txtN.Location = new System.Drawing.Point(495, 144);
             this.txtN.Name = "txtN";
             this.txtN.Size = new System.Drawing.Size(86, 29);
             this.txtN.TabIndex = 4;
@@ -136,7 +138,7 @@ namespace TP3
             // 
             this.lblN.AutoSize = true;
             this.lblN.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblN.Location = new System.Drawing.Point(471, 107);
+            this.lblN.Location = new System.Drawing.Point(471, 148);
             this.lblN.Name = "lblN";
             this.lblN.Size = new System.Drawing.Size(22, 21);
             this.lblN.TabIndex = 15;
@@ -146,7 +148,7 @@ namespace TP3
             // 
             this.btnPoisson.AutoSize = true;
             this.btnPoisson.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnPoisson.Location = new System.Drawing.Point(534, 13);
+            this.btnPoisson.Location = new System.Drawing.Point(534, 54);
             this.btnPoisson.Name = "btnPoisson";
             this.btnPoisson.Size = new System.Drawing.Size(81, 25);
             this.btnPoisson.TabIndex = 14;
@@ -159,7 +161,7 @@ namespace TP3
             // 
             this.btnExponencial.AutoSize = true;
             this.btnExponencial.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnExponencial.Location = new System.Drawing.Point(406, 13);
+            this.btnExponencial.Location = new System.Drawing.Point(406, 54);
             this.btnExponencial.Name = "btnExponencial";
             this.btnExponencial.Size = new System.Drawing.Size(110, 25);
             this.btnExponencial.TabIndex = 13;
@@ -172,7 +174,7 @@ namespace TP3
             // 
             this.txtDE.Enabled = false;
             this.txtDE.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtDE.Location = new System.Drawing.Point(315, 59);
+            this.txtDE.Location = new System.Drawing.Point(315, 100);
             this.txtDE.Name = "txtDE";
             this.txtDE.Size = new System.Drawing.Size(86, 29);
             this.txtDE.TabIndex = 1;
@@ -181,7 +183,7 @@ namespace TP3
             // 
             this.txtLambda.Enabled = false;
             this.txtLambda.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtLambda.Location = new System.Drawing.Point(495, 59);
+            this.txtLambda.Location = new System.Drawing.Point(495, 100);
             this.txtLambda.Name = "txtLambda";
             this.txtLambda.Size = new System.Drawing.Size(86, 29);
             this.txtLambda.TabIndex = 2;
@@ -190,7 +192,7 @@ namespace TP3
             // btnGenerar
             // 
             this.btnGenerar.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnGenerar.Location = new System.Drawing.Point(255, 145);
+            this.btnGenerar.Location = new System.Drawing.Point(255, 186);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(117, 37);
             this.btnGenerar.TabIndex = 5;
@@ -202,7 +204,7 @@ namespace TP3
             // 
             this.txtB.Enabled = false;
             this.txtB.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtB.Location = new System.Drawing.Point(315, 103);
+            this.txtB.Location = new System.Drawing.Point(315, 144);
             this.txtB.Name = "txtB";
             this.txtB.Size = new System.Drawing.Size(86, 29);
             this.txtB.TabIndex = 12;
@@ -211,7 +213,7 @@ namespace TP3
             // 
             this.txtA.Enabled = false;
             this.txtA.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtA.Location = new System.Drawing.Point(87, 103);
+            this.txtA.Location = new System.Drawing.Point(87, 144);
             this.txtA.Name = "txtA";
             this.txtA.Size = new System.Drawing.Size(86, 29);
             this.txtA.TabIndex = 3;
@@ -220,7 +222,7 @@ namespace TP3
             // 
             this.lblDE.AutoSize = true;
             this.lblDE.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblDE.Location = new System.Drawing.Point(198, 63);
+            this.lblDE.Location = new System.Drawing.Point(198, 104);
             this.lblDE.Name = "lblDE";
             this.lblDE.Size = new System.Drawing.Size(111, 21);
             this.lblDE.TabIndex = 9;
@@ -230,7 +232,7 @@ namespace TP3
             // 
             this.lblLambda.AutoSize = true;
             this.lblLambda.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblLambda.Location = new System.Drawing.Point(428, 63);
+            this.lblLambda.Location = new System.Drawing.Point(428, 104);
             this.lblLambda.Name = "lblLambda";
             this.lblLambda.Size = new System.Drawing.Size(73, 21);
             this.lblLambda.TabIndex = 8;
@@ -240,7 +242,7 @@ namespace TP3
             // 
             this.lblB.AutoSize = true;
             this.lblB.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblB.Location = new System.Drawing.Point(287, 107);
+            this.lblB.Location = new System.Drawing.Point(287, 148);
             this.lblB.Name = "lblB";
             this.lblB.Size = new System.Drawing.Size(22, 21);
             this.lblB.TabIndex = 7;
@@ -250,7 +252,7 @@ namespace TP3
             // 
             this.lblA.AutoSize = true;
             this.lblA.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblA.Location = new System.Drawing.Point(62, 107);
+            this.lblA.Location = new System.Drawing.Point(62, 148);
             this.lblA.Name = "lblA";
             this.lblA.Size = new System.Drawing.Size(21, 21);
             this.lblA.TabIndex = 5;
@@ -261,7 +263,7 @@ namespace TP3
             this.txtMedia.AcceptsTab = true;
             this.txtMedia.Enabled = false;
             this.txtMedia.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtMedia.Location = new System.Drawing.Point(87, 59);
+            this.txtMedia.Location = new System.Drawing.Point(87, 100);
             this.txtMedia.Name = "txtMedia";
             this.txtMedia.Size = new System.Drawing.Size(86, 29);
             this.txtMedia.TabIndex = 0;
@@ -271,7 +273,7 @@ namespace TP3
             // 
             this.lblMedia.AutoSize = true;
             this.lblMedia.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblMedia.Location = new System.Drawing.Point(33, 63);
+            this.lblMedia.Location = new System.Drawing.Point(33, 104);
             this.lblMedia.Name = "lblMedia";
             this.lblMedia.Size = new System.Drawing.Size(56, 21);
             this.lblMedia.TabIndex = 2;
@@ -281,7 +283,7 @@ namespace TP3
             // 
             this.btnUniforme.AutoSize = true;
             this.btnUniforme.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnUniforme.Location = new System.Drawing.Point(296, 13);
+            this.btnUniforme.Location = new System.Drawing.Point(296, 54);
             this.btnUniforme.Name = "btnUniforme";
             this.btnUniforme.Size = new System.Drawing.Size(94, 25);
             this.btnUniforme.TabIndex = 1;
@@ -294,7 +296,7 @@ namespace TP3
             // 
             this.btnNormalMuller.AutoSize = true;
             this.btnNormalMuller.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnNormalMuller.Location = new System.Drawing.Point(184, 13);
+            this.btnNormalMuller.Location = new System.Drawing.Point(184, 54);
             this.btnNormalMuller.Name = "btnNormalMuller";
             this.btnNormalMuller.Size = new System.Drawing.Size(88, 25);
             this.btnNormalMuller.TabIndex = 0;
@@ -308,16 +310,16 @@ namespace TP3
             this.panel1.Controls.Add(this.btnGenerarGrafico);
             this.panel1.Controls.Add(this.dgvTabla);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 246);
+            this.panel1.Location = new System.Drawing.Point(0, 286);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(654, 389);
+            this.panel1.Size = new System.Drawing.Size(654, 423);
             this.panel1.TabIndex = 2;
             // 
             // btnGenerarGrafico
             // 
             this.btnGenerarGrafico.Enabled = false;
             this.btnGenerarGrafico.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerarGrafico.Location = new System.Drawing.Point(475, 159);
+            this.btnGenerarGrafico.Location = new System.Drawing.Point(475, 168);
             this.btnGenerarGrafico.Name = "btnGenerarGrafico";
             this.btnGenerarGrafico.Size = new System.Drawing.Size(124, 63);
             this.btnGenerarGrafico.TabIndex = 0;
@@ -336,7 +338,7 @@ namespace TP3
             this.dgvTabla.Location = new System.Drawing.Point(37, 6);
             this.dgvTabla.Name = "dgvTabla";
             this.dgvTabla.ReadOnly = true;
-            this.dgvTabla.Size = new System.Drawing.Size(401, 371);
+            this.dgvTabla.Size = new System.Drawing.Size(405, 404);
             this.dgvTabla.TabIndex = 0;
             this.dgvTabla.Text = "dataGridView1";
             // 
@@ -356,11 +358,21 @@ namespace TP3
             this.numAleatorio.ReadOnly = true;
             this.numAleatorio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
+            // lblDistribuciones
+            // 
+            this.lblDistribuciones.AutoSize = true;
+            this.lblDistribuciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDistribuciones.Location = new System.Drawing.Point(33, 16);
+            this.lblDistribuciones.Name = "lblDistribuciones";
+            this.lblDistribuciones.Size = new System.Drawing.Size(128, 20);
+            this.lblDistribuciones.TabIndex = 29;
+            this.lblDistribuciones.Text = "Distribuciones:";
+            // 
             // frmNumAleatorio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(654, 635);
+            this.ClientSize = new System.Drawing.Size(654, 708);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ingresoDeNumeros);
             this.Controls.Add(this.titulo);
@@ -405,6 +417,7 @@ namespace TP3
         private System.Windows.Forms.RadioButton btnNormalConvolucion;
         private System.Windows.Forms.DataGridViewTextBoxColumn iteracion;
         private System.Windows.Forms.DataGridViewTextBoxColumn numAleatorio;
+        private System.Windows.Forms.Label lblDistribuciones;
     }
 }
 

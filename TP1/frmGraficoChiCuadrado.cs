@@ -47,6 +47,7 @@ namespace GeneracionDeNumerosAleatorios
             dgvTabla.Rows.Clear();
             dgvChiCuadrado.Rows.Clear();
             chrtDistribucion.Visible = true;
+            chrtChi.Visible = true;
             
             List<float> numerosAleatorios = new List<float>();
             for (int i = 0; i < numeros.Rows.Count; i++)
@@ -116,7 +117,7 @@ namespace GeneracionDeNumerosAleatorios
             Dictionary<string, float> dic4 = new Dictionary<string, float>();
 
             int i = 0;
-            while(!(intervalos[i,0] == null))
+            while(i < intervalos.GetLength(0) && !(intervalos[i, 0] == null))
             {
                 dic3.Add(intervalos[i, 0] + " - " + intervalos[i, 1], Convert.ToInt32(intervalos[i,2]));
                 dic4.Add(intervalos[i, 0] + " - " + intervalos[i, 1], (float) Convert.ToDouble(intervalos[i, 3]));

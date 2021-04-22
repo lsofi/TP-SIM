@@ -33,31 +33,40 @@ namespace TP3
 
         private void btnGenerar_Click_1(object sender, EventArgs e)
         {
-            
-            dgvTabla.Rows.Clear();
-            dgvChiCuadrado.Rows.Clear();
-            chrtDistribucion.Visible = true;
-
-            double[,] intervalos = calcularIntervalos();
-            double[] frecuenciaObservada = calcularFrecuenciaObservada(intervalos);
-            
-
-            for (int i = 0; i < frecuenciaObservada.Length; i++)
+            if (int.TryParse(txtCantInter.Text, out cantIntervalos))
             {
-                float marcaClase = (float)(intervalos[i, 0] + intervalos[i, 1]) / 2;
-                float probabilidad = distribucion.calcularProbabilidad(marcaClase, intervalos[i, 0], intervalos[i, 1]);
+                dgvTabla.Rows.Clear();
+                dgvChiCuadrado.Rows.Clear();
+                chrtDistribucion.Visible = true;
 
-                dgvTabla.Rows.Add(Math.Truncate(10000 * intervalos[i, 0]) / 10000, Math.Truncate(10000 * intervalos[i, 1]) / 10000, marcaClase, frecuenciaObservada[i], probabilidad, calcularFrecuenciaEsperada(probabilidad, numeros.Length));
+                double[,] intervalos = calcularIntervalos();
+                double[] frecuenciaObservada = calcularFrecuenciaObservada(intervalos);
+
+
+                for (int i = 0; i < frecuenciaObservada.Length; i++)
+                {
+                    float marcaClase = (float)(intervalos[i, 0] + intervalos[i, 1]) / 2;
+                    float probabilidad = Math.Abs(distribucion.calcularProbabilidad(marcaClase, intervalos[i, 0], intervalos[i, 1]));
+
+                    dgvTabla.Rows.Add(Math.Truncate(10000 * intervalos[i, 0]) / 10000, Math.Truncate(10000 * intervalos[i, 1]) / 10000, marcaClase, frecuenciaObservada[i], probabilidad, calcularFrecuenciaEsperada(probabilidad, numeros.Length));
+                }
+
+                generarGrafico(intervalos, frecuenciaObservada);
+                string[,] intervalosChi = chiCuadrado();
+                generarGraficoChi(intervalosChi);
+                lblCalculadoRes.Text = getAcumulado().ToString();
+                lblCalculadoRes.Visible = true;
+                lblTablaRes.Text = tablaChiCuadrado().ToString();
+                lblTablaRes.Visible = true;
+                conclusion();
+                chrtDistribucion.Visible = true;
+                chrtChi.Visible = true;
             }
-
-            generarGrafico(intervalos, frecuenciaObservada);
-            string[,] intervalosChi = chiCuadrado();
-            generarGraficoChi(intervalosChi);
-            lblCalculadoRes.Text = getAcumulado().ToString();
-            lblCalculadoRes.Visible = true;
-            lblTablaRes.Text = tablaChiCuadrado().ToString();
-            lblTablaRes.Visible = true;
-            conclusion();
+            else
+            {
+                MessageBox.Show("Por favor ingrese la cantidad de intervalos deseada", "Variables ingresadas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCantInter.Focus();
+            }
 
 
         }
@@ -258,5 +267,9 @@ namespace TP3
             lblConclusion.Visible = true;
         }
 
+        private void dgvChiCuadrado_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

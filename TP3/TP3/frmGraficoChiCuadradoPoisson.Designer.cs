@@ -54,6 +54,8 @@
             this.btnGenerar = new System.Windows.Forms.Button();
             this.chrtDistribucion = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chrtChi = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.lblChrtValores = new System.Windows.Forms.Label();
+            this.lblTablaChi = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiCuadrado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrtDistribucion)).BeginInit();
@@ -70,11 +72,11 @@
             this.frecuenciaObservada,
             this.probabilidad,
             this.frecuenciaEsperada});
-            this.dgvTabla.Location = new System.Drawing.Point(33, 66);
+            this.dgvTabla.Location = new System.Drawing.Point(12, 66);
             this.dgvTabla.Name = "dgvTabla";
             this.dgvTabla.ReadOnly = true;
             this.dgvTabla.RowTemplate.Height = 25;
-            this.dgvTabla.Size = new System.Drawing.Size(500, 219);
+            this.dgvTabla.Size = new System.Drawing.Size(735, 299);
             this.dgvTabla.TabIndex = 9;
             // 
             // valor
@@ -108,9 +110,9 @@
             // lblConclusion
             // 
             this.lblConclusion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConclusion.Location = new System.Drawing.Point(591, 383);
+            this.lblConclusion.Location = new System.Drawing.Point(796, 447);
             this.lblConclusion.Name = "lblConclusion";
-            this.lblConclusion.Size = new System.Drawing.Size(355, 88);
+            this.lblConclusion.Size = new System.Drawing.Size(662, 66);
             this.lblConclusion.TabIndex = 19;
             this.lblConclusion.Text = "Conclusión: ";
             this.lblConclusion.Visible = false;
@@ -119,7 +121,7 @@
             // 
             this.lblTablaRes.AutoSize = true;
             this.lblTablaRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTablaRes.Location = new System.Drawing.Point(745, 353);
+            this.lblTablaRes.Location = new System.Drawing.Point(950, 417);
             this.lblTablaRes.Name = "lblTablaRes";
             this.lblTablaRes.Size = new System.Drawing.Size(28, 18);
             this.lblTablaRes.TabIndex = 18;
@@ -130,7 +132,7 @@
             // 
             this.lblCalculadoRes.AutoSize = true;
             this.lblCalculadoRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCalculadoRes.Location = new System.Drawing.Point(745, 322);
+            this.lblCalculadoRes.Location = new System.Drawing.Point(950, 386);
             this.lblCalculadoRes.Name = "lblCalculadoRes";
             this.lblCalculadoRes.Size = new System.Drawing.Size(28, 18);
             this.lblCalculadoRes.TabIndex = 17;
@@ -141,7 +143,7 @@
             // 
             this.lblCalculado.AutoSize = true;
             this.lblCalculado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCalculado.Location = new System.Drawing.Point(591, 322);
+            this.lblCalculado.Location = new System.Drawing.Point(796, 386);
             this.lblCalculado.Name = "lblCalculado";
             this.lblCalculado.Size = new System.Drawing.Size(113, 18);
             this.lblCalculado.TabIndex = 16;
@@ -151,7 +153,7 @@
             // 
             this.lblTabla.AutoSize = true;
             this.lblTabla.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTabla.Location = new System.Drawing.Point(591, 353);
+            this.lblTabla.Location = new System.Drawing.Point(796, 417);
             this.lblTabla.Name = "lblTabla";
             this.lblTabla.Size = new System.Drawing.Size(81, 18);
             this.lblTabla.TabIndex = 15;
@@ -168,10 +170,10 @@
             this.frecuenciaE2,
             this.c,
             this.cAcumulativo});
-            this.dgvChiCuadrado.Location = new System.Drawing.Point(555, 66);
+            this.dgvChiCuadrado.Location = new System.Drawing.Point(799, 66);
             this.dgvChiCuadrado.Name = "dgvChiCuadrado";
             this.dgvChiCuadrado.ReadOnly = true;
-            this.dgvChiCuadrado.Size = new System.Drawing.Size(452, 219);
+            this.dgvChiCuadrado.Size = new System.Drawing.Size(678, 299);
             this.dgvChiCuadrado.TabIndex = 21;
             // 
             // valor2
@@ -212,7 +214,7 @@
             // btnGenerar
             // 
             this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerar.Location = new System.Drawing.Point(459, 13);
+            this.btnGenerar.Location = new System.Drawing.Point(709, 12);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(128, 34);
             this.btnGenerar.TabIndex = 20;
@@ -226,15 +228,16 @@
             this.chrtDistribucion.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chrtDistribucion.Legends.Add(legend1);
-            this.chrtDistribucion.Location = new System.Drawing.Point(16, 306);
+            this.chrtDistribucion.Location = new System.Drawing.Point(12, 383);
             this.chrtDistribucion.Name = "chrtDistribucion";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chrtDistribucion.Series.Add(series1);
-            this.chrtDistribucion.Size = new System.Drawing.Size(517, 304);
+            this.chrtDistribucion.Size = new System.Drawing.Size(735, 518);
             this.chrtDistribucion.TabIndex = 22;
             this.chrtDistribucion.Text = "chart1";
+            this.chrtDistribucion.Visible = false;
             // 
             // chrtChi
             // 
@@ -242,21 +245,44 @@
             this.chrtChi.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.chrtChi.Legends.Add(legend2);
-            this.chrtChi.Location = new System.Drawing.Point(594, 405);
+            this.chrtChi.Location = new System.Drawing.Point(799, 516);
             this.chrtChi.Name = "chrtChi";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chrtChi.Series.Add(series2);
-            this.chrtChi.Size = new System.Drawing.Size(379, 205);
+            this.chrtChi.Size = new System.Drawing.Size(673, 385);
             this.chrtChi.TabIndex = 23;
             this.chrtChi.Text = "chart1";
+            this.chrtChi.Visible = false;
+            // 
+            // lblChrtValores
+            // 
+            this.lblChrtValores.AutoSize = true;
+            this.lblChrtValores.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChrtValores.Location = new System.Drawing.Point(283, 43);
+            this.lblChrtValores.Name = "lblChrtValores";
+            this.lblChrtValores.Size = new System.Drawing.Size(230, 20);
+            this.lblChrtValores.TabIndex = 24;
+            this.lblChrtValores.Text = "Tabla de distribución de valores";
+            // 
+            // lblTablaChi
+            // 
+            this.lblTablaChi.AutoSize = true;
+            this.lblTablaChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTablaChi.Location = new System.Drawing.Point(1048, 43);
+            this.lblTablaChi.Name = "lblTablaChi";
+            this.lblTablaChi.Size = new System.Drawing.Size(171, 20);
+            this.lblTablaChi.TabIndex = 25;
+            this.lblTablaChi.Text = "Tabla de Chi Cuadrado";
             // 
             // frmGraficoChiCuadradoPoisson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1047, 629);
+            this.ClientSize = new System.Drawing.Size(1500, 926);
+            this.Controls.Add(this.lblTablaChi);
+            this.Controls.Add(this.lblChrtValores);
             this.Controls.Add(this.chrtChi);
             this.Controls.Add(this.chrtDistribucion);
             this.Controls.Add(this.dgvChiCuadrado);
@@ -300,5 +326,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn probabilidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn frecuenciaEsperada;
         private System.Windows.Forms.DataVisualization.Charting.Chart chrtChi;
+        private System.Windows.Forms.Label lblChrtValores;
+        private System.Windows.Forms.Label lblTablaChi;
     }
 }

@@ -116,8 +116,11 @@ namespace TP3
                         txtLambda.Text = (1.0 / m).ToString();
                     else
                     {
-                        txtLambda.Text = m.ToString();
-                        txtLambda.Enabled = false;
+                        if (btnPoisson.Checked)
+                        {
+                            txtLambda.Text = Math.Abs(m).ToString();
+                            txtLambda.Enabled = false;
+                        }
                     }
                 }
             }

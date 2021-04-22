@@ -59,6 +59,8 @@
             this.chrtDistribucion = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.txtCantInter = new System.Windows.Forms.TextBox();
             this.chrtChi = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.lblTablaChi = new System.Windows.Forms.Label();
+            this.lblChrtValores = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiCuadrado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrtDistribucion)).BeginInit();
@@ -81,7 +83,7 @@
             this.dgvTabla.Name = "dgvTabla";
             this.dgvTabla.ReadOnly = true;
             this.dgvTabla.RowTemplate.Height = 25;
-            this.dgvTabla.Size = new System.Drawing.Size(510, 220);
+            this.dgvTabla.Size = new System.Drawing.Size(753, 347);
             this.dgvTabla.TabIndex = 9;
             // 
             // desde
@@ -130,7 +132,7 @@
             // 
             this.txtIntervalos.AutoSize = true;
             this.txtIntervalos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIntervalos.Location = new System.Drawing.Point(280, 20);
+            this.txtIntervalos.Location = new System.Drawing.Point(523, 20);
             this.txtIntervalos.Name = "txtIntervalos";
             this.txtIntervalos.Size = new System.Drawing.Size(157, 18);
             this.txtIntervalos.TabIndex = 7;
@@ -139,9 +141,9 @@
             // lblConclusion
             // 
             this.lblConclusion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConclusion.Location = new System.Drawing.Point(622, 378);
+            this.lblConclusion.Location = new System.Drawing.Point(819, 503);
             this.lblConclusion.Name = "lblConclusion";
-            this.lblConclusion.Size = new System.Drawing.Size(347, 89);
+            this.lblConclusion.Size = new System.Drawing.Size(651, 42);
             this.lblConclusion.TabIndex = 19;
             this.lblConclusion.Text = "Conclusión: ";
             this.lblConclusion.Visible = false;
@@ -150,7 +152,7 @@
             // 
             this.lblTablaRes.AutoSize = true;
             this.lblTablaRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTablaRes.Location = new System.Drawing.Point(776, 348);
+            this.lblTablaRes.Location = new System.Drawing.Point(973, 473);
             this.lblTablaRes.Name = "lblTablaRes";
             this.lblTablaRes.Size = new System.Drawing.Size(28, 18);
             this.lblTablaRes.TabIndex = 18;
@@ -161,7 +163,7 @@
             // 
             this.lblCalculadoRes.AutoSize = true;
             this.lblCalculadoRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCalculadoRes.Location = new System.Drawing.Point(776, 317);
+            this.lblCalculadoRes.Location = new System.Drawing.Point(973, 442);
             this.lblCalculadoRes.Name = "lblCalculadoRes";
             this.lblCalculadoRes.Size = new System.Drawing.Size(28, 18);
             this.lblCalculadoRes.TabIndex = 17;
@@ -172,7 +174,7 @@
             // 
             this.lblCalculado.AutoSize = true;
             this.lblCalculado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCalculado.Location = new System.Drawing.Point(622, 317);
+            this.lblCalculado.Location = new System.Drawing.Point(819, 442);
             this.lblCalculado.Name = "lblCalculado";
             this.lblCalculado.Size = new System.Drawing.Size(113, 18);
             this.lblCalculado.TabIndex = 16;
@@ -182,7 +184,7 @@
             // 
             this.lblTabla.AutoSize = true;
             this.lblTabla.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTabla.Location = new System.Drawing.Point(622, 348);
+            this.lblTabla.Location = new System.Drawing.Point(819, 473);
             this.lblTabla.Name = "lblTabla";
             this.lblTabla.Size = new System.Drawing.Size(81, 18);
             this.lblTabla.TabIndex = 15;
@@ -200,11 +202,12 @@
             this.frecuenciaE2,
             this.c,
             this.cAcumulativo});
-            this.dgvChiCuadrado.Location = new System.Drawing.Point(573, 69);
+            this.dgvChiCuadrado.Location = new System.Drawing.Point(822, 69);
             this.dgvChiCuadrado.Name = "dgvChiCuadrado";
             this.dgvChiCuadrado.ReadOnly = true;
-            this.dgvChiCuadrado.Size = new System.Drawing.Size(462, 220);
+            this.dgvChiCuadrado.Size = new System.Drawing.Size(648, 347);
             this.dgvChiCuadrado.TabIndex = 21;
+            this.dgvChiCuadrado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvChiCuadrado_CellContentClick);
             // 
             // desde2
             // 
@@ -251,7 +254,7 @@
             // btnGenerar
             // 
             this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerar.Location = new System.Drawing.Point(607, 12);
+            this.btnGenerar.Location = new System.Drawing.Point(822, 12);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(128, 34);
             this.btnGenerar.TabIndex = 20;
@@ -265,19 +268,20 @@
             this.chrtDistribucion.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chrtDistribucion.Legends.Add(legend1);
-            this.chrtDistribucion.Location = new System.Drawing.Point(25, 307);
+            this.chrtDistribucion.Location = new System.Drawing.Point(34, 442);
             this.chrtDistribucion.Name = "chrtDistribucion";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chrtDistribucion.Series.Add(series1);
-            this.chrtDistribucion.Size = new System.Drawing.Size(566, 305);
+            this.chrtDistribucion.Size = new System.Drawing.Size(753, 462);
             this.chrtDistribucion.TabIndex = 22;
             this.chrtDistribucion.Text = "chart1";
+            this.chrtDistribucion.Visible = false;
             // 
             // txtCantInter
             // 
-            this.txtCantInter.Location = new System.Drawing.Point(444, 19);
+            this.txtCantInter.Location = new System.Drawing.Point(687, 19);
             this.txtCantInter.Name = "txtCantInter";
             this.txtCantInter.Size = new System.Drawing.Size(100, 20);
             this.txtCantInter.TabIndex = 23;
@@ -289,21 +293,44 @@
             this.chrtChi.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.chrtChi.Legends.Add(legend2);
-            this.chrtChi.Location = new System.Drawing.Point(625, 409);
+            this.chrtChi.Location = new System.Drawing.Point(822, 559);
             this.chrtChi.Name = "chrtChi";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chrtChi.Series.Add(series2);
-            this.chrtChi.Size = new System.Drawing.Size(398, 203);
+            this.chrtChi.Size = new System.Drawing.Size(648, 345);
             this.chrtChi.TabIndex = 24;
             this.chrtChi.Text = "chart1";
+            this.chrtChi.Visible = false;
+            // 
+            // lblTablaChi
+            // 
+            this.lblTablaChi.AutoSize = true;
+            this.lblTablaChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTablaChi.Location = new System.Drawing.Point(1072, 46);
+            this.lblTablaChi.Name = "lblTablaChi";
+            this.lblTablaChi.Size = new System.Drawing.Size(171, 20);
+            this.lblTablaChi.TabIndex = 27;
+            this.lblTablaChi.Text = "Tabla de Chi Cuadrado";
+            // 
+            // lblChrtValores
+            // 
+            this.lblChrtValores.AutoSize = true;
+            this.lblChrtValores.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChrtValores.Location = new System.Drawing.Point(283, 46);
+            this.lblChrtValores.Name = "lblChrtValores";
+            this.lblChrtValores.Size = new System.Drawing.Size(249, 20);
+            this.lblChrtValores.TabIndex = 26;
+            this.lblChrtValores.Text = "Tabla de distribución de Intervalos";
             // 
             // frmGraficoChiCuadrado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1088, 627);
+            this.ClientSize = new System.Drawing.Size(1500, 926);
+            this.Controls.Add(this.lblTablaChi);
+            this.Controls.Add(this.lblChrtValores);
             this.Controls.Add(this.chrtChi);
             this.Controls.Add(this.txtCantInter);
             this.Controls.Add(this.chrtDistribucion);
@@ -354,5 +381,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn probabilidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn frecuenciaEsperada;
         private System.Windows.Forms.DataVisualization.Charting.Chart chrtChi;
+        private System.Windows.Forms.Label lblTablaChi;
+        private System.Windows.Forms.Label lblChrtValores;
     }
 }

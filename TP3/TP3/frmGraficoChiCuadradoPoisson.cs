@@ -57,6 +57,8 @@ namespace TP3
             lblCalculadoRes.Visible = true;
             lblTablaRes.Text = tablaChiCuadrado().ToString();
             lblTablaRes.Visible = true;
+            chrtChi.Visible = true;
+            chrtDistribucion.Visible = true;
             conclusion();
 
 
@@ -151,7 +153,7 @@ namespace TP3
             Dictionary<string, float> dic4 = new Dictionary<string, float>();
 
             int i = 0;
-            while (!(intervalos[i, 0] == null))
+            while (i < intervalos.GetLength(0) && !(intervalos[i, 0] == null))
             {
                 dic3.Add(intervalos[i, 0], Convert.ToInt32(intervalos[i, 1]));
                 dic4.Add(intervalos[i, 0], (float)Convert.ToDouble(intervalos[i, 2]));
