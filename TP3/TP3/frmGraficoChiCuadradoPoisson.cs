@@ -195,6 +195,5 @@ namespace TP3
             lblConclusion.Text = txt;
             lblConclusion.Visible = true;
         }
-
     }
 }
