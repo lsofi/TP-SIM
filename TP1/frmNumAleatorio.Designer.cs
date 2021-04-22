@@ -54,6 +54,7 @@ namespace GeneracionDeNumerosAleatorios
             this.dgvTabla = new System.Windows.Forms.DataGridView();
             this.iteracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numAleatorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnLenguaje = new System.Windows.Forms.RadioButton();
             this.titulo.SuspendLayout();
             this.ingresoDeNumeros.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -75,7 +76,7 @@ namespace GeneracionDeNumerosAleatorios
             // 
             this.titulo1.AutoSize = true;
             this.titulo1.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold);
-            this.titulo1.Location = new System.Drawing.Point(10, 8);
+            this.titulo1.Location = new System.Drawing.Point(20, 9);
             this.titulo1.Name = "titulo1";
             this.titulo1.Size = new System.Drawing.Size(489, 40);
             this.titulo1.TabIndex = 0;
@@ -84,6 +85,7 @@ namespace GeneracionDeNumerosAleatorios
             // 
             // ingresoDeNumeros
             // 
+            this.ingresoDeNumeros.Controls.Add(this.btnLenguaje);
             this.ingresoDeNumeros.Controls.Add(this.txtG);
             this.ingresoDeNumeros.Controls.Add(this.txtK);
             this.ingresoDeNumeros.Controls.Add(this.btnGenerar);
@@ -109,7 +111,7 @@ namespace GeneracionDeNumerosAleatorios
             // 
             this.txtG.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtG.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtG.Location = new System.Drawing.Point(281, 69);
+            this.txtG.Location = new System.Drawing.Point(283, 69);
             this.txtG.Name = "txtG";
             this.txtG.Size = new System.Drawing.Size(86, 29);
             this.txtG.TabIndex = 3;
@@ -119,7 +121,7 @@ namespace GeneracionDeNumerosAleatorios
             // 
             this.txtK.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtK.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtK.Location = new System.Drawing.Point(497, 69);
+            this.txtK.Location = new System.Drawing.Point(499, 69);
             this.txtK.Name = "txtK";
             this.txtK.Size = new System.Drawing.Size(86, 29);
             this.txtK.TabIndex = 4;
@@ -129,7 +131,7 @@ namespace GeneracionDeNumerosAleatorios
             // 
             this.btnGenerar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnGenerar.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnGenerar.Location = new System.Drawing.Point(257, 155);
+            this.btnGenerar.Location = new System.Drawing.Point(267, 155);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(110, 33);
             this.btnGenerar.TabIndex = 6;
@@ -141,7 +143,7 @@ namespace GeneracionDeNumerosAleatorios
             // 
             this.txtM.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtM.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtM.Location = new System.Drawing.Point(281, 111);
+            this.txtM.Location = new System.Drawing.Point(283, 111);
             this.txtM.Name = "txtM";
             this.txtM.Size = new System.Drawing.Size(86, 29);
             this.txtM.TabIndex = 12;
@@ -151,7 +153,7 @@ namespace GeneracionDeNumerosAleatorios
             // 
             this.txtC.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtC.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtC.Location = new System.Drawing.Point(497, 113);
+            this.txtC.Location = new System.Drawing.Point(499, 113);
             this.txtC.Name = "txtC";
             this.txtC.Size = new System.Drawing.Size(86, 29);
             this.txtC.TabIndex = 5;
@@ -161,7 +163,7 @@ namespace GeneracionDeNumerosAleatorios
             // 
             this.txtA.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtA.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtA.Location = new System.Drawing.Point(89, 111);
+            this.txtA.Location = new System.Drawing.Point(91, 111);
             this.txtA.Name = "txtA";
             this.txtA.Size = new System.Drawing.Size(86, 29);
             this.txtA.TabIndex = 4;
@@ -172,7 +174,7 @@ namespace GeneracionDeNumerosAleatorios
             this.lblG.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblG.AutoSize = true;
             this.lblG.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblG.Location = new System.Drawing.Point(257, 72);
+            this.lblG.Location = new System.Drawing.Point(259, 72);
             this.lblG.Name = "lblG";
             this.lblG.Size = new System.Drawing.Size(22, 21);
             this.lblG.TabIndex = 9;
@@ -183,7 +185,7 @@ namespace GeneracionDeNumerosAleatorios
             this.lblK.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblK.AutoSize = true;
             this.lblK.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblK.Location = new System.Drawing.Point(478, 72);
+            this.lblK.Location = new System.Drawing.Point(480, 72);
             this.lblK.Name = "lblK";
             this.lblK.Size = new System.Drawing.Size(21, 21);
             this.lblK.TabIndex = 8;
@@ -194,7 +196,7 @@ namespace GeneracionDeNumerosAleatorios
             this.lblM.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblM.AutoSize = true;
             this.lblM.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblM.Location = new System.Drawing.Point(257, 113);
+            this.lblM.Location = new System.Drawing.Point(259, 113);
             this.lblM.Name = "lblM";
             this.lblM.Size = new System.Drawing.Size(27, 21);
             this.lblM.TabIndex = 7;
@@ -205,7 +207,7 @@ namespace GeneracionDeNumerosAleatorios
             this.lblC.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblC.AutoSize = true;
             this.lblC.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblC.Location = new System.Drawing.Point(475, 116);
+            this.lblC.Location = new System.Drawing.Point(477, 116);
             this.lblC.Name = "lblC";
             this.lblC.Size = new System.Drawing.Size(20, 21);
             this.lblC.TabIndex = 6;
@@ -216,7 +218,7 @@ namespace GeneracionDeNumerosAleatorios
             this.lblA.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblA.AutoSize = true;
             this.lblA.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblA.Location = new System.Drawing.Point(64, 116);
+            this.lblA.Location = new System.Drawing.Point(66, 116);
             this.lblA.Name = "lblA";
             this.lblA.Size = new System.Drawing.Size(21, 21);
             this.lblA.TabIndex = 5;
@@ -227,7 +229,7 @@ namespace GeneracionDeNumerosAleatorios
             this.txtX0.AcceptsTab = true;
             this.txtX0.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtX0.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtX0.Location = new System.Drawing.Point(89, 69);
+            this.txtX0.Location = new System.Drawing.Point(91, 69);
             this.txtX0.Name = "txtX0";
             this.txtX0.Size = new System.Drawing.Size(86, 29);
             this.txtX0.TabIndex = 2;
@@ -238,7 +240,7 @@ namespace GeneracionDeNumerosAleatorios
             this.lblX0.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblX0.AutoSize = true;
             this.lblX0.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblX0.Location = new System.Drawing.Point(57, 72);
+            this.lblX0.Location = new System.Drawing.Point(59, 72);
             this.lblX0.Name = "lblX0";
             this.lblX0.Size = new System.Drawing.Size(31, 21);
             this.lblX0.TabIndex = 2;
@@ -249,7 +251,7 @@ namespace GeneracionDeNumerosAleatorios
             this.btnMultiplicativo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnMultiplicativo.AutoSize = true;
             this.btnMultiplicativo.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnMultiplicativo.Location = new System.Drawing.Point(395, 23);
+            this.btnMultiplicativo.Location = new System.Drawing.Point(263, 23);
             this.btnMultiplicativo.Name = "btnMultiplicativo";
             this.btnMultiplicativo.Size = new System.Drawing.Size(122, 25);
             this.btnMultiplicativo.TabIndex = 1;
@@ -263,7 +265,7 @@ namespace GeneracionDeNumerosAleatorios
             this.btnMixto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnMixto.AutoSize = true;
             this.btnMixto.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnMixto.Location = new System.Drawing.Point(200, 23);
+            this.btnMixto.Location = new System.Drawing.Point(110, 23);
             this.btnMixto.Name = "btnMixto";
             this.btnMixto.Size = new System.Drawing.Size(67, 25);
             this.btnMixto.TabIndex = 0;
@@ -288,11 +290,11 @@ namespace GeneracionDeNumerosAleatorios
             this.btnGenerarGrafico.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnGenerarGrafico.Enabled = false;
             this.btnGenerarGrafico.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerarGrafico.Location = new System.Drawing.Point(477, 206);
+            this.btnGenerarGrafico.Location = new System.Drawing.Point(478, 206);
             this.btnGenerarGrafico.Name = "btnGenerarGrafico";
             this.btnGenerarGrafico.Size = new System.Drawing.Size(140, 49);
             this.btnGenerarGrafico.TabIndex = 1;
-            this.btnGenerarGrafico.Text = "Generar Grafico";
+            this.btnGenerarGrafico.Text = "Generar Gráfico";
             this.btnGenerarGrafico.UseVisualStyleBackColor = true;
             this.btnGenerarGrafico.Click += new System.EventHandler(this.btnGenerarGrafico_Click);
             // 
@@ -304,11 +306,11 @@ namespace GeneracionDeNumerosAleatorios
             this.btnProximo.IconChar = FontAwesome.Sharp.IconChar.Plus;
             this.btnProximo.IconColor = System.Drawing.Color.Black;
             this.btnProximo.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnProximo.Location = new System.Drawing.Point(477, 125);
+            this.btnProximo.Location = new System.Drawing.Point(478, 125);
             this.btnProximo.Name = "btnProximo";
             this.btnProximo.Size = new System.Drawing.Size(140, 49);
             this.btnProximo.TabIndex = 0;
-            this.btnProximo.Text = "Proximo";
+            this.btnProximo.Text = "Próximo";
             this.btnProximo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnProximo.UseVisualStyleBackColor = true;
             this.btnProximo.Click += new System.EventHandler(this.btnProximo_Click);
@@ -322,7 +324,7 @@ namespace GeneracionDeNumerosAleatorios
             this.dgvTabla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iteracion,
             this.numAleatorio});
-            this.dgvTabla.Location = new System.Drawing.Point(26, 12);
+            this.dgvTabla.Location = new System.Drawing.Point(27, 12);
             this.dgvTabla.Name = "dgvTabla";
             this.dgvTabla.ReadOnly = true;
             this.dgvTabla.Size = new System.Drawing.Size(401, 344);
@@ -344,6 +346,20 @@ namespace GeneracionDeNumerosAleatorios
             this.numAleatorio.Name = "numAleatorio";
             this.numAleatorio.ReadOnly = true;
             this.numAleatorio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // btnLenguaje
+            // 
+            this.btnLenguaje.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnLenguaje.AutoSize = true;
+            this.btnLenguaje.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.btnLenguaje.Location = new System.Drawing.Point(463, 23);
+            this.btnLenguaje.Name = "btnLenguaje";
+            this.btnLenguaje.Size = new System.Drawing.Size(91, 25);
+            this.btnLenguaje.TabIndex = 13;
+            this.btnLenguaje.TabStop = true;
+            this.btnLenguaje.Text = "Lenguaje";
+            this.btnLenguaje.UseVisualStyleBackColor = true;
+            this.btnLenguaje.CheckedChanged += new System.EventHandler(this.btnLenguaje_CheckedChanged);
             // 
             // frmNumAleatorio
             // 
@@ -392,6 +408,7 @@ namespace GeneracionDeNumerosAleatorios
         private System.Windows.Forms.DataGridViewTextBoxColumn numAleatorio;
         private FontAwesome.Sharp.IconButton btnProximo;
         private System.Windows.Forms.Button btnGenerarGrafico;
+        private System.Windows.Forms.RadioButton btnLenguaje;
     }
 }
 

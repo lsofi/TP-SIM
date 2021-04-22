@@ -16,6 +16,7 @@ namespace GeneracionDeNumerosAleatorios
         double[] vectorXi1 = new double[2];
         int x0, g, a, c, k;
         double m;
+        Random random = new Random();
         IEstrategiaNumAleatorio estrategia = new EstrategiaMixto();
         public frmNumAleatorio()
         {
@@ -24,25 +25,38 @@ namespace GeneracionDeNumerosAleatorios
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-            if (txtA.Text != string.Empty && txtX0.Text != string.Empty && txtG.Text != string.Empty && txtM.Text != string.Empty)
+            if (!btnLenguaje.Checked)
             {
-                dgvTabla.Rows.Clear();
-                vectorXi = estrategia.calcularSiguiente(x0, a, c, m);
-                dgvTabla.Rows.Add(1, Math.Truncate(10000 * vectorXi[0]) / 10000, vectorXi[1]);
-                for (int i = 1; i < 20; i++)
+                if (txtA.Text != string.Empty && txtX0.Text != string.Empty && (txtG.Text != string.Empty || txtM.Text != string.Empty) && txtM.Text != string.Empty)
                 {
-                    int xi = Convert.ToInt32(vectorXi[1]);
-                    vectorXi1 = estrategia.calcularSiguiente(xi, a, c, m);
-                    dgvTabla.Rows.Add(i + 1, Math.Truncate(10000 * vectorXi1[0]) / 10000, vectorXi1[1]);
-                    vectorXi = vectorXi1;
-                }
-                btnProximo.Enabled = true;
-                deshabilitarCampos();
-                btnGenerarGrafico.Enabled = true;
+                    dgvTabla.Rows.Clear();
+                    vectorXi = estrategia.calcularSiguiente(x0, a, c, m);
+                    dgvTabla.Rows.Add(1, Math.Truncate(10000 * vectorXi[0]) / 10000, vectorXi[1]);
+                    for (int i = 1; i < 20; i++)
+                    {
+                        int xi = Convert.ToInt32(vectorXi[1]);
+                        vectorXi1 = estrategia.calcularSiguiente(xi, a, c, m);
+                        dgvTabla.Rows.Add(i + 1, Math.Truncate(10000 * vectorXi1[0]) / 10000, vectorXi1[1]);
+                        vectorXi = vectorXi1;
+                    }
+                    btnProximo.Enabled = true;
+                    deshabilitarCampos();
+                    btnGenerarGrafico.Enabled = true;
 
+                }
+                else
+                    MessageBox.Show("¡Por favor complete los campos obligatorios!", "Variables ingresadas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
-                MessageBox.Show("¡Por favor complete los campos obligatorios!", "Variables ingresadas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            {
+                dgvTabla.Rows.Clear();
+                for (int i = 0; i < 20; i++)
+                {
+                    dgvTabla.Rows.Add(i + 1, Math.Round(random.NextDouble(), 4));
+                }
+                btnGenerarGrafico.Enabled = true;
+                btnProximo.Enabled = true;
+            }
         }
 
         private void txtX0_Leave(object sender, EventArgs e)
@@ -186,22 +200,40 @@ namespace GeneracionDeNumerosAleatorios
 
         private void btnProximo_Click(object sender, EventArgs e)
         {
-            int xi = Convert.ToInt32(vectorXi[1]);
-            vectorXi1 = estrategia.calcularSiguiente(xi, a, c, m);
-            dgvTabla.Rows.Add(dgvTabla.Rows.Count + 1, Math.Truncate(10000 * vectorXi1[0]) / 10000, vectorXi1[1]);
-            vectorXi = vectorXi1;
+            if (!btnLenguaje.Checked)
+            {
+                int xi = Convert.ToInt32(vectorXi[1]);
+                vectorXi1 = estrategia.calcularSiguiente(xi, a, c, m);
+                dgvTabla.Rows.Add(dgvTabla.Rows.Count + 1, Math.Truncate(10000 * vectorXi1[0]) / 10000, vectorXi1[1]);
+                vectorXi = vectorXi1;
+            }
+            else
+                dgvTabla.Rows.Add(dgvTabla.Rows.Count + 1, Math.Round(random.NextDouble(), 4));
         }
 
         private void btnGenerarGrafico_Click(object sender, EventArgs e)
         {
             frmGraficoChiCuadrado gcc = new frmGraficoChiCuadrado(dgvTabla);
             gcc.Show();
+            //btnGenerarGrafico.Enabled = false;
+        }
+
+        private void btnLenguaje_CheckedChanged(object sender, EventArgs e)
+        {
+            txtA.Enabled = false;
+            txtC.Enabled = false;
+            txtX0.Enabled = false;
+            txtG.Enabled = false;
+            txtK.Enabled = false;
+            txtM.Enabled = false;
+
         }
 
         private void btnLineal_CheckedChanged(object sender, EventArgs e)
         {
             estrategia = new EstrategiaMixto();
             borrarCampos();
+            btnGenerarGrafico.Enabled = false;
         }
 
         private void btnMultiplicativo_CheckedChanged(object sender, EventArgs e)
@@ -211,6 +243,7 @@ namespace GeneracionDeNumerosAleatorios
             c = 0;
             txtC.Text = "0";
             txtC.Enabled = false;
+            btnGenerarGrafico.Enabled = false;
         }
 
 
