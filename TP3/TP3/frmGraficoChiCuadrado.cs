@@ -183,6 +183,8 @@ namespace TP3
             for (int j = i + 1; j < dgvTabla.Rows.Count; j++)
             {
                 suma += Convert.ToInt32(dgvTabla.Rows[j].Cells["frecuenciaEsperada"].Value);
+                if (suma >= 5)
+                    break;
             }
             return suma < 5;
         }
