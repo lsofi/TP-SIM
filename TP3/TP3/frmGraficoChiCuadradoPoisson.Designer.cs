@@ -31,6 +31,7 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGraficoChiCuadradoPoisson));
             this.dgvTabla = new System.Windows.Forms.DataGridView();
             this.lblConclusion = new System.Windows.Forms.Label();
             this.lblTablaRes = new System.Windows.Forms.Label();
@@ -38,17 +39,17 @@
             this.lblCalculado = new System.Windows.Forms.Label();
             this.lblTabla = new System.Windows.Forms.Label();
             this.dgvChiCuadrado = new System.Windows.Forms.DataGridView();
+            this.valor2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.frecuenciaO2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.frecuenciaE2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.c = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cAcumulativo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnGenerar = new System.Windows.Forms.Button();
             this.chrtDistribucion = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.frecuenciaObservada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.probabilidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.frecuenciaEsperada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valor2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.frecuenciaO2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.frecuenciaE2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.c = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cAcumulativo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiCuadrado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrtDistribucion)).BeginInit();
@@ -64,19 +65,19 @@
             this.frecuenciaObservada,
             this.probabilidad,
             this.frecuenciaEsperada});
-            this.dgvTabla.Location = new System.Drawing.Point(35, 51);
+            this.dgvTabla.Location = new System.Drawing.Point(33, 66);
             this.dgvTabla.Name = "dgvTabla";
             this.dgvTabla.ReadOnly = true;
             this.dgvTabla.RowTemplate.Height = 25;
-            this.dgvTabla.Size = new System.Drawing.Size(411, 190);
+            this.dgvTabla.Size = new System.Drawing.Size(500, 219);
             this.dgvTabla.TabIndex = 9;
             // 
             // lblConclusion
             // 
             this.lblConclusion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConclusion.Location = new System.Drawing.Point(569, 316);
+            this.lblConclusion.Location = new System.Drawing.Point(591, 383);
             this.lblConclusion.Name = "lblConclusion";
-            this.lblConclusion.Size = new System.Drawing.Size(421, 56);
+            this.lblConclusion.Size = new System.Drawing.Size(355, 88);
             this.lblConclusion.TabIndex = 19;
             this.lblConclusion.Text = "Conclusión: ";
             this.lblConclusion.Visible = false;
@@ -85,7 +86,7 @@
             // 
             this.lblTablaRes.AutoSize = true;
             this.lblTablaRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTablaRes.Location = new System.Drawing.Point(723, 286);
+            this.lblTablaRes.Location = new System.Drawing.Point(745, 353);
             this.lblTablaRes.Name = "lblTablaRes";
             this.lblTablaRes.Size = new System.Drawing.Size(28, 18);
             this.lblTablaRes.TabIndex = 18;
@@ -96,7 +97,7 @@
             // 
             this.lblCalculadoRes.AutoSize = true;
             this.lblCalculadoRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCalculadoRes.Location = new System.Drawing.Point(723, 255);
+            this.lblCalculadoRes.Location = new System.Drawing.Point(745, 322);
             this.lblCalculadoRes.Name = "lblCalculadoRes";
             this.lblCalculadoRes.Size = new System.Drawing.Size(28, 18);
             this.lblCalculadoRes.TabIndex = 17;
@@ -107,7 +108,7 @@
             // 
             this.lblCalculado.AutoSize = true;
             this.lblCalculado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCalculado.Location = new System.Drawing.Point(569, 255);
+            this.lblCalculado.Location = new System.Drawing.Point(591, 322);
             this.lblCalculado.Name = "lblCalculado";
             this.lblCalculado.Size = new System.Drawing.Size(113, 18);
             this.lblCalculado.TabIndex = 16;
@@ -117,7 +118,7 @@
             // 
             this.lblTabla.AutoSize = true;
             this.lblTabla.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTabla.Location = new System.Drawing.Point(569, 286);
+            this.lblTabla.Location = new System.Drawing.Point(591, 353);
             this.lblTabla.Name = "lblTabla";
             this.lblTabla.Size = new System.Drawing.Size(81, 18);
             this.lblTabla.TabIndex = 15;
@@ -134,66 +135,11 @@
             this.frecuenciaE2,
             this.c,
             this.cAcumulativo});
-            this.dgvChiCuadrado.Location = new System.Drawing.Point(495, 51);
+            this.dgvChiCuadrado.Location = new System.Drawing.Point(555, 66);
             this.dgvChiCuadrado.Name = "dgvChiCuadrado";
             this.dgvChiCuadrado.ReadOnly = true;
-            this.dgvChiCuadrado.Size = new System.Drawing.Size(418, 190);
+            this.dgvChiCuadrado.Size = new System.Drawing.Size(452, 219);
             this.dgvChiCuadrado.TabIndex = 21;
-            // 
-            // btnGenerar
-            // 
-            this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerar.Location = new System.Drawing.Point(407, 11);
-            this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(128, 34);
-            this.btnGenerar.TabIndex = 20;
-            this.btnGenerar.Text = "Generar Informe";
-            this.btnGenerar.UseVisualStyleBackColor = true;
-            this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click_1);
-            // 
-            // chrtDistribucion
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chrtDistribucion.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chrtDistribucion.Legends.Add(legend1);
-            this.chrtDistribucion.Location = new System.Drawing.Point(35, 255);
-            this.chrtDistribucion.Name = "chrtDistribucion";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chrtDistribucion.Series.Add(series1);
-            this.chrtDistribucion.Size = new System.Drawing.Size(454, 181);
-            this.chrtDistribucion.TabIndex = 22;
-            this.chrtDistribucion.Text = "chart1";
-            // 
-            // valor
-            // 
-            this.valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.valor.HeaderText = "Valor";
-            this.valor.Name = "valor";
-            this.valor.ReadOnly = true;
-            // 
-            // frecuenciaObservada
-            // 
-            this.frecuenciaObservada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.frecuenciaObservada.HeaderText = "FrecuenciaObservada";
-            this.frecuenciaObservada.Name = "frecuenciaObservada";
-            this.frecuenciaObservada.ReadOnly = true;
-            // 
-            // probabilidad
-            // 
-            this.probabilidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.probabilidad.HeaderText = "Probabilidad";
-            this.probabilidad.Name = "probabilidad";
-            this.probabilidad.ReadOnly = true;
-            // 
-            // frecuenciaEsperada
-            // 
-            this.frecuenciaEsperada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.frecuenciaEsperada.HeaderText = "Frecuencia Esperada";
-            this.frecuenciaEsperada.Name = "frecuenciaEsperada";
-            this.frecuenciaEsperada.ReadOnly = true;
             // 
             // valor2
             // 
@@ -230,11 +176,66 @@
             this.cAcumulativo.Name = "cAcumulativo";
             this.cAcumulativo.ReadOnly = true;
             // 
+            // btnGenerar
+            // 
+            this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerar.Location = new System.Drawing.Point(459, 13);
+            this.btnGenerar.Name = "btnGenerar";
+            this.btnGenerar.Size = new System.Drawing.Size(128, 34);
+            this.btnGenerar.TabIndex = 20;
+            this.btnGenerar.Text = "Generar Informe";
+            this.btnGenerar.UseVisualStyleBackColor = true;
+            this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click_1);
+            // 
+            // chrtDistribucion
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chrtDistribucion.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chrtDistribucion.Legends.Add(legend1);
+            this.chrtDistribucion.Location = new System.Drawing.Point(16, 306);
+            this.chrtDistribucion.Name = "chrtDistribucion";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chrtDistribucion.Series.Add(series1);
+            this.chrtDistribucion.Size = new System.Drawing.Size(517, 304);
+            this.chrtDistribucion.TabIndex = 22;
+            this.chrtDistribucion.Text = "chart1";
+            // 
+            // valor
+            // 
+            this.valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.valor.HeaderText = "Valor";
+            this.valor.Name = "valor";
+            this.valor.ReadOnly = true;
+            // 
+            // frecuenciaObservada
+            // 
+            this.frecuenciaObservada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.frecuenciaObservada.HeaderText = "Frecuencia Observada";
+            this.frecuenciaObservada.Name = "frecuenciaObservada";
+            this.frecuenciaObservada.ReadOnly = true;
+            // 
+            // probabilidad
+            // 
+            this.probabilidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.probabilidad.HeaderText = "Probabilidad";
+            this.probabilidad.Name = "probabilidad";
+            this.probabilidad.ReadOnly = true;
+            // 
+            // frecuenciaEsperada
+            // 
+            this.frecuenciaEsperada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.frecuenciaEsperada.HeaderText = "Frecuencia Esperada";
+            this.frecuenciaEsperada.Name = "frecuenciaEsperada";
+            this.frecuenciaEsperada.ReadOnly = true;
+            // 
             // frmGraficoChiCuadradoPoisson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(943, 438);
+            this.ClientSize = new System.Drawing.Size(1047, 629);
             this.Controls.Add(this.chrtDistribucion);
             this.Controls.Add(this.dgvChiCuadrado);
             this.Controls.Add(this.btnGenerar);
@@ -244,8 +245,9 @@
             this.Controls.Add(this.lblCalculado);
             this.Controls.Add(this.lblTabla);
             this.Controls.Add(this.dgvTabla);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmGraficoChiCuadradoPoisson";
-            this.Text = "frmGraficoChiCuadrado";
+            this.Text = "Grafico ChiCuadrado para Poisson";
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiCuadrado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrtDistribucion)).EndInit();
@@ -265,14 +267,14 @@
         private System.Windows.Forms.DataGridView dgvChiCuadrado;
         private System.Windows.Forms.Button btnGenerar;
         private System.Windows.Forms.DataVisualization.Charting.Chart chrtDistribucion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn valor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn frecuenciaObservada;
-        private System.Windows.Forms.DataGridViewTextBoxColumn probabilidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn frecuenciaEsperada;
         private System.Windows.Forms.DataGridViewTextBoxColumn valor2;
         private System.Windows.Forms.DataGridViewTextBoxColumn frecuenciaO2;
         private System.Windows.Forms.DataGridViewTextBoxColumn frecuenciaE2;
         private System.Windows.Forms.DataGridViewTextBoxColumn c;
         private System.Windows.Forms.DataGridViewTextBoxColumn cAcumulativo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn frecuenciaObservada;
+        private System.Windows.Forms.DataGridViewTextBoxColumn probabilidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn frecuenciaEsperada;
     }
 }

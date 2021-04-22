@@ -29,6 +29,7 @@ namespace TP3
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNumAleatorio));
             this.titulo = new System.Windows.Forms.Panel();
             this.titulo1 = new System.Windows.Forms.Label();
             this.ingresoDeNumeros = new System.Windows.Forms.Panel();
@@ -69,7 +70,7 @@ namespace TP3
             this.titulo.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold);
             this.titulo.Location = new System.Drawing.Point(0, 0);
             this.titulo.Name = "titulo";
-            this.titulo.Size = new System.Drawing.Size(637, 49);
+            this.titulo.Size = new System.Drawing.Size(654, 49);
             this.titulo.TabIndex = 0;
             // 
             // titulo1
@@ -106,7 +107,7 @@ namespace TP3
             this.ingresoDeNumeros.Dock = System.Windows.Forms.DockStyle.Top;
             this.ingresoDeNumeros.Location = new System.Drawing.Point(0, 49);
             this.ingresoDeNumeros.Name = "ingresoDeNumeros";
-            this.ingresoDeNumeros.Size = new System.Drawing.Size(637, 183);
+            this.ingresoDeNumeros.Size = new System.Drawing.Size(654, 197);
             this.ingresoDeNumeros.TabIndex = 1;
             // 
             // btnNormalConvolucion
@@ -128,14 +129,14 @@ namespace TP3
             this.txtN.Location = new System.Drawing.Point(495, 103);
             this.txtN.Name = "txtN";
             this.txtN.Size = new System.Drawing.Size(86, 29);
-            this.txtN.TabIndex = 16;
+            this.txtN.TabIndex = 4;
             this.txtN.Leave += new System.EventHandler(this.txtN_Leave);
             // 
             // lblN
             // 
             this.lblN.AutoSize = true;
             this.lblN.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblN.Location = new System.Drawing.Point(471, 106);
+            this.lblN.Location = new System.Drawing.Point(471, 107);
             this.lblN.Name = "lblN";
             this.lblN.Size = new System.Drawing.Size(22, 21);
             this.lblN.TabIndex = 15;
@@ -171,10 +172,10 @@ namespace TP3
             // 
             this.txtDE.Enabled = false;
             this.txtDE.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtDE.Location = new System.Drawing.Point(296, 59);
+            this.txtDE.Location = new System.Drawing.Point(315, 59);
             this.txtDE.Name = "txtDE";
             this.txtDE.Size = new System.Drawing.Size(86, 29);
-            this.txtDE.TabIndex = 2;
+            this.txtDE.TabIndex = 1;
             // 
             // txtLambda
             // 
@@ -183,7 +184,7 @@ namespace TP3
             this.txtLambda.Location = new System.Drawing.Point(495, 59);
             this.txtLambda.Name = "txtLambda";
             this.txtLambda.Size = new System.Drawing.Size(86, 29);
-            this.txtLambda.TabIndex = 3;
+            this.txtLambda.TabIndex = 2;
             this.txtLambda.Leave += new System.EventHandler(this.txtLambda_Leave);
             // 
             // btnGenerar
@@ -191,7 +192,7 @@ namespace TP3
             this.btnGenerar.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.btnGenerar.Location = new System.Drawing.Point(255, 145);
             this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(105, 27);
+            this.btnGenerar.Size = new System.Drawing.Size(117, 37);
             this.btnGenerar.TabIndex = 5;
             this.btnGenerar.Text = "Generar";
             this.btnGenerar.UseVisualStyleBackColor = true;
@@ -201,7 +202,7 @@ namespace TP3
             // 
             this.txtB.Enabled = false;
             this.txtB.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtB.Location = new System.Drawing.Point(296, 101);
+            this.txtB.Location = new System.Drawing.Point(315, 103);
             this.txtB.Name = "txtB";
             this.txtB.Size = new System.Drawing.Size(86, 29);
             this.txtB.TabIndex = 12;
@@ -210,16 +211,16 @@ namespace TP3
             // 
             this.txtA.Enabled = false;
             this.txtA.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtA.Location = new System.Drawing.Point(87, 101);
+            this.txtA.Location = new System.Drawing.Point(87, 103);
             this.txtA.Name = "txtA";
             this.txtA.Size = new System.Drawing.Size(86, 29);
-            this.txtA.TabIndex = 4;
+            this.txtA.TabIndex = 3;
             // 
             // lblDE
             // 
             this.lblDE.AutoSize = true;
             this.lblDE.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblDE.Location = new System.Drawing.Point(198, 62);
+            this.lblDE.Location = new System.Drawing.Point(198, 63);
             this.lblDE.Name = "lblDE";
             this.lblDE.Size = new System.Drawing.Size(111, 21);
             this.lblDE.TabIndex = 9;
@@ -229,7 +230,7 @@ namespace TP3
             // 
             this.lblLambda.AutoSize = true;
             this.lblLambda.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblLambda.Location = new System.Drawing.Point(428, 62);
+            this.lblLambda.Location = new System.Drawing.Point(428, 63);
             this.lblLambda.Name = "lblLambda";
             this.lblLambda.Size = new System.Drawing.Size(73, 21);
             this.lblLambda.TabIndex = 8;
@@ -239,7 +240,7 @@ namespace TP3
             // 
             this.lblB.AutoSize = true;
             this.lblB.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblB.Location = new System.Drawing.Point(272, 103);
+            this.lblB.Location = new System.Drawing.Point(287, 107);
             this.lblB.Name = "lblB";
             this.lblB.Size = new System.Drawing.Size(22, 21);
             this.lblB.TabIndex = 7;
@@ -249,7 +250,7 @@ namespace TP3
             // 
             this.lblA.AutoSize = true;
             this.lblA.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblA.Location = new System.Drawing.Point(62, 106);
+            this.lblA.Location = new System.Drawing.Point(62, 107);
             this.lblA.Name = "lblA";
             this.lblA.Size = new System.Drawing.Size(21, 21);
             this.lblA.TabIndex = 5;
@@ -263,14 +264,14 @@ namespace TP3
             this.txtMedia.Location = new System.Drawing.Point(87, 59);
             this.txtMedia.Name = "txtMedia";
             this.txtMedia.Size = new System.Drawing.Size(86, 29);
-            this.txtMedia.TabIndex = 1;
+            this.txtMedia.TabIndex = 0;
             this.txtMedia.Leave += new System.EventHandler(this.txtMedia_Leave);
             // 
             // lblMedia
             // 
             this.lblMedia.AutoSize = true;
             this.lblMedia.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblMedia.Location = new System.Drawing.Point(33, 62);
+            this.lblMedia.Location = new System.Drawing.Point(33, 63);
             this.lblMedia.Name = "lblMedia";
             this.lblMedia.Size = new System.Drawing.Size(56, 21);
             this.lblMedia.TabIndex = 2;
@@ -307,19 +308,20 @@ namespace TP3
             this.panel1.Controls.Add(this.btnGenerarGrafico);
             this.panel1.Controls.Add(this.dgvTabla);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 232);
+            this.panel1.Location = new System.Drawing.Point(0, 246);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(637, 296);
+            this.panel1.Size = new System.Drawing.Size(654, 389);
             this.panel1.TabIndex = 2;
             // 
             // btnGenerarGrafico
             // 
             this.btnGenerarGrafico.Enabled = false;
-            this.btnGenerarGrafico.Location = new System.Drawing.Point(476, 102);
+            this.btnGenerarGrafico.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerarGrafico.Location = new System.Drawing.Point(475, 159);
             this.btnGenerarGrafico.Name = "btnGenerarGrafico";
-            this.btnGenerarGrafico.Size = new System.Drawing.Size(113, 42);
-            this.btnGenerarGrafico.TabIndex = 2;
-            this.btnGenerarGrafico.Text = "Generar Grafico";
+            this.btnGenerarGrafico.Size = new System.Drawing.Size(124, 63);
+            this.btnGenerarGrafico.TabIndex = 0;
+            this.btnGenerarGrafico.Text = "Generar Gráfico";
             this.btnGenerarGrafico.UseVisualStyleBackColor = true;
             this.btnGenerarGrafico.Click += new System.EventHandler(this.btnGenerarGrafico_Click);
             // 
@@ -331,10 +333,10 @@ namespace TP3
             this.dgvTabla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iteracion,
             this.numAleatorio});
-            this.dgvTabla.Location = new System.Drawing.Point(38, 20);
+            this.dgvTabla.Location = new System.Drawing.Point(37, 6);
             this.dgvTabla.Name = "dgvTabla";
             this.dgvTabla.ReadOnly = true;
-            this.dgvTabla.Size = new System.Drawing.Size(401, 256);
+            this.dgvTabla.Size = new System.Drawing.Size(401, 371);
             this.dgvTabla.TabIndex = 0;
             this.dgvTabla.Text = "dataGridView1";
             // 
@@ -358,10 +360,11 @@ namespace TP3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(637, 529);
+            this.ClientSize = new System.Drawing.Size(654, 635);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ingresoDeNumeros);
             this.Controls.Add(this.titulo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmNumAleatorio";
             this.Text = " Números Aleatorios";
             this.titulo.ResumeLayout(false);
