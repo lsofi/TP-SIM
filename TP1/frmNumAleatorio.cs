@@ -27,7 +27,7 @@ namespace GeneracionDeNumerosAleatorios
         {
             if (!btnLenguaje.Checked)
             {
-                if (txtA.Text != string.Empty && txtX0.Text != string.Empty && txtG.Text != string.Empty && txtM.Text != string.Empty)
+                if (txtA.Text != string.Empty && txtX0.Text != string.Empty && (txtG.Text != string.Empty || txtM.Text != string.Empty) && txtM.Text != string.Empty)
                 {
                     dgvTabla.Rows.Clear();
                     vectorXi = estrategia.calcularSiguiente(x0, a, c, m);
