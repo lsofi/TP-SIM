@@ -24,9 +24,9 @@ namespace TP3.Distribuciones
 
         public float calcularProbabilidad(double mc, double desde, double hasta)
         {
-            float probabilidad = (float) (1/(hasta-desde));
+            float probabilidad = (float) ((hasta-desde)/(b-a));
 
-            return probabilidad;
+            return (float) Math.Round(probabilidad,4);
         }
 
         public int getDatosEmpiricos()
