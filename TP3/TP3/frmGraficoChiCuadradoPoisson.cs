@@ -188,9 +188,9 @@ namespace TP3
         {
             string txt;
             if (getAcumulado() < tablaChiCuadrado())
-                txt = "Conclusión: La hipótesis se acepta, los datos se aproximan a una distribución uniforme.";
+                txt = "Conclusión: La hipótesis se acepta, los datos se aproximan a una distribución " + distribucion.getNombre() + "." ;
             else
-                txt = "Conclusión: La hipótesis no se acepta, los datos no se aproximan a una distribución uniforme.";
+                txt = "Conclusión: La hipótesis no se acepta, los datos no se aproximan a una distribución " + distribucion.getNombre() + ".";
 
             lblConclusion.Text = txt;
             lblConclusion.Visible = true;

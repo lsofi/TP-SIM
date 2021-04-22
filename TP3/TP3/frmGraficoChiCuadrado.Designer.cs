@@ -33,6 +33,12 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGraficoChiCuadrado));
             this.dgvTabla = new System.Windows.Forms.DataGridView();
+            this.desde = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hasta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.marcaClase = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.frecuenciaObservada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.probabilidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.frecuenciaEsperada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtIntervalos = new System.Windows.Forms.Label();
             this.lblConclusion = new System.Windows.Forms.Label();
             this.lblTablaRes = new System.Windows.Forms.Label();
@@ -49,12 +55,6 @@
             this.btnGenerar = new System.Windows.Forms.Button();
             this.chrtDistribucion = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.txtCantInter = new System.Windows.Forms.TextBox();
-            this.desde = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hasta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.marcaClase = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.frecuenciaObservada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.probabilidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.frecuenciaEsperada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTabla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiCuadrado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrtDistribucion)).BeginInit();
@@ -72,12 +72,54 @@
             this.frecuenciaObservada,
             this.probabilidad,
             this.frecuenciaEsperada});
-            this.dgvTabla.Location = new System.Drawing.Point(35, 69);
+            this.dgvTabla.Location = new System.Drawing.Point(34, 69);
             this.dgvTabla.Name = "dgvTabla";
             this.dgvTabla.ReadOnly = true;
             this.dgvTabla.RowTemplate.Height = 25;
             this.dgvTabla.Size = new System.Drawing.Size(510, 220);
             this.dgvTabla.TabIndex = 9;
+            // 
+            // desde
+            // 
+            this.desde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.desde.HeaderText = "Desde";
+            this.desde.Name = "desde";
+            this.desde.ReadOnly = true;
+            // 
+            // hasta
+            // 
+            this.hasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.hasta.HeaderText = "Hasta";
+            this.hasta.Name = "hasta";
+            this.hasta.ReadOnly = true;
+            // 
+            // marcaClase
+            // 
+            this.marcaClase.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.marcaClase.HeaderText = "Marca de Clase";
+            this.marcaClase.Name = "marcaClase";
+            this.marcaClase.ReadOnly = true;
+            // 
+            // frecuenciaObservada
+            // 
+            this.frecuenciaObservada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.frecuenciaObservada.HeaderText = "Frecuencia Observada";
+            this.frecuenciaObservada.Name = "frecuenciaObservada";
+            this.frecuenciaObservada.ReadOnly = true;
+            // 
+            // probabilidad
+            // 
+            this.probabilidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.probabilidad.HeaderText = "Probabilidad";
+            this.probabilidad.Name = "probabilidad";
+            this.probabilidad.ReadOnly = true;
+            // 
+            // frecuenciaEsperada
+            // 
+            this.frecuenciaEsperada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.frecuenciaEsperada.HeaderText = "Frecuencia Esperada";
+            this.frecuenciaEsperada.Name = "frecuenciaEsperada";
+            this.frecuenciaEsperada.ReadOnly = true;
             // 
             // txtIntervalos
             // 
@@ -235,48 +277,6 @@
             this.txtCantInter.Size = new System.Drawing.Size(100, 20);
             this.txtCantInter.TabIndex = 23;
             this.txtCantInter.Leave += new System.EventHandler(this.txtCantInter_Leave);
-            // 
-            // desde
-            // 
-            this.desde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.desde.HeaderText = "Desde";
-            this.desde.Name = "desde";
-            this.desde.ReadOnly = true;
-            // 
-            // hasta
-            // 
-            this.hasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.hasta.HeaderText = "Hasta";
-            this.hasta.Name = "hasta";
-            this.hasta.ReadOnly = true;
-            // 
-            // marcaClase
-            // 
-            this.marcaClase.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.marcaClase.HeaderText = "Marca de Clase";
-            this.marcaClase.Name = "marcaClase";
-            this.marcaClase.ReadOnly = true;
-            // 
-            // frecuenciaObservada
-            // 
-            this.frecuenciaObservada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.frecuenciaObservada.HeaderText = "Frecuencia Observada";
-            this.frecuenciaObservada.Name = "frecuenciaObservada";
-            this.frecuenciaObservada.ReadOnly = true;
-            // 
-            // probabilidad
-            // 
-            this.probabilidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.probabilidad.HeaderText = "Probabilidad";
-            this.probabilidad.Name = "probabilidad";
-            this.probabilidad.ReadOnly = true;
-            // 
-            // frecuenciaEsperada
-            // 
-            this.frecuenciaEsperada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.frecuenciaEsperada.HeaderText = "Frecuencia Esperada";
-            this.frecuenciaEsperada.Name = "frecuenciaEsperada";
-            this.frecuenciaEsperada.ReadOnly = true;
             // 
             // frmGraficoChiCuadrado
             // 

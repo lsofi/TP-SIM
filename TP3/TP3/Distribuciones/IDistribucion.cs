@@ -13,6 +13,8 @@ namespace TP3.Distribuciones
         public abstract float calcularProbabilidad(double mc, double desde, double hasta);
 
         public abstract int getDatosEmpiricos();
+
+        public abstract string getNombre();
     }
 
 }

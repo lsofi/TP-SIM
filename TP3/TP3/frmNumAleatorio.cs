@@ -120,7 +120,6 @@ namespace TP3
                         txtLambda.Enabled = false;
                     }
                 }
-
             }
         }
 
@@ -211,7 +210,5 @@ namespace TP3
                 grafico.Show();
             }    
         }
-
-
     }
 }

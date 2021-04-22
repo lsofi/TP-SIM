@@ -48,5 +48,10 @@ namespace TP3.Distribuciones
         {
             return 1;
         }
+
+        public string getNombre()
+        {
+            return " de Poisson";
+        }
     }
 }

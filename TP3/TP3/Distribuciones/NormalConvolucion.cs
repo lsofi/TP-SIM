@@ -44,5 +44,10 @@ namespace TP3.Distribuciones
             return 2;
         }
 
+        public string getNombre()
+        {
+            return "Normal";
+        }
+
     }
 }

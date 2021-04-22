@@ -66,7 +66,7 @@ namespace TP3
             int n = numeros.Length;
             int cantIntervalos = Convert.ToInt32(txtCantInter.Text);
 
-            for (int i = 1; i < numeros.Length; i++)
+            for (int i = 1; i < n; i++)
             {
                 if (numeros[i] > max) max = numeros[i];
                 if (numeros[i] < min) min = numeros[i];
@@ -100,10 +100,8 @@ namespace TP3
                         frecuencias[j] += 1;
                         break;
                     }
-                }
-                    
+                }   
             }
-
             return frecuencias;
         }
 
@@ -172,7 +170,6 @@ namespace TP3
                     sumaEsperada += (float)Convert.ToDouble(dgvTabla.Rows[i].Cells["frecuenciaEsperada"].Value);
                     sumaObservada += Convert.ToInt32(dgvTabla.Rows[i].Cells["frecuenciaObservada"].Value);
                     hasta = dgvTabla.Rows[i].Cells["hasta"].Value.ToString();
-
                 }
                 float c = (float)Math.Pow(((float)sumaEsperada - (float)sumaObservada), 2) / sumaEsperada;
                 cAcum += c;
@@ -207,9 +204,9 @@ namespace TP3
         {
             string txt;
             if (getAcumulado() < tablaChiCuadrado())
-                txt = "Conclusión: La hipótesis se acepta, los datos se aproximan a una distribución uniforme.";
+                txt = "Conclusión: La hipótesis se acepta, los datos se aproximan a una distribución " + distribucion.getNombre() + ".";
             else
-                txt = "Conclusión: La hipótesis no se acepta, los datos no se aproximan a una distribución uniforme.";
+                txt = "Conclusión: La hipótesis no se acepta, los datos no se aproximan a una distribución " +distribucion.getNombre() + ".";
 
             lblConclusion.Text = txt;
             lblConclusion.Visible = true;

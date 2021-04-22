@@ -33,6 +33,11 @@ namespace TP3.Distribuciones
         {
             return 0;
         }
+
+        public string getNombre()
+        {
+            return "Uniforme";
+        }
     }
 
 }
