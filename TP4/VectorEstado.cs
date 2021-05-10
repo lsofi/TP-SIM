@@ -15,7 +15,7 @@ namespace TP4
         private int stock;
         private double costoPeriodicos;
         private double costoFaltante;
-        private double costoMantenimiento;
+        private double gananciaReventa;
         private double costoTotal;
         private double acumuladorCostos;
 
@@ -26,7 +26,7 @@ namespace TP4
         public int Stock { get => stock; set => stock = value; }
         public double CostoPeriodicos { get => costoPeriodicos; set => costoPeriodicos = value; }
         public double CostoFaltante { get => costoFaltante; set => costoFaltante = value; }
-        public double CostoMantenimiento { get => costoMantenimiento; set => costoMantenimiento = value; }
+        public double GananciaReventa { get => gananciaReventa; set => gananciaReventa = value; }
         public double CostoTotal { get => costoTotal; set => costoTotal = value; }
         public double AcumuladorCostos { get => acumuladorCostos; set => acumuladorCostos = value; }
     }

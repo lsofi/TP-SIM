@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EstrategiaPedidos\Estrategia1.cs" />
     <Compile Include="EstrategiaPedidos\Estrategia2.cs" />
     <Compile Include="EstrategiaPedidos\IEstrategiaPedidos.cs" />
     <Compile Include="frmEjercicioMontecarlo.cs">
