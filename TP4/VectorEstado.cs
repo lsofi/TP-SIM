@@ -13,6 +13,8 @@ namespace TP4
         private int demanda;
         private int pedido;
         private int stock;
+        private int ventasRealizadas;
+        private int ventasPerdidas;
         private double costoPeriodicos;
         private double costoFaltante;
         private double gananciaReventa;
@@ -29,5 +31,7 @@ namespace TP4
         public double GananciaReventa { get => gananciaReventa; set => gananciaReventa = value; }
         public double CostoTotal { get => costoTotal; set => costoTotal = value; }
         public double AcumuladorCostos { get => acumuladorCostos; set => acumuladorCostos = value; }
+        public int VentasPerdidas { get => ventasPerdidas; set => ventasPerdidas = value; }
+        public int VentasRealizadas { get => ventasRealizadas; set => ventasRealizadas = value; }
     }
 }

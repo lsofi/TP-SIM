@@ -10,7 +10,7 @@ namespace TP4.EstrategiaPedidos
     {
         public void calcularCantidadPedidos(VectorEstado anterior, VectorEstado actual)
         {
-            actual.Pedido = anterior.Demanda;
+            actual.Pedido = anterior.VentasRealizadas + anterior.VentasPerdidas;
         }
     }
 }

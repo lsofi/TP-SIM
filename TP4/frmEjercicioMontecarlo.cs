@@ -27,13 +27,15 @@ namespace TP4
         {
             if (validarCampos())
             {
-                dataGridView1.Rows.Clear();
+                dgvPeriodicos.Rows.Clear();
                 VectorEstado anterior = new VectorEstado();
                 VectorEstado actual = new VectorEstado();
                 VectorEstado aux;
                 actual.Reloj = 0;
                 actual.Demanda = 20;
                 actual.Pedido = 17;
+                actual.VentasRealizadas = 17;
+                actual.VentasPerdidas = 3;
                 actual.AcumuladorCostos = 0;
                 for (int i = 0; i < Convert.ToInt64(txtDias.Text); i++)
                 {
@@ -47,11 +49,15 @@ namespace TP4
                     if (actual.Pedido < actual.Demanda)
                     {
                         actual.Stock = 0;
-                        actual.CostoFaltante = (actual.Demanda - actual.Pedido) * 0.4;
+                        actual.VentasRealizadas = actual.Pedido;
+                        actual.VentasPerdidas = actual.Demanda - actual.Pedido;
+                        actual.CostoFaltante = actual.VentasPerdidas * 0.4;
                     }
                     else
                     {
                         actual.Stock = actual.Pedido - actual.Demanda;
+                        actual.VentasRealizadas = actual.Demanda;
+                        actual.VentasPerdidas = 0;
                         actual.CostoFaltante = 0;
                         actual.GananciaReventa = actual.Stock * 0.2;
                     }
@@ -60,12 +66,12 @@ namespace TP4
                     actual.AcumuladorCostos += actual.CostoTotal;
                     if (i >= Convert.ToInt32(txtMostrarDesde.Text) - 1 && i+1 < Convert.ToInt32(txtMostrarDesde.Text) + Convert.ToInt32(txtCantidadMostrar.Text))
                     {
-                        dataGridView1.Rows.Add(actual.Reloj, actual.AleatorioDemanda, actual.Demanda, actual.Pedido, actual.Stock, actual.CostoPeriodicos, actual.CostoFaltante, actual.GananciaReventa, actual.CostoTotal, actual.AcumuladorCostos);
+                        dgvPeriodicos.Rows.Add(actual.Reloj, actual.AleatorioDemanda, actual.Demanda, actual.Pedido, actual.Stock, actual.VentasRealizadas, actual.VentasPerdidas, actual.CostoPeriodicos, actual.CostoFaltante, actual.GananciaReventa, actual.CostoTotal, actual.AcumuladorCostos);
                     }
                 }
                 if(diasAMostrar + diasDesde <= diasASimular)
                 {
-                    dataGridView1.Rows.Add(actual.Reloj, actual.AleatorioDemanda, actual.Demanda, actual.Pedido, actual.Stock, actual.CostoPeriodicos, actual.CostoFaltante, actual.GananciaReventa, actual.CostoTotal, actual.AcumuladorCostos);
+                    dgvPeriodicos.Rows.Add(actual.Reloj, actual.AleatorioDemanda, actual.Demanda, actual.Pedido, actual.Stock, actual.VentasRealizadas, actual.VentasPerdidas, actual.CostoPeriodicos, actual.CostoFaltante, actual.GananciaReventa, actual.CostoTotal, actual.AcumuladorCostos);
                 }
             }
         }
@@ -150,7 +156,7 @@ namespace TP4
         private void borrarCampos()
         {
             txtCantidadMostrar.Text = txtDias.Text = txtMostrarDesde.Text = "";
-            dataGridView1.Rows.Clear();
+            dgvPeriodicos.Rows.Clear();
         }
 
     }

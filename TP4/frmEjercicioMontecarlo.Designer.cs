@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEjercicioMontecarlo));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvPeriodicos = new System.Windows.Forms.DataGridView();
             this.txtDias = new System.Windows.Forms.TextBox();
             this.lblDias = new System.Windows.Forms.Label();
             this.lblCantidadMostrar = new System.Windows.Forms.Label();
@@ -45,36 +45,40 @@
             this.demanda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidadPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ventasRealizadas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VentasPerdidas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costoPeriodicos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costoFaltante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gananciaReembolso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.acumuladorCosto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPeriodicos)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvPeriodicos
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvPeriodicos.AllowUserToAddRows = false;
+            this.dgvPeriodicos.AllowUserToDeleteRows = false;
+            this.dgvPeriodicos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPeriodicos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.reloj,
             this.rndDemanda,
             this.demanda,
             this.cantidadPedido,
             this.stock,
+            this.ventasRealizadas,
+            this.VentasPerdidas,
             this.costoPeriodicos,
             this.costoFaltante,
             this.gananciaReembolso,
             this.costoTotal,
             this.acumuladorCosto});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 273);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1069, 330);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvPeriodicos.Location = new System.Drawing.Point(12, 273);
+            this.dgvPeriodicos.Name = "dgvPeriodicos";
+            this.dgvPeriodicos.ReadOnly = true;
+            this.dgvPeriodicos.Size = new System.Drawing.Size(1069, 330);
+            this.dgvPeriodicos.TabIndex = 0;
             // 
             // txtDias
             // 
@@ -218,6 +222,20 @@
             this.stock.Name = "stock";
             this.stock.ReadOnly = true;
             // 
+            // ventasRealizadas
+            // 
+            this.ventasRealizadas.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ventasRealizadas.HeaderText = "Ventas realizadas";
+            this.ventasRealizadas.Name = "ventasRealizadas";
+            this.ventasRealizadas.ReadOnly = true;
+            // 
+            // VentasPerdidas
+            // 
+            this.VentasPerdidas.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.VentasPerdidas.HeaderText = "Ventas perdidas";
+            this.VentasPerdidas.Name = "VentasPerdidas";
+            this.VentasPerdidas.ReadOnly = true;
+            // 
             // costoPeriodicos
             // 
             this.costoPeriodicos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -259,12 +277,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1093, 615);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvPeriodicos);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmEjercicioMontecarlo";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Montecarlo - Diarios y revistas";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPeriodicos)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -273,7 +291,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvPeriodicos;
         private System.Windows.Forms.TextBox txtDias;
         private System.Windows.Forms.Label lblDias;
         private System.Windows.Forms.Label lblCantidadMostrar;
@@ -289,6 +307,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn demanda;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidadPedido;
         private System.Windows.Forms.DataGridViewTextBoxColumn stock;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ventasRealizadas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VentasPerdidas;
         private System.Windows.Forms.DataGridViewTextBoxColumn costoPeriodicos;
         private System.Windows.Forms.DataGridViewTextBoxColumn costoFaltante;
         private System.Windows.Forms.DataGridViewTextBoxColumn gananciaReembolso;
