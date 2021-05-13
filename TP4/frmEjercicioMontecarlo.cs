@@ -63,7 +63,7 @@ namespace TP4
                     }
                     actual.CostoPeriodicos = 0.8 * actual.Pedido;
                     actual.CostoTotal = actual.CostoPeriodicos + actual.CostoFaltante - actual.GananciaReventa;
-                    actual.AcumuladorCostos += actual.CostoTotal;
+                    actual.AcumuladorCostos = anterior.AcumuladorCostos + actual.CostoTotal;
                     if (i >= Convert.ToInt32(txtMostrarDesde.Text) - 1 && i+1 < Convert.ToInt32(txtMostrarDesde.Text) + Convert.ToInt32(txtCantidadMostrar.Text))
                     {
                         dgvPeriodicos.Rows.Add(actual.Reloj, actual.AleatorioDemanda, actual.Demanda, actual.Pedido, actual.Stock, actual.VentasRealizadas, actual.VentasPerdidas, actual.CostoPeriodicos, actual.CostoFaltante, actual.GananciaReventa, actual.CostoTotal, actual.AcumuladorCostos);
