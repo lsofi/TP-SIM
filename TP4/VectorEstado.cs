@@ -20,6 +20,7 @@ namespace TP4
         private double gananciaReventa;
         private double costoTotal;
         private double acumuladorCostos;
+        private double costoPromedio;
 
         public long Reloj { get => reloj; set => reloj = value; }
         public double AleatorioDemanda { get => aleatorioDemanda; set => aleatorioDemanda = value; }
@@ -33,5 +34,6 @@ namespace TP4
         public double AcumuladorCostos { get => acumuladorCostos; set => acumuladorCostos = value; }
         public int VentasPerdidas { get => ventasPerdidas; set => ventasPerdidas = value; }
         public int VentasRealizadas { get => ventasRealizadas; set => ventasRealizadas = value; }
+        public double CostoPromedio { get => costoPromedio; set => costoPromedio = value; }
     }
 }

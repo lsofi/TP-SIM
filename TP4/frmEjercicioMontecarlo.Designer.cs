@@ -52,6 +52,7 @@
             this.gananciaReembolso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.acumuladorCosto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costoPromedio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeriodicos)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -73,7 +74,8 @@
             this.costoFaltante,
             this.gananciaReembolso,
             this.costoTotal,
-            this.acumuladorCosto});
+            this.acumuladorCosto,
+            this.costoPromedio});
             this.dgvPeriodicos.Location = new System.Drawing.Point(12, 273);
             this.dgvPeriodicos.Name = "dgvPeriodicos";
             this.dgvPeriodicos.ReadOnly = true;
@@ -271,6 +273,12 @@
             this.acumuladorCosto.Name = "acumuladorCosto";
             this.acumuladorCosto.ReadOnly = true;
             // 
+            // costoPromedio
+            // 
+            this.costoPromedio.HeaderText = "Costo promedio";
+            this.costoPromedio.Name = "costoPromedio";
+            this.costoPromedio.ReadOnly = true;
+            // 
             // frmEjercicioMontecarlo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -314,6 +322,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn gananciaReembolso;
         private System.Windows.Forms.DataGridViewTextBoxColumn costoTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn acumuladorCosto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn costoPromedio;
     }
 }
 
