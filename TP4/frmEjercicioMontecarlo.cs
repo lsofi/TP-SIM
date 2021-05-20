@@ -59,19 +59,20 @@ namespace TP4
                         actual.VentasRealizadas = actual.Demanda;
                         actual.VentasPerdidas = 0;
                         actual.CostoFaltante = 0;
-                        actual.GananciaReventa = actual.Stock * 0.2;
                     }
+                    actual.GananciaReventa = actual.Stock * 0.2;
                     actual.CostoPeriodicos = 0.8 * actual.Pedido;
                     actual.CostoTotal = actual.CostoPeriodicos + actual.CostoFaltante - actual.GananciaReventa;
-                    actual.AcumuladorCostos = anterior.AcumuladorCostos + actual.CostoTotal;
+                    actual.AcumuladorCostos = Math.Round(anterior.AcumuladorCostos + actual.CostoTotal , 2);
+                    actual.CostoPromedio = Math.Round(actual.AcumuladorCostos / actual.Reloj, 2);
                     if (i >= Convert.ToInt32(txtMostrarDesde.Text) - 1 && i+1 < Convert.ToInt32(txtMostrarDesde.Text) + Convert.ToInt32(txtCantidadMostrar.Text))
                     {
-                        dgvPeriodicos.Rows.Add(actual.Reloj, actual.AleatorioDemanda, actual.Demanda, actual.Pedido, actual.Stock, actual.VentasRealizadas, actual.VentasPerdidas, actual.CostoPeriodicos, actual.CostoFaltante, actual.GananciaReventa, actual.CostoTotal, actual.AcumuladorCostos);
+                        dgvPeriodicos.Rows.Add(actual.Reloj, actual.AleatorioDemanda, actual.Demanda, actual.Pedido, actual.Stock, actual.VentasRealizadas, actual.VentasPerdidas, actual.CostoPeriodicos, actual.CostoFaltante, actual.GananciaReventa, actual.CostoTotal, actual.AcumuladorCostos, actual.CostoPromedio);
                     }
                 }
                 if(diasAMostrar + diasDesde <= diasASimular)
                 {
-                    dgvPeriodicos.Rows.Add(actual.Reloj, actual.AleatorioDemanda, actual.Demanda, actual.Pedido, actual.Stock, actual.VentasRealizadas, actual.VentasPerdidas, actual.CostoPeriodicos, actual.CostoFaltante, actual.GananciaReventa, actual.CostoTotal, actual.AcumuladorCostos);
+                    dgvPeriodicos.Rows.Add(actual.Reloj, actual.AleatorioDemanda, actual.Demanda, actual.Pedido, actual.Stock, actual.VentasRealizadas, actual.VentasPerdidas, actual.CostoPeriodicos, actual.CostoFaltante, actual.GananciaReventa, actual.CostoTotal, actual.AcumuladorCostos, actual.CostoPromedio);
                 }
             }
         }
