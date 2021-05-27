@@ -16,6 +16,12 @@ namespace TP5
             desdeEntradasComprar, hastaEntradasComprar, desdeEntradasAnticipadas, hastaEntradasAnticipadas,
             desdeTiempoCompra, hastaTiempoCompra, desdeTiempoEntradaSala, hastaTiempoEntradaSala,
             desdeTiempoLlegadaCompra, hastaTiempoLlegadaCompra, desdeTiempoLlegadaAnticipada, hastaTiempoLlegadaAnticipada;
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
         public frmSimulacion()
         {
             InitializeComponent();
