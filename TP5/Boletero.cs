@@ -8,6 +8,15 @@ namespace TP5
 {
     public class Boletero
     {
-        public String estado;
+        private String estado;
+        private double inicioOcupacion;
+
+        public string Estado { get => estado; set => estado = value; }
+        public double InicioOcupacion { get => inicioOcupacion; set => inicioOcupacion = value; }
+
+        public Boletero()
+        {
+            this.estado = "libre";
+        }
     }
 }
