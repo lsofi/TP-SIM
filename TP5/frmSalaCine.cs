@@ -39,9 +39,10 @@ namespace TP5
                     actual.Reloj = 0;
                     actual.Evento = "inicio_simulacion";
                     Cliente clienteAtendido = new Cliente(0, false);
+                    Boolean empezoPelicula = false;
 
 
-                    while (anterior.Reloj < minHastaComienzoFuncion * 60 && actual.ButacasOcupadas <= tamSala)
+                    while (actual.ButacasOcupadas <= tamSala)
                     {
                         aux = anterior;
                         anterior = actual;
@@ -70,18 +71,21 @@ namespace TP5
                                 break;
 
                             case "llegada_compra":
+                                resetearCampos();
+                                if (empezoPelicula)
+                                {
+                                    break;
+                                }
                                 actual.RndLlegadaCompra = random.NextDouble();
-                                actual.LlegadaCompra = aleatorioU(desdeTiempoLlegadaCompra, hastaTiempoLlegadaCompra, anterior.RndLlegadaCompra);
-                                actual.ProximaLlegadaCompra = anterior.Reloj + anterior.LlegadaCompra;
+                                actual.LlegadaCompra = aleatorioU(desdeTiempoLlegadaCompra, hastaTiempoLlegadaCompra, actual.RndLlegadaCompra);
+                                actual.ProximaLlegadaCompra = actual.Reloj + actual.LlegadaCompra;
 
                                 actual.RndNumeroCompra = random.NextDouble();
-                                actual.NumeroCompra = aleatorioInt(desdeEntradasComprar, hastaEntradasComprar, anterior.RndNumeroCompra);
+                                actual.NumeroCompra = aleatorioInt(desdeEntradasComprar, hastaEntradasComprar, actual.RndNumeroCompra);
                                 Cliente nuevo = new Cliente(actual.NumeroCompra, false);
                                 if (actual.Boletero.Estado == "ocupado")
                                 {
                                     actual.Boleteria.Enqueue(nuevo);
-                                    actual.RndFinCompra = -1;
-                                    actual.FinCompra = -1;
                                 }
                                     
                                 else
@@ -95,15 +99,14 @@ namespace TP5
                                     actual.ProximoFinCompra = actual.Reloj + actual.FinCompra;
                                 }
 
-                                actual.RndFinEntrada = -1;
-                                actual.FinEntrada = -1;
-                                actual.RndLlegadaEntrada = -1;
-                                actual.LlegadaEntrada = -1;
-                                actual.RndNumeroEntrada = -1;
-                                actual.NumeroEntrada = -1;
                                 break;
 
                             case "llegada_entrada_anticipada":
+                                resetearCampos();
+                                if (empezoPelicula)
+                                {
+                                    break;
+                                }
                                 actual.RndLlegadaEntrada = random.NextDouble();
                                 actual.LlegadaEntrada = aleatorioU(desdeTiempoLlegadaAnticipada, hastaTiempoLlegadaAnticipada, actual.RndLlegadaEntrada);
                                 actual.ProximaLlegadaEntrada = actual.Reloj + actual.LlegadaEntrada;
@@ -112,18 +115,10 @@ namespace TP5
                                 actual.NumeroEntrada = aleatorioInt(desdeEntradasAnticipadas, hastaEntradasAnticipadas, actual.RndNumeroEntrada);
                                 actual.PersonasEnColaSala += actual.NumeroEntrada;
 
-
-                                actual.RndFinEntrada = -1;
-                                actual.FinEntrada = -1;
-                                actual.RndLlegadaCompra = -1;
-                                actual.LlegadaCompra = -1;
-                                actual.RndFinCompra = -1;
-                                actual.FinCompra = -1;
-                                actual.NumeroCompra = -1;
-                                actual.RndNumeroCompra = -1;
                                 break;
 
                             case "fin_compra":
+                                resetearCampos();
                                 actual.PersonasEnColaSala += clienteAtendido.NumeroEntradas;
                                 if (actual.Boleteria.Count != 0)
                                 {
@@ -137,24 +132,19 @@ namespace TP5
                                 {
                                     actual.Boletero.Estado = "libre";
                                     actual.TiempoOcupacionBoletero += actual.Reloj - actual.Boletero.InicioOcupacion;
-                                    actual.RndFinCompra = -1;
-                                    actual.FinCompra = -1;
                                 }
-
-                                actual.RndFinEntrada = -1;
-                                actual.FinEntrada = -1;
-                                actual.RndLlegadaCompra = -1;
-                                actual.LlegadaCompra = -1;
-                                actual.NumeroCompra = -1;
-                                actual.RndNumeroCompra = -1;
-                                actual.RndLlegadaEntrada = -1;
-                                actual.LlegadaEntrada = -1;
-                                actual.RndNumeroEntrada = -1;
-                                actual.NumeroEntrada = -1;
                                 break;
 
                             case "fin_entrada":
-
+                                resetearCampos();
+                                if (actual.ButacasOcupadas < tamSala && actual.PersonasEnColaSala > 0)
+                                {
+                                    actual.ButacasOcupadas += 1;
+                                    actual.PersonasEnColaSala -= 1;
+                                    actual.RndFinEntrada = random.NextDouble();
+                                    actual.FinEntrada = aleatorioU(desdeTiempoEntradaSala, hastaTiempoEntradaSala, actual.RndFinEntrada);
+                                    actual.ProximoFinEntrada = actual.Reloj + actual.FinEntrada;
+                                }
                                 break;
 
                             case "inicio_llegada_con_entrada":
@@ -171,6 +161,22 @@ namespace TP5
                 }
 
             }
+        }
+
+        private void resetearCampos()
+        {
+            actual.RndLlegadaCompra = -1;
+            actual.LlegadaCompra = -1;
+            actual.RndNumeroCompra = -1;
+            actual.NumeroCompra = -1;
+            actual.RndFinCompra = -1;
+            actual.FinCompra = -1;
+            actual.RndFinEntrada = -1;
+            actual.FinEntrada = -1;
+            actual.RndLlegadaEntrada = -1;
+            actual.LlegadaEntrada = -1;
+            actual.RndNumeroEntrada = -1;
+            actual.NumeroEntrada = -1;
         }
 
         private bool validarCampos()
