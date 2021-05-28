@@ -32,6 +32,7 @@ namespace TP5
         private int personasEnColaSala;
         private int butacasOcupadas;
         private double tiempoOcupacionBoletero;
+        private int entradasVendidas;
 
         public string Evento { get => evento; set => evento = value; }
         public double Reloj { get => reloj; set => reloj = value; }
@@ -57,5 +58,6 @@ namespace TP5
         public int ButacasOcupadas { get => butacasOcupadas; set => butacasOcupadas = value; }
         public int NumeroSimulacion { get => numeroSimulacion; set => numeroSimulacion = value; }
         public double TiempoOcupacionBoletero { get => tiempoOcupacionBoletero; set => tiempoOcupacionBoletero = value; }
+        public int EntradasVendidas { get => entradasVendidas; set => entradasVendidas = value; }
     }
 }

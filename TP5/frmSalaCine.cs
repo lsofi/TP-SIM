@@ -38,36 +38,38 @@ namespace TP5
                     actual = new VectorEstado();
                     actual.Reloj = 0;
                     actual.Evento = "inicio_simulacion";
+                    actual.Boletero = new Boletero();
+                    actual.Boleteria = new Queue<Cliente>();
+
                     Cliente clienteAtendido = new Cliente(0, false);
                     Boolean empezoPelicula = false;
+                    Boolean empezoSimulacion = false;
+                    Boolean ingresoLlegadaEntrada = false;
+                    Boolean ingresoASala = false;
 
+                    List<Cliente> clientes = new List<Cliente>();
 
                     while (actual.ButacasOcupadas <= tamSala)
                     {
-                        aux = anterior;
                         anterior = actual;
-                        actual = aux;
+                        actual = new VectorEstado();
+                        copiarAnterior();
                         
-                        if (actual.Evento != "inicio_simulacion")
-                            buscarEvento();
+                        buscarEvento(empezoSimulacion,ingresoLlegadaEntrada,ingresoASala);
+
+                        if (actual.Reloj >= minHastaComienzoFuncion * 60) empezoPelicula = true;
+
                         switch (actual.Evento)
                         {
                             case "inicio_simulacion":
                                 actual.ButacasOcupadas = 0;
-                                actual.Evento = "inicio_simulacion";
-                                actual.Reloj = 0;
                                 actual.NumeroSimulacion = i + 1;
-                                //actual.RndNumeroCompra = random.NextDouble();
-                                //actual.NumeroCompra = aleatorioInt(desdeEntradasComprar, hastaEntradasComprar, anterior.RndNumeroCompra);
-                                //actual.RndLlegadaEntrada = random.NextDouble();
-                                //actual.LlegadaEntrada = aleatorioU(desdeTiempoLlegadaAnticipada, hastaTiempoLlegadaAnticipada, anterior.RndLlegadaEntrada);
-                                //actual.ProximaLlegadaEntrada = (minHastaComienzoFuncion - minLlegadaAnticipada) * 60 + anterior.LlegadaEntrada;
-                                //actual.RndNumeroEntrada = random.NextDouble();
-                                //actual.NumeroEntrada = aleatorioInt(desdeEntradasAnticipadas, hastaEntradasAnticipadas, anterior.RndNumeroEntrada);
-                                actual.Boletero = new Boletero();
-                                actual.Boleteria = new Queue<Cliente>();
                                 actual.PersonasEnColaSala = 0;
                                 actual.TiempoOcupacionBoletero = 0;
+                                actual.RndLlegadaCompra = random.NextDouble();
+                                actual.LlegadaCompra = aleatorioU(desdeTiempoLlegadaCompra, hastaTiempoLlegadaCompra, actual.RndLlegadaCompra);
+                                actual.ProximaLlegadaCompra = actual.Reloj + actual.LlegadaCompra;
+                                empezoSimulacion = true;
                                 break;
 
                             case "llegada_compra":
@@ -83,6 +85,16 @@ namespace TP5
                                 actual.RndNumeroCompra = random.NextDouble();
                                 actual.NumeroCompra = aleatorioInt(desdeEntradasComprar, hastaEntradasComprar, actual.RndNumeroCompra);
                                 Cliente nuevo = new Cliente(actual.NumeroCompra, false);
+                                nuevo.Nombre = "Cliente" + clientes.Count + 1;
+                                clientes.Add(nuevo);
+
+                                for (int m = 0; m < actual.NumeroCompra - 1; m++)
+                                {
+                                    Cliente nuevoAcompañante = new Cliente(actual.NumeroCompra, false);
+                                    nuevoAcompañante.Nombre = "Cliente" + clientes.Count + 1;
+                                    clientes.Add(nuevoAcompañante);
+                                }
+
                                 if (actual.Boletero.Estado == "ocupado")
                                 {
                                     actual.Boleteria.Enqueue(nuevo);
@@ -115,11 +127,21 @@ namespace TP5
                                 actual.NumeroEntrada = aleatorioInt(desdeEntradasAnticipadas, hastaEntradasAnticipadas, actual.RndNumeroEntrada);
                                 actual.PersonasEnColaSala += actual.NumeroEntrada;
 
+                                actual.EntradasVendidas += actual.NumeroEntrada;
+
+                                for (int j = 0; j < actual.NumeroEntrada; j++)
+                                {
+                                    Cliente nuevoAnticipada = new Cliente(actual.NumeroCompra, true);
+                                    nuevoAnticipada.Nombre = "Cliente" + clientes.Count + 1;
+                                    clientes.Add(nuevoAnticipada);
+                                }
+
                                 break;
 
                             case "fin_compra":
                                 resetearCampos();
                                 actual.PersonasEnColaSala += clienteAtendido.NumeroEntradas;
+                                actual.EntradasVendidas += clienteAtendido.NumeroEntradas;
                                 if (actual.Boleteria.Count != 0)
                                 {
                                     clienteAtendido = actual.Boleteria.Dequeue();
@@ -132,6 +154,7 @@ namespace TP5
                                 {
                                     actual.Boletero.Estado = "libre";
                                     actual.TiempoOcupacionBoletero += actual.Reloj - actual.Boletero.InicioOcupacion;
+                                    actual.ProximoFinCompra = -1;
                                 }
                                 break;
 
@@ -145,16 +168,35 @@ namespace TP5
                                     actual.FinEntrada = aleatorioU(desdeTiempoEntradaSala, hastaTiempoEntradaSala, actual.RndFinEntrada);
                                     actual.ProximoFinEntrada = actual.Reloj + actual.FinEntrada;
                                 }
+                                else
+                                {
+                                    actual.ProximoFinEntrada = -1;
+                                }
                                 break;
 
                             case "inicio_llegada_con_entrada":
-
+                                resetearCampos();
+                                actual.RndLlegadaEntrada = random.NextDouble();
+                                actual.LlegadaEntrada = aleatorioU(desdeTiempoLlegadaAnticipada, hastaTiempoLlegadaAnticipada, actual.RndLlegadaEntrada);
+                                actual.ProximaLlegadaEntrada = actual.Reloj + actual.LlegadaEntrada;
+                                ingresoLlegadaEntrada = true;
                                 break;
 
                             case "inicio_ingreso_sala":
-
+                                resetearCampos();
+                                if(actual.PersonasEnColaSala > 0)
+                                {
+                                    actual.RndFinEntrada = random.NextDouble();
+                                    actual.FinEntrada = aleatorioU(desdeTiempoEntradaSala, hastaTiempoEntradaSala, actual.RndFinEntrada);
+                                    actual.ProximoFinEntrada = actual.Reloj + actual.FinEntrada;
+                                }
+                                ingresoASala = true;
                                 break;
                         }
+
+                        agregarDatosDGV(actual);
+
+                        agregarClientesDGV(clientes);
 
                     }
 
@@ -163,6 +205,99 @@ namespace TP5
             }
         }
 
+        private void copiarAnterior()
+        {
+            actual.NumeroSimulacion = anterior.NumeroSimulacion;
+            actual.Evento = anterior.Evento;
+            actual.Reloj = anterior.Reloj;
+            actual.RndLlegadaCompra = anterior.RndLlegadaCompra;
+            actual.LlegadaCompra = anterior.LlegadaCompra;
+            actual.ProximaLlegadaCompra = anterior.ProximaLlegadaCompra;
+            actual.RndNumeroCompra = anterior.RndNumeroCompra;
+            actual.NumeroCompra = anterior.NumeroCompra;
+            actual.RndLlegadaEntrada = anterior.RndLlegadaEntrada;
+            actual.LlegadaEntrada = anterior.LlegadaEntrada;
+            actual.ProximaLlegadaEntrada = anterior.ProximaLlegadaEntrada;
+            actual.RndNumeroEntrada = anterior.RndNumeroEntrada;
+            actual.NumeroEntrada = anterior.NumeroEntrada;
+            actual.Boletero = anterior.Boletero;
+            actual.RndFinCompra = anterior.RndFinCompra;
+            actual.FinCompra = anterior.FinCompra;
+            actual.ProximoFinCompra = anterior.ProximoFinCompra;
+            actual.Boleteria = anterior.Boleteria;
+            actual.RndFinEntrada = anterior.RndFinEntrada;
+            actual.FinEntrada = anterior.FinEntrada;
+            actual.ProximoFinEntrada = anterior.ProximoFinEntrada;
+            actual.PersonasEnColaSala = anterior.PersonasEnColaSala;
+            actual.ButacasOcupadas = anterior.ButacasOcupadas;
+            actual.TiempoOcupacionBoletero = anterior.TiempoOcupacionBoletero;
+            actual.EntradasVendidas = anterior.EntradasVendidas;
+        }
+        private void agregarDatosDGV(VectorEstado actual)
+        {
+            String numeroSim = actual.NumeroSimulacion.ToString();
+            String reloj = actual.Reloj.ToString();
+            String evento = actual.Evento;
+            String proximaLlegadaCompra = actual.ProximaLlegadaCompra.ToString();
+            String proximaLlegadaEntrada = actual.ProximaLlegadaEntrada.ToString();
+            String proximoFinCompra = actual.ProximoFinCompra.ToString();
+            String proximoFinEntrada = actual.ProximoFinEntrada.ToString();
+            String personasEnColaBoletaria = actual.Boleteria.Count.ToString();
+            String personasEnColaSala = actual.PersonasEnColaSala.ToString();
+            String butacasOcupadas = actual.ButacasOcupadas.ToString();
+            String tiempoOcupacionBoletero = actual.TiempoOcupacionBoletero.ToString();
+            String estadoBoletero = actual.Boletero.Estado;
+            String entradasVendidas = actual.EntradasVendidas.ToString();
+            
+
+            String rndLlegadaCompra, llegadaCompra, rndNumeroCompra, numeroCompra, rndLlegadaEntrada, llegadaEntrada, rndNumeroEntrada,
+                numeroEntrada, rndFinCompra, finCompra, rndFinEntrada, finEntrada, salaLlena;
+
+            rndLlegadaCompra = llegadaCompra = rndNumeroCompra = numeroCompra = rndLlegadaEntrada = llegadaEntrada = rndNumeroEntrada =
+                numeroEntrada = rndFinCompra = finCompra = rndFinEntrada = finEntrada = "";
+
+            if (actual.RndLlegadaCompra != -1) rndLlegadaCompra = actual.RndLlegadaCompra.ToString();
+            if (actual.LlegadaCompra != -1) llegadaCompra = actual.RndLlegadaCompra.ToString();
+            if (actual.RndNumeroCompra != -1) rndNumeroCompra = actual.RndNumeroCompra.ToString();
+            if (actual.NumeroCompra != -1) numeroCompra = actual.NumeroCompra.ToString();
+            if (actual.RndLlegadaEntrada != -1) rndLlegadaEntrada = actual.RndLlegadaEntrada.ToString();
+            if (actual.LlegadaEntrada != -1) llegadaEntrada = actual.LlegadaEntrada.ToString();
+            if (actual.RndNumeroEntrada != -1) rndNumeroEntrada = actual.RndNumeroEntrada.ToString();
+            if (actual.NumeroEntrada != -1) numeroEntrada = actual.NumeroEntrada.ToString();
+            if (actual.RndFinCompra != -1) rndFinCompra = actual.RndFinCompra.ToString();
+            if (actual.FinCompra != -1) finCompra = actual.FinCompra.ToString();
+            if (actual.RndFinEntrada != -1) rndFinEntrada = actual.RndFinEntrada.ToString();
+            if (actual.FinEntrada != -1) finEntrada = actual.FinEntrada.ToString();
+
+            if (actual.ButacasOcupadas == tamSala) salaLlena = "Si";
+            else salaLlena = "No";
+
+            dgvFuncion.Rows.Add(numeroSim, evento, reloj, rndLlegadaCompra, llegadaCompra, proximaLlegadaCompra, rndNumeroCompra,
+                numeroCompra, rndLlegadaEntrada, llegadaEntrada, proximaLlegadaEntrada, rndNumeroEntrada, numeroEntrada, estadoBoletero,
+                rndFinCompra, finCompra, proximoFinCompra, rndFinEntrada, finEntrada, proximoFinEntrada, personasEnColaBoletaria, personasEnColaSala,
+                entradasVendidas, salaLlena, tiempoOcupacionBoletero);
+
+
+        }
+        private void agregarClientesDGV(List<Cliente> clientes)
+        {
+            for (int k = 0; k < clientes.Count; k++)
+            {
+                Cliente c = clientes.ElementAt(k);
+                if (dgvFuncion.Columns.Contains(c.Nombre))
+                {
+                    dgvFuncion.Rows[dgvFuncion.Rows.Count - 1].Cells[c.Nombre].Value = c.Estado;
+                }
+                else
+                {
+                    DataGridViewTextBoxColumn columna = new DataGridViewTextBoxColumn();
+                    columna.HeaderText = "Estado " + c.Nombre;
+                    columna.Name = c.Nombre;
+                    dgvFuncion.Columns.Add(columna);
+                    dgvFuncion.Rows[dgvFuncion.Rows.Count - 1].Cells[c.Nombre].Value = c.Estado;
+                }
+            }
+        }
         private void resetearCampos()
         {
             actual.RndLlegadaCompra = -1;
@@ -177,6 +312,61 @@ namespace TP5
             actual.LlegadaEntrada = -1;
             actual.RndNumeroEntrada = -1;
             actual.NumeroEntrada = -1;
+        }
+
+        private double aleatorioU(int desde, int hasta, double aleatorio)
+        {
+            return desde + aleatorio * (hasta - desde);
+        }
+        private int aleatorioInt(int desde, int hasta, double aleatorio)
+        {
+            return (int)(desde + (aleatorio * 1000) % (hasta - desde + 1));
+        }
+
+        private void buscarEvento(bool empezoSimulacion, bool ingresoLlegadaEntrada, bool ingresoASala)
+        {
+            string evento = "llegada_compra";
+            double minimo = anterior.ProximaLlegadaCompra;
+
+            if (actual.Reloj == 0 && !empezoSimulacion)
+            {
+                evento = "inicio_simulacion";
+                return;
+            }
+
+            if (minimo >= anterior.ProximaLlegadaEntrada && anterior.ProximaLlegadaEntrada > 0)
+            {
+                evento = "llegada_entrada_anticipada";
+                minimo = anterior.ProximaLlegadaEntrada;
+            }
+
+            if (minimo >= anterior.ProximoFinCompra && anterior.ProximoFinCompra > 0)
+            {
+                evento = "fin_compra";
+                minimo = anterior.ProximoFinCompra;
+            }
+
+            if (minimo >= anterior.ProximoFinEntrada && anterior.ProximoFinEntrada > 0)
+            {
+                evento = "fin_entrada";
+                minimo = anterior.ProximoFinEntrada;
+            }
+
+            if (minimo >= (minHastaComienzoFuncion - minLlegadaAnticipada) * 60 && !ingresoLlegadaEntrada)
+            {
+                evento = "inicio_llegada_con_entrada";
+                minimo = (minHastaComienzoFuncion - minLlegadaAnticipada) * 60;
+            }
+
+            if (minimo >= (minHastaComienzoFuncion - minAperturaSala) * 60 && !ingresoASala)
+            {
+                evento = "inicio_ingreso_sala";
+                minimo = (minHastaComienzoFuncion - minAperturaSala) * 60;
+            }
+
+            actual.Reloj = minimo;
+            actual.Evento = evento;
+
         }
 
         private bool validarCampos()
@@ -273,50 +463,6 @@ namespace TP5
             }
 
             return true;
-        }
-
-        private double aleatorioU(int desde, int hasta, double aleatorio)
-        {
-            return desde + aleatorio * (hasta - desde);
-        }
-        private int aleatorioInt(int desde, int hasta, double aleatorio)
-        {
-            return (int) (desde + (aleatorio * 1000) % (hasta - desde + 1));
-        }
-        
-        private void buscarEvento()
-        {
-            string evento = "llegada_compra";
-            double minimo = anterior.ProximaLlegadaCompra;
-
-            if (minimo >= anterior.ProximaLlegadaEntrada)
-            {
-                evento = "llegada_entrada_anticipada";
-                minimo = anterior.ProximaLlegadaEntrada;
-            }
-            if (minimo >= anterior.ProximoFinCompra)
-            {
-                evento = "fin_compra";
-                minimo = anterior.ProximoFinCompra;
-            }
-            if (minimo >= anterior.ProximoFinEntrada)
-            {
-                evento = "fin_entrada";
-                minimo = anterior.ProximoFinEntrada;
-            }
-            if (minimo >= (minHastaComienzoFuncion - minLlegadaAnticipada)*60)
-            {
-                evento = "inicio_llegada_con_entrada";
-                minimo = (minHastaComienzoFuncion - minLlegadaAnticipada) * 60;
-            }
-            if (minimo >= (minHastaComienzoFuncion - minAperturaSala)* 60)
-            {
-                evento = "inicio_ingreso_sala";
-                minimo = (minHastaComienzoFuncion - minAperturaSala) * 60;
-            }
-            actual.Reloj = minimo;
-            actual.Evento = evento;
-
         }
         
     }

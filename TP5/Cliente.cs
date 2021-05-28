@@ -8,6 +8,7 @@ namespace TP5
 {
     public class Cliente
     {
+        private String nombre;
         private int numeroEntradas;
         private String estado;
         private bool entradaAnticipada;
@@ -15,6 +16,7 @@ namespace TP5
         public int NumeroEntradas { get => numeroEntradas; set => numeroEntradas = value; }
         public string Estado { get => estado; set => estado = value; }
         public bool EntradaAnticipada { get => entradaAnticipada; set => entradaAnticipada = value; }
+        public string Nombre { get => nombre; set => nombre = value; }
 
         public Cliente(int numEntradas, bool entrada)
         {

@@ -92,10 +92,11 @@
             this.rndFinCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.finCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.proximoFinCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colaBoleteria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rndFinEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.finEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.proximoFinEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colaBoleteria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colaSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.acumEntradasVendidas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.salaLlena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tiempoOcupBoletero = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -133,10 +134,11 @@
             this.rndFinCompra,
             this.finCompra,
             this.proximoFinCompra,
-            this.colaBoleteria,
             this.rndFinEntrada,
             this.finEntrada,
             this.proximoFinEntrada,
+            this.colaBoleteria,
+            this.colaSala,
             this.acumEntradasVendidas,
             this.salaLlena,
             this.tiempoOcupBoletero,
@@ -683,12 +685,6 @@
             this.proximoFinCompra.Name = "proximoFinCompra";
             this.proximoFinCompra.ReadOnly = true;
             // 
-            // colaBoleteria
-            // 
-            this.colaBoleteria.HeaderText = "Cantidad de Clientes en cola";
-            this.colaBoleteria.Name = "colaBoleteria";
-            this.colaBoleteria.ReadOnly = true;
-            // 
             // rndFinEntrada
             // 
             this.rndFinEntrada.HeaderText = "RND fin entrada";
@@ -706,6 +702,18 @@
             this.proximoFinEntrada.HeaderText = "Próximo fin de entrada";
             this.proximoFinEntrada.Name = "proximoFinEntrada";
             this.proximoFinEntrada.ReadOnly = true;
+            // 
+            // colaBoleteria
+            // 
+            this.colaBoleteria.HeaderText = "Cola Boleteria";
+            this.colaBoleteria.Name = "colaBoleteria";
+            this.colaBoleteria.ReadOnly = true;
+            // 
+            // colaSala
+            // 
+            this.colaSala.HeaderText = "Cola Sala";
+            this.colaSala.Name = "colaSala";
+            this.colaSala.ReadOnly = true;
             // 
             // acumEntradasVendidas
             // 
@@ -747,7 +755,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1504, 975);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -833,10 +841,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn rndFinCompra;
         private System.Windows.Forms.DataGridViewTextBoxColumn finCompra;
         private System.Windows.Forms.DataGridViewTextBoxColumn proximoFinCompra;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colaBoleteria;
         private System.Windows.Forms.DataGridViewTextBoxColumn rndFinEntrada;
         private System.Windows.Forms.DataGridViewTextBoxColumn finEntrada;
         private System.Windows.Forms.DataGridViewTextBoxColumn proximoFinEntrada;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colaBoleteria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colaSala;
         private System.Windows.Forms.DataGridViewTextBoxColumn acumEntradasVendidas;
         private System.Windows.Forms.DataGridViewTextBoxColumn salaLlena;
         private System.Windows.Forms.DataGridViewTextBoxColumn tiempoOcupBoletero;
