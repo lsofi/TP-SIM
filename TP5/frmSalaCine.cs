@@ -54,7 +54,7 @@ namespace TP5
 
                     List<Cliente> clientes = new List<Cliente>();
 
-                    while (actual.ButacasOcupadas <= tamSala)
+                    while (actual.ButacasOcupadas < tamSala)
                     {
                         anterior = actual;
                         actual = new VectorEstado();
@@ -87,7 +87,7 @@ namespace TP5
                                 actual.ProximaLlegadaCompra = actual.Reloj + actual.LlegadaCompra;
 
                                 actual.RndNumeroCompra = random.NextDouble();
-                                actual.NumeroCompra = aleatorioInt(desdeEntradasComprar, hastaEntradasComprar, actual.RndNumeroCompra);
+                                actual.NumeroCompra = 1 + aleatorioInt(desdeEntradasComprar, hastaEntradasComprar, actual.RndNumeroCompra);
                                 Cliente nuevo = new Cliente(actual.NumeroCompra, false);
                                 nuevo.Nombre = "Cliente" + clientes.Count + 1;
                                 clientes.Add(nuevo);
@@ -123,12 +123,21 @@ namespace TP5
                                 {
                                     break;
                                 }
+
                                 actual.RndLlegadaEntrada = random.NextDouble();
                                 actual.LlegadaEntrada = aleatorioU(desdeTiempoLlegadaAnticipada, hastaTiempoLlegadaAnticipada, actual.RndLlegadaEntrada);
                                 actual.ProximaLlegadaEntrada = actual.Reloj + actual.LlegadaEntrada;
 
                                 actual.RndNumeroEntrada = random.NextDouble();
-                                actual.NumeroEntrada = aleatorioInt(desdeEntradasAnticipadas, hastaEntradasAnticipadas, actual.RndNumeroEntrada);
+                                actual.NumeroEntrada = 1 + aleatorioInt(desdeEntradasAnticipadas, hastaEntradasAnticipadas, actual.RndNumeroEntrada);
+
+                                if (actual.PersonasEnColaSala == 0 && ingresoASala)
+                                {
+                                    actual.RndFinEntrada = random.NextDouble();
+                                    actual.FinEntrada = aleatorioU(desdeTiempoEntradaSala, hastaTiempoEntradaSala, actual.RndFinEntrada);
+                                    actual.ProximoFinEntrada = actual.Reloj + actual.FinEntrada;
+                                }
+                                
                                 actual.PersonasEnColaSala += actual.NumeroEntrada;
 
                                 actual.EntradasVendidas += actual.NumeroEntrada;
@@ -140,10 +149,18 @@ namespace TP5
                                     clientes.Add(nuevoAnticipada);
                                 }
 
+                                
+
                                 break;
 
                             case "fin_compra":
                                 resetearCampos();
+                                if (actual.PersonasEnColaSala == 0 && ingresoASala)
+                                {
+                                    actual.RndFinEntrada = random.NextDouble();
+                                    actual.FinEntrada = aleatorioU(desdeTiempoEntradaSala, hastaTiempoEntradaSala, actual.RndFinEntrada);
+                                    actual.ProximoFinEntrada = actual.Reloj + actual.FinEntrada;
+                                }
                                 actual.PersonasEnColaSala += clienteAtendido.NumeroEntradas;
                                 actual.EntradasVendidas += clienteAtendido.NumeroEntradas;
                                 if (actual.Boleteria.Count != 0)
@@ -195,6 +212,13 @@ namespace TP5
                                     actual.ProximoFinEntrada = actual.Reloj + actual.FinEntrada;
                                 }
                                 ingresoASala = true;
+                                break;
+
+                            case "inicio_pelicula":
+                                resetearCampos();
+                                actual.ProximaLlegadaCompra = -1;
+                                actual.ProximaLlegadaEntrada = -1;
+                                actual.Boleteria.Clear();
                                 break;
                         }
 
@@ -330,7 +354,7 @@ namespace TP5
         private void buscarEvento()
         {
             string evento = "fin_pelicula";
-            double minimo = minHastaComienzoFuncion * 60 + 5400;
+            double minimo = minHastaComienzoFuncion * 60 + 54000;
 
             if (minimo >= anterior.ProximaLlegadaCompra && anterior.ProximaLlegadaCompra > 0 && !empezoPelicula)
             {

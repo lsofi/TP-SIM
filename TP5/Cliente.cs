@@ -20,7 +20,7 @@ namespace TP5
 
         public Cliente(int numEntradas, bool entrada)
         {
-            numeroEntradas = numeroEntradas;
+            numeroEntradas = numEntradas;
             entradaAnticipada = entrada;
             if (!entrada)
                 estado = "esperando_compra";
