@@ -20,7 +20,12 @@ namespace TP5
         VectorEstado actual;
         VectorEstado aux;
         Random random = new Random();
-        
+
+        Boolean empezoPelicula;
+        Boolean empezoSimulacion;
+        Boolean ingresoLlegadaEntrada;
+        Boolean ingresoASala;
+
 
         public frmSimulacion()
         {
@@ -42,10 +47,10 @@ namespace TP5
                     actual.Boleteria = new Queue<Cliente>();
 
                     Cliente clienteAtendido = new Cliente(0, false);
-                    Boolean empezoPelicula = false;
-                    Boolean empezoSimulacion = false;
-                    Boolean ingresoLlegadaEntrada = false;
-                    Boolean ingresoASala = false;
+                    empezoPelicula = false;
+                    empezoSimulacion = false;
+                    ingresoLlegadaEntrada = false;
+                    ingresoASala = false;
 
                     List<Cliente> clientes = new List<Cliente>();
 
@@ -54,10 +59,9 @@ namespace TP5
                         anterior = actual;
                         actual = new VectorEstado();
                         copiarAnterior();
-                        
-                        buscarEvento(empezoSimulacion,ingresoLlegadaEntrada,ingresoASala);
 
                         if (actual.Reloj >= minHastaComienzoFuncion * 60) empezoPelicula = true;
+                        buscarEvento();
 
                         switch (actual.Evento)
                         {
@@ -323,10 +327,16 @@ namespace TP5
             return (int)(desde + (aleatorio * 1000) % (hasta - desde + 1));
         }
 
-        private void buscarEvento(bool empezoSimulacion, bool ingresoLlegadaEntrada, bool ingresoASala)
+        private void buscarEvento()
         {
-            string evento = "llegada_compra";
-            double minimo = anterior.ProximaLlegadaCompra;
+            string evento = "fin_pelicula";
+            double minimo = minHastaComienzoFuncion * 60 + 5400;
+
+            if (minimo >= anterior.ProximaLlegadaCompra && anterior.ProximaLlegadaCompra > 0 && !empezoPelicula)
+            {
+                evento = "llegada_compra";
+                minimo = anterior.ProximaLlegadaCompra;
+            }
 
             if (actual.Reloj == 0 && !empezoSimulacion)
             {
@@ -334,7 +344,7 @@ namespace TP5
                 return;
             }
 
-            if (minimo >= anterior.ProximaLlegadaEntrada && anterior.ProximaLlegadaEntrada > 0)
+            if (minimo >= anterior.ProximaLlegadaEntrada && anterior.ProximaLlegadaEntrada > 0 && !empezoPelicula)
             {
                 evento = "llegada_entrada_anticipada";
                 minimo = anterior.ProximaLlegadaEntrada;
