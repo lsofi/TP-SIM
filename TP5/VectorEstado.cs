@@ -26,6 +26,7 @@ namespace TP5
         private double finCompra;
         private double proximoFinCompra;
         private Queue<Cliente> boleteria;
+        private Queue<Cliente> entrada;
         private double rndFinEntrada;
         private double finEntrada;
         private double proximoFinEntrada;
@@ -33,6 +34,7 @@ namespace TP5
         private int butacasOcupadas;
         private double tiempoOcupacionBoletero;
         private int entradasVendidas;
+        private int entradasAnticipadas;
 
         public string Evento { get => evento; set => evento = value; }
         public double Reloj { get => reloj; set => reloj = value; }
@@ -59,5 +61,7 @@ namespace TP5
         public int NumeroSimulacion { get => numeroSimulacion; set => numeroSimulacion = value; }
         public double TiempoOcupacionBoletero { get => tiempoOcupacionBoletero; set => tiempoOcupacionBoletero = value; }
         public int EntradasVendidas { get => entradasVendidas; set => entradasVendidas = value; }
+        public Queue<Cliente> Entrada { get => entrada; set => entrada = value; }
+        public int EntradasAnticipadas { get => entradasAnticipadas; set => entradasAnticipadas = value; }
     }
 }

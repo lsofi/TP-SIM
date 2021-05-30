@@ -35,6 +35,7 @@ namespace TP5
 
         private void btnSimular_Click(object sender, EventArgs e)
         {
+            dgvFuncion.Rows.Clear();
             if (validarCampos())
             {
                 for (int i = 0; i < numSim; i++)
@@ -45,6 +46,8 @@ namespace TP5
                     actual.Evento = "inicio_simulacion";
                     actual.Boletero = new Boletero();
                     actual.Boleteria = new Queue<Cliente>();
+                    actual.Entrada = new Queue<Cliente>();
+
 
                     Cliente clienteAtendido = new Cliente(0, false);
                     empezoPelicula = false;
@@ -54,7 +57,7 @@ namespace TP5
 
                     List<Cliente> clientes = new List<Cliente>();
 
-                    while (actual.ButacasOcupadas < tamSala)
+                    while (actual.ButacasOcupadas < tamSala && !(actual.PersonasEnColaSala == 0 && empezoPelicula))
                     {
                         anterior = actual;
                         actual = new VectorEstado();
@@ -66,6 +69,7 @@ namespace TP5
                         switch (actual.Evento)
                         {
                             case "inicio_simulacion":
+                                resetearCampos();
                                 actual.ButacasOcupadas = 0;
                                 actual.NumeroSimulacion = i + 1;
                                 actual.PersonasEnColaSala = 0;
@@ -87,16 +91,17 @@ namespace TP5
                                 actual.ProximaLlegadaCompra = actual.Reloj + actual.LlegadaCompra;
 
                                 actual.RndNumeroCompra = random.NextDouble();
-                                actual.NumeroCompra = 1 + aleatorioInt(desdeEntradasComprar, hastaEntradasComprar, actual.RndNumeroCompra);
+                                actual.NumeroCompra = aleatorioInt(desdeEntradasComprar, hastaEntradasComprar, actual.RndNumeroCompra);
                                 Cliente nuevo = new Cliente(actual.NumeroCompra, false);
-                                nuevo.Nombre = "Cliente" + clientes.Count + 1;
+                                nuevo.Nombre = "Cliente" + (clientes.Count + 1);
                                 clientes.Add(nuevo);
 
                                 for (int m = 0; m < actual.NumeroCompra - 1; m++)
                                 {
                                     Cliente nuevoAcompañante = new Cliente(actual.NumeroCompra, false);
-                                    nuevoAcompañante.Nombre = "Cliente" + clientes.Count + 1;
+                                    nuevoAcompañante.Nombre = "Cliente" + (clientes.Count + 1);
                                     clientes.Add(nuevoAcompañante);
+                                    nuevo.Acompañantes.Add(nuevoAcompañante);
                                 }
 
                                 if (actual.Boletero.Estado == "ocupado")
@@ -108,6 +113,10 @@ namespace TP5
                                 {
                                     clienteAtendido = nuevo;
                                     clienteAtendido.Estado = "comprando";
+                                    foreach (Cliente acompañante in clienteAtendido.Acompañantes)
+                                    {
+                                        acompañante.Estado = "acomp_" + clienteAtendido.Nombre;
+                                    }
                                     actual.Boletero.Estado = "ocupado";
                                     actual.Boletero.InicioOcupacion = actual.Reloj;
                                     actual.RndFinCompra = random.NextDouble();
@@ -129,7 +138,7 @@ namespace TP5
                                 actual.ProximaLlegadaEntrada = actual.Reloj + actual.LlegadaEntrada;
 
                                 actual.RndNumeroEntrada = random.NextDouble();
-                                actual.NumeroEntrada = 1 + aleatorioInt(desdeEntradasAnticipadas, hastaEntradasAnticipadas, actual.RndNumeroEntrada);
+                                actual.NumeroEntrada = aleatorioInt(desdeEntradasAnticipadas, hastaEntradasAnticipadas, actual.RndNumeroEntrada);
 
                                 if (actual.PersonasEnColaSala == 0 && ingresoASala)
                                 {
@@ -142,10 +151,13 @@ namespace TP5
 
                                 actual.EntradasVendidas += actual.NumeroEntrada;
 
+                                actual.EntradasAnticipadas += 1;
+
                                 for (int j = 0; j < actual.NumeroEntrada; j++)
                                 {
                                     Cliente nuevoAnticipada = new Cliente(actual.NumeroCompra, true);
-                                    nuevoAnticipada.Nombre = "Cliente" + clientes.Count + 1;
+                                    nuevoAnticipada.Nombre = "Cliente" + (clientes.Count + 1);
+                                    actual.Entrada.Enqueue(nuevoAnticipada);
                                     clientes.Add(nuevoAnticipada);
                                 }
 
@@ -163,9 +175,21 @@ namespace TP5
                                 }
                                 actual.PersonasEnColaSala += clienteAtendido.NumeroEntradas;
                                 actual.EntradasVendidas += clienteAtendido.NumeroEntradas;
+                                clienteAtendido.Estado = "esperando_entrar";
+                                actual.Entrada.Enqueue(clienteAtendido);
+                                foreach(Cliente acompañante in clienteAtendido.Acompañantes)
+                                {
+                                    acompañante.Estado = "esperando_entrar";
+                                    actual.Entrada.Enqueue(acompañante);
+                                }
                                 if (actual.Boleteria.Count != 0)
                                 {
                                     clienteAtendido = actual.Boleteria.Dequeue();
+                                    clienteAtendido.Estado = "comprando";
+                                    foreach (Cliente acompañante in clienteAtendido.Acompañantes)
+                                    {
+                                        acompañante.Estado = "acomp_" + clienteAtendido.Nombre;
+                                    }
                                     actual.RndFinCompra = random.NextDouble();
                                     actual.FinCompra = aleatorioU(desdeTiempoCompra, hastaTiempoCompra, actual.RndFinCompra);
                                     actual.ProximoFinCompra = actual.Reloj + actual.FinCompra;
@@ -183,8 +207,10 @@ namespace TP5
                                 resetearCampos();
                                 if (actual.ButacasOcupadas < tamSala && actual.PersonasEnColaSala > 0)
                                 {
+                                    Cliente entrante = actual.Entrada.Dequeue();
+                                    entrante.Estado = "en_sala";
                                     actual.ButacasOcupadas += 1;
-                                    actual.PersonasEnColaSala -= 1;
+                                    actual.PersonasEnColaSala = actual.Entrada.Count;
                                     actual.RndFinEntrada = random.NextDouble();
                                     actual.FinEntrada = aleatorioU(desdeTiempoEntradaSala, hastaTiempoEntradaSala, actual.RndFinEntrada);
                                     actual.ProximoFinEntrada = actual.Reloj + actual.FinEntrada;
@@ -222,10 +248,13 @@ namespace TP5
                                 break;
                         }
 
-                        agregarDatosDGV(actual);
+                        if (actual.NumeroSimulacion == simMostrar)
+                        {
+                            agregarDatosDGV(actual);
 
-                        agregarClientesDGV(clientes);
-
+                            agregarClientesDGV(clientes);
+                        }
+                        
                     }
 
                 }
@@ -260,42 +289,49 @@ namespace TP5
             actual.ButacasOcupadas = anterior.ButacasOcupadas;
             actual.TiempoOcupacionBoletero = anterior.TiempoOcupacionBoletero;
             actual.EntradasVendidas = anterior.EntradasVendidas;
+            actual.Entrada = anterior.Entrada;
+            actual.EntradasAnticipadas = anterior.EntradasAnticipadas;
         }
         private void agregarDatosDGV(VectorEstado actual)
         {
             String numeroSim = actual.NumeroSimulacion.ToString();
-            String reloj = actual.Reloj.ToString();
+            String reloj = Math.Round(actual.Reloj,2).ToString();
             String evento = actual.Evento;
-            String proximaLlegadaCompra = actual.ProximaLlegadaCompra.ToString();
-            String proximaLlegadaEntrada = actual.ProximaLlegadaEntrada.ToString();
-            String proximoFinCompra = actual.ProximoFinCompra.ToString();
-            String proximoFinEntrada = actual.ProximoFinEntrada.ToString();
+            String proximaLlegadaCompra = Math.Round(actual.ProximaLlegadaCompra,2).ToString();
+            
             String personasEnColaBoletaria = actual.Boleteria.Count.ToString();
             String personasEnColaSala = actual.PersonasEnColaSala.ToString();
             String butacasOcupadas = actual.ButacasOcupadas.ToString();
-            String tiempoOcupacionBoletero = actual.TiempoOcupacionBoletero.ToString();
+            String tiempoOcupacionBoletero = Math.Round(actual.TiempoOcupacionBoletero,2).ToString();
             String estadoBoletero = actual.Boletero.Estado;
             String entradasVendidas = actual.EntradasVendidas.ToString();
+            String entradasAnticipadas = actual.EntradasAnticipadas.ToString();
+            String porcentajeOcupacion = Math.Round((((double)actual.TiempoOcupacionBoletero / actual.Reloj) * 100),2).ToString();
+
             
 
             String rndLlegadaCompra, llegadaCompra, rndNumeroCompra, numeroCompra, rndLlegadaEntrada, llegadaEntrada, rndNumeroEntrada,
-                numeroEntrada, rndFinCompra, finCompra, rndFinEntrada, finEntrada, salaLlena;
+                numeroEntrada, rndFinCompra, finCompra, rndFinEntrada, finEntrada, salaLlena, proximaLlegadaEntrada, proximoFinCompra, proximoFinEntrada;
 
             rndLlegadaCompra = llegadaCompra = rndNumeroCompra = numeroCompra = rndLlegadaEntrada = llegadaEntrada = rndNumeroEntrada =
-                numeroEntrada = rndFinCompra = finCompra = rndFinEntrada = finEntrada = "";
+                numeroEntrada = rndFinCompra = finCompra = rndFinEntrada = finEntrada = proximaLlegadaEntrada = proximoFinCompra = 
+                proximoFinEntrada = "";
 
-            if (actual.RndLlegadaCompra != -1) rndLlegadaCompra = actual.RndLlegadaCompra.ToString();
-            if (actual.LlegadaCompra != -1) llegadaCompra = actual.RndLlegadaCompra.ToString();
-            if (actual.RndNumeroCompra != -1) rndNumeroCompra = actual.RndNumeroCompra.ToString();
+            if (actual.RndLlegadaCompra != -1) rndLlegadaCompra = Math.Round(actual.RndLlegadaCompra,2).ToString();
+            if (actual.LlegadaCompra != -1) llegadaCompra = Math.Round(actual.RndLlegadaCompra,2).ToString();
+            if (actual.RndNumeroCompra != -1) rndNumeroCompra = Math.Round(actual.RndNumeroCompra,2).ToString();
             if (actual.NumeroCompra != -1) numeroCompra = actual.NumeroCompra.ToString();
-            if (actual.RndLlegadaEntrada != -1) rndLlegadaEntrada = actual.RndLlegadaEntrada.ToString();
-            if (actual.LlegadaEntrada != -1) llegadaEntrada = actual.LlegadaEntrada.ToString();
-            if (actual.RndNumeroEntrada != -1) rndNumeroEntrada = actual.RndNumeroEntrada.ToString();
+            if (actual.RndLlegadaEntrada != -1) rndLlegadaEntrada = Math.Round(actual.RndLlegadaEntrada,2).ToString();
+            if (actual.LlegadaEntrada != -1) llegadaEntrada = Math.Round(actual.LlegadaEntrada,2).ToString();
+            if (actual.RndNumeroEntrada != -1) rndNumeroEntrada = Math.Round(actual.RndNumeroEntrada,2).ToString();
             if (actual.NumeroEntrada != -1) numeroEntrada = actual.NumeroEntrada.ToString();
-            if (actual.RndFinCompra != -1) rndFinCompra = actual.RndFinCompra.ToString();
-            if (actual.FinCompra != -1) finCompra = actual.FinCompra.ToString();
-            if (actual.RndFinEntrada != -1) rndFinEntrada = actual.RndFinEntrada.ToString();
-            if (actual.FinEntrada != -1) finEntrada = actual.FinEntrada.ToString();
+            if (actual.RndFinCompra != -1) rndFinCompra = Math.Round(actual.RndFinCompra,2).ToString();
+            if (actual.FinCompra != -1) finCompra = Math.Round(actual.FinCompra,2).ToString();
+            if (actual.RndFinEntrada != -1) rndFinEntrada = Math.Round(actual.RndFinEntrada,2).ToString();
+            if (actual.FinEntrada != -1) finEntrada = Math.Round(actual.FinEntrada,2).ToString();
+            if (actual.ProximaLlegadaEntrada > 0) proximaLlegadaEntrada = Math.Round(actual.ProximaLlegadaEntrada, 2).ToString();
+            if (actual.ProximoFinCompra > 0) proximoFinCompra = Math.Round(actual.ProximoFinCompra, 2).ToString();
+            if (actual.ProximoFinEntrada > 0) proximoFinEntrada = Math.Round(actual.ProximoFinEntrada, 2).ToString();
 
             if (actual.ButacasOcupadas == tamSala) salaLlena = "Si";
             else salaLlena = "No";
@@ -303,7 +339,7 @@ namespace TP5
             dgvFuncion.Rows.Add(numeroSim, evento, reloj, rndLlegadaCompra, llegadaCompra, proximaLlegadaCompra, rndNumeroCompra,
                 numeroCompra, rndLlegadaEntrada, llegadaEntrada, proximaLlegadaEntrada, rndNumeroEntrada, numeroEntrada, estadoBoletero,
                 rndFinCompra, finCompra, proximoFinCompra, rndFinEntrada, finEntrada, proximoFinEntrada, personasEnColaBoletaria, personasEnColaSala,
-                entradasVendidas, salaLlena, tiempoOcupacionBoletero);
+                entradasVendidas, salaLlena, tiempoOcupacionBoletero, porcentajeOcupacion, entradasAnticipadas );
 
 
         }

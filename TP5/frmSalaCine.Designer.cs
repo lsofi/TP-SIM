@@ -29,6 +29,34 @@
         private void InitializeComponent()
         {
             this.dgvFuncion = new System.Windows.Forms.DataGridView();
+            this.numSimulacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.reloj = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rndLlegadaCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.llegadaCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proximaLlegadaCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rndNumeroCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numeroCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rndLlegadaEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.llegadaEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proximaLlegadaEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rndNumeroEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numeroEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estadoBoletero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rndFinCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.finCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proximoFinCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rndFinEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.finEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proximoFinEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colaBoleteria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colaSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.acumEntradasVendidas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salaLlena = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tiempoOcupBoletero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.porcTiempoOcupBoletero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contEntradasAnticipadas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.porcNoEntrar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtN = new System.Windows.Forms.TextBox();
             this.lblN = new System.Windows.Forms.Label();
             this.lblSimulacionMostrar = new System.Windows.Forms.Label();
@@ -75,34 +103,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.numSimulacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.reloj = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rndLlegadaCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.llegadaCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proximaLlegadaCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rndNumeroCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numeroCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rndLlegadaEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.llegadaEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proximaLlegadaEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rndNumeroEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numeroEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estadoBoletero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rndFinCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.finCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proximoFinCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rndFinEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.finEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proximoFinEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colaBoleteria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colaSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.acumEntradasVendidas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salaLlena = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tiempoOcupBoletero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.porcTiempoOcupBoletero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contEntradasAnticipadas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.porcNoEntrar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFuncion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFunciones)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -150,6 +150,174 @@
             this.dgvFuncion.ReadOnly = true;
             this.dgvFuncion.Size = new System.Drawing.Size(1441, 285);
             this.dgvFuncion.TabIndex = 0;
+            // 
+            // numSimulacion
+            // 
+            this.numSimulacion.HeaderText = "Numero de simulación";
+            this.numSimulacion.Name = "numSimulacion";
+            this.numSimulacion.ReadOnly = true;
+            // 
+            // evento
+            // 
+            this.evento.HeaderText = "Evento";
+            this.evento.Name = "evento";
+            this.evento.ReadOnly = true;
+            // 
+            // reloj
+            // 
+            this.reloj.HeaderText = "Reloj";
+            this.reloj.Name = "reloj";
+            this.reloj.ReadOnly = true;
+            // 
+            // rndLlegadaCompra
+            // 
+            this.rndLlegadaCompra.HeaderText = "RND Llegada compra";
+            this.rndLlegadaCompra.Name = "rndLlegadaCompra";
+            this.rndLlegadaCompra.ReadOnly = true;
+            // 
+            // llegadaCompra
+            // 
+            this.llegadaCompra.HeaderText = "Llegada Compra";
+            this.llegadaCompra.Name = "llegadaCompra";
+            this.llegadaCompra.ReadOnly = true;
+            // 
+            // proximaLlegadaCompra
+            // 
+            this.proximaLlegadaCompra.HeaderText = "Próxima llegada compra";
+            this.proximaLlegadaCompra.Name = "proximaLlegadaCompra";
+            this.proximaLlegadaCompra.ReadOnly = true;
+            // 
+            // rndNumeroCompra
+            // 
+            this.rndNumeroCompra.HeaderText = "RND Número Compra";
+            this.rndNumeroCompra.Name = "rndNumeroCompra";
+            this.rndNumeroCompra.ReadOnly = true;
+            // 
+            // numeroCompra
+            // 
+            this.numeroCompra.HeaderText = "Entradas compradas";
+            this.numeroCompra.Name = "numeroCompra";
+            this.numeroCompra.ReadOnly = true;
+            // 
+            // rndLlegadaEntrada
+            // 
+            this.rndLlegadaEntrada.HeaderText = "RND Llegada Entrada";
+            this.rndLlegadaEntrada.Name = "rndLlegadaEntrada";
+            this.rndLlegadaEntrada.ReadOnly = true;
+            // 
+            // llegadaEntrada
+            // 
+            this.llegadaEntrada.HeaderText = "Llegada Entrada";
+            this.llegadaEntrada.Name = "llegadaEntrada";
+            this.llegadaEntrada.ReadOnly = true;
+            // 
+            // proximaLlegadaEntrada
+            // 
+            this.proximaLlegadaEntrada.HeaderText = "Próxima llegada entrada";
+            this.proximaLlegadaEntrada.Name = "proximaLlegadaEntrada";
+            this.proximaLlegadaEntrada.ReadOnly = true;
+            // 
+            // rndNumeroEntrada
+            // 
+            this.rndNumeroEntrada.HeaderText = "RND Número de entradas";
+            this.rndNumeroEntrada.Name = "rndNumeroEntrada";
+            this.rndNumeroEntrada.ReadOnly = true;
+            // 
+            // numeroEntrada
+            // 
+            this.numeroEntrada.HeaderText = "Número Entrada";
+            this.numeroEntrada.Name = "numeroEntrada";
+            this.numeroEntrada.ReadOnly = true;
+            // 
+            // estadoBoletero
+            // 
+            this.estadoBoletero.HeaderText = "Estado boletero";
+            this.estadoBoletero.Name = "estadoBoletero";
+            this.estadoBoletero.ReadOnly = true;
+            // 
+            // rndFinCompra
+            // 
+            this.rndFinCompra.HeaderText = "RND fin compra";
+            this.rndFinCompra.Name = "rndFinCompra";
+            this.rndFinCompra.ReadOnly = true;
+            // 
+            // finCompra
+            // 
+            this.finCompra.HeaderText = "Fin compra";
+            this.finCompra.Name = "finCompra";
+            this.finCompra.ReadOnly = true;
+            // 
+            // proximoFinCompra
+            // 
+            this.proximoFinCompra.HeaderText = "Próximo fin compra";
+            this.proximoFinCompra.Name = "proximoFinCompra";
+            this.proximoFinCompra.ReadOnly = true;
+            // 
+            // rndFinEntrada
+            // 
+            this.rndFinEntrada.HeaderText = "RND fin entrada";
+            this.rndFinEntrada.Name = "rndFinEntrada";
+            this.rndFinEntrada.ReadOnly = true;
+            // 
+            // finEntrada
+            // 
+            this.finEntrada.HeaderText = "Fin de entrada";
+            this.finEntrada.Name = "finEntrada";
+            this.finEntrada.ReadOnly = true;
+            // 
+            // proximoFinEntrada
+            // 
+            this.proximoFinEntrada.HeaderText = "Próximo fin de entrada";
+            this.proximoFinEntrada.Name = "proximoFinEntrada";
+            this.proximoFinEntrada.ReadOnly = true;
+            // 
+            // colaBoleteria
+            // 
+            this.colaBoleteria.HeaderText = "Cola Boleteria";
+            this.colaBoleteria.Name = "colaBoleteria";
+            this.colaBoleteria.ReadOnly = true;
+            // 
+            // colaSala
+            // 
+            this.colaSala.HeaderText = "Cola Sala";
+            this.colaSala.Name = "colaSala";
+            this.colaSala.ReadOnly = true;
+            // 
+            // acumEntradasVendidas
+            // 
+            this.acumEntradasVendidas.HeaderText = "Total Entradas Vendidas";
+            this.acumEntradasVendidas.Name = "acumEntradasVendidas";
+            this.acumEntradasVendidas.ReadOnly = true;
+            // 
+            // salaLlena
+            // 
+            this.salaLlena.HeaderText = "Sala llena";
+            this.salaLlena.Name = "salaLlena";
+            this.salaLlena.ReadOnly = true;
+            // 
+            // tiempoOcupBoletero
+            // 
+            this.tiempoOcupBoletero.HeaderText = "Total tiempo de ocupación del boletero";
+            this.tiempoOcupBoletero.Name = "tiempoOcupBoletero";
+            this.tiempoOcupBoletero.ReadOnly = true;
+            // 
+            // porcTiempoOcupBoletero
+            // 
+            this.porcTiempoOcupBoletero.HeaderText = "Porcentaje de tiempo de ocupación del boletero";
+            this.porcTiempoOcupBoletero.Name = "porcTiempoOcupBoletero";
+            this.porcTiempoOcupBoletero.ReadOnly = true;
+            // 
+            // contEntradasAnticipadas
+            // 
+            this.contEntradasAnticipadas.HeaderText = "Total entradas anticipadas";
+            this.contEntradasAnticipadas.Name = "contEntradasAnticipadas";
+            this.contEntradasAnticipadas.ReadOnly = true;
+            // 
+            // porcNoEntrar
+            // 
+            this.porcNoEntrar.HeaderText = "Porcentaje de entradas que no pudieron entrar";
+            this.porcNoEntrar.Name = "porcNoEntrar";
+            this.porcNoEntrar.ReadOnly = true;
             // 
             // txtN
             // 
@@ -422,7 +590,7 @@
             this.numSimulacion2,
             this.reloj2,
             this.colaBoleteria2});
-            this.dgvFunciones.Location = new System.Drawing.Point(17, 20);
+            this.dgvFunciones.Location = new System.Drawing.Point(17, 22);
             this.dgvFunciones.Name = "dgvFunciones";
             this.dgvFunciones.ReadOnly = true;
             this.dgvFunciones.Size = new System.Drawing.Size(452, 276);
@@ -583,179 +751,11 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Resultados";
             // 
-            // numSimulacion
-            // 
-            this.numSimulacion.HeaderText = "Numero de simulación";
-            this.numSimulacion.Name = "numSimulacion";
-            this.numSimulacion.ReadOnly = true;
-            // 
-            // evento
-            // 
-            this.evento.HeaderText = "Evento";
-            this.evento.Name = "evento";
-            this.evento.ReadOnly = true;
-            // 
-            // reloj
-            // 
-            this.reloj.HeaderText = "Reloj";
-            this.reloj.Name = "reloj";
-            this.reloj.ReadOnly = true;
-            // 
-            // rndLlegadaCompra
-            // 
-            this.rndLlegadaCompra.HeaderText = "RND Llegada compra";
-            this.rndLlegadaCompra.Name = "rndLlegadaCompra";
-            this.rndLlegadaCompra.ReadOnly = true;
-            // 
-            // llegadaCompra
-            // 
-            this.llegadaCompra.HeaderText = "Llegada Compra";
-            this.llegadaCompra.Name = "llegadaCompra";
-            this.llegadaCompra.ReadOnly = true;
-            // 
-            // proximaLlegadaCompra
-            // 
-            this.proximaLlegadaCompra.HeaderText = "Próxima llegada compra";
-            this.proximaLlegadaCompra.Name = "proximaLlegadaCompra";
-            this.proximaLlegadaCompra.ReadOnly = true;
-            // 
-            // rndNumeroCompra
-            // 
-            this.rndNumeroCompra.HeaderText = "RND Número Compra";
-            this.rndNumeroCompra.Name = "rndNumeroCompra";
-            this.rndNumeroCompra.ReadOnly = true;
-            // 
-            // numeroCompra
-            // 
-            this.numeroCompra.HeaderText = "Entradas compradas";
-            this.numeroCompra.Name = "numeroCompra";
-            this.numeroCompra.ReadOnly = true;
-            // 
-            // rndLlegadaEntrada
-            // 
-            this.rndLlegadaEntrada.HeaderText = "RND Llegada Entrada";
-            this.rndLlegadaEntrada.Name = "rndLlegadaEntrada";
-            this.rndLlegadaEntrada.ReadOnly = true;
-            // 
-            // llegadaEntrada
-            // 
-            this.llegadaEntrada.HeaderText = "Llegada Entrada";
-            this.llegadaEntrada.Name = "llegadaEntrada";
-            this.llegadaEntrada.ReadOnly = true;
-            // 
-            // proximaLlegadaEntrada
-            // 
-            this.proximaLlegadaEntrada.HeaderText = "Próxima llegada entrada";
-            this.proximaLlegadaEntrada.Name = "proximaLlegadaEntrada";
-            this.proximaLlegadaEntrada.ReadOnly = true;
-            // 
-            // rndNumeroEntrada
-            // 
-            this.rndNumeroEntrada.HeaderText = "RND Número de entradas";
-            this.rndNumeroEntrada.Name = "rndNumeroEntrada";
-            this.rndNumeroEntrada.ReadOnly = true;
-            // 
-            // numeroEntrada
-            // 
-            this.numeroEntrada.HeaderText = "Número Entrada";
-            this.numeroEntrada.Name = "numeroEntrada";
-            this.numeroEntrada.ReadOnly = true;
-            // 
-            // estadoBoletero
-            // 
-            this.estadoBoletero.HeaderText = "Estado boletero";
-            this.estadoBoletero.Name = "estadoBoletero";
-            this.estadoBoletero.ReadOnly = true;
-            // 
-            // rndFinCompra
-            // 
-            this.rndFinCompra.HeaderText = "RND fin compra";
-            this.rndFinCompra.Name = "rndFinCompra";
-            this.rndFinCompra.ReadOnly = true;
-            // 
-            // finCompra
-            // 
-            this.finCompra.HeaderText = "Fin compra";
-            this.finCompra.Name = "finCompra";
-            this.finCompra.ReadOnly = true;
-            // 
-            // proximoFinCompra
-            // 
-            this.proximoFinCompra.HeaderText = "Próximo fin compra";
-            this.proximoFinCompra.Name = "proximoFinCompra";
-            this.proximoFinCompra.ReadOnly = true;
-            // 
-            // rndFinEntrada
-            // 
-            this.rndFinEntrada.HeaderText = "RND fin entrada";
-            this.rndFinEntrada.Name = "rndFinEntrada";
-            this.rndFinEntrada.ReadOnly = true;
-            // 
-            // finEntrada
-            // 
-            this.finEntrada.HeaderText = "Fin de entrada";
-            this.finEntrada.Name = "finEntrada";
-            this.finEntrada.ReadOnly = true;
-            // 
-            // proximoFinEntrada
-            // 
-            this.proximoFinEntrada.HeaderText = "Próximo fin de entrada";
-            this.proximoFinEntrada.Name = "proximoFinEntrada";
-            this.proximoFinEntrada.ReadOnly = true;
-            // 
-            // colaBoleteria
-            // 
-            this.colaBoleteria.HeaderText = "Cola Boleteria";
-            this.colaBoleteria.Name = "colaBoleteria";
-            this.colaBoleteria.ReadOnly = true;
-            // 
-            // colaSala
-            // 
-            this.colaSala.HeaderText = "Cola Sala";
-            this.colaSala.Name = "colaSala";
-            this.colaSala.ReadOnly = true;
-            // 
-            // acumEntradasVendidas
-            // 
-            this.acumEntradasVendidas.HeaderText = "Total Entradas Vendidas";
-            this.acumEntradasVendidas.Name = "acumEntradasVendidas";
-            this.acumEntradasVendidas.ReadOnly = true;
-            // 
-            // salaLlena
-            // 
-            this.salaLlena.HeaderText = "Sala llena";
-            this.salaLlena.Name = "salaLlena";
-            this.salaLlena.ReadOnly = true;
-            // 
-            // tiempoOcupBoletero
-            // 
-            this.tiempoOcupBoletero.HeaderText = "Total tiempo de ocupación del boletero";
-            this.tiempoOcupBoletero.Name = "tiempoOcupBoletero";
-            this.tiempoOcupBoletero.ReadOnly = true;
-            // 
-            // porcTiempoOcupBoletero
-            // 
-            this.porcTiempoOcupBoletero.HeaderText = "Porcentaje de tiempo de ocupación del boletero";
-            this.porcTiempoOcupBoletero.Name = "porcTiempoOcupBoletero";
-            this.porcTiempoOcupBoletero.ReadOnly = true;
-            // 
-            // contEntradasAnticipadas
-            // 
-            this.contEntradasAnticipadas.HeaderText = "Total entradas anticipadas";
-            this.contEntradasAnticipadas.Name = "contEntradasAnticipadas";
-            this.contEntradasAnticipadas.ReadOnly = true;
-            // 
-            // porcNoEntrar
-            // 
-            this.porcNoEntrar.HeaderText = "Porcentaje de entradas que no pudieron entrar";
-            this.porcNoEntrar.Name = "porcNoEntrar";
-            this.porcNoEntrar.ReadOnly = true;
-            // 
             // frmSimulacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.ClientSize = new System.Drawing.Size(1487, 1035);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
