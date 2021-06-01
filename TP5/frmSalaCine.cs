@@ -21,11 +21,17 @@ namespace TP5
         VectorEstado aux;
         Random random = new Random();
 
+        double acumReloj = 0;
+        double acumTiempoBoletero = 0;
+        double acumuladorEntradasVendidas = 0;
+        double acumuladorEntradasAnticipadas = 0;
+        double acumPersonasNoEntraron = 0;
+        double acumSalasLlenas = 0;
+              
         Boolean empezoPelicula;
         Boolean empezoSimulacion;
         Boolean ingresoLlegadaEntrada;
         Boolean ingresoASala;
-
 
         public frmSimulacion()
         {
@@ -36,6 +42,8 @@ namespace TP5
         private void btnSimular_Click(object sender, EventArgs e)
         {
             dgvFuncion.Rows.Clear();
+            dgvFunciones.Rows.Clear();
+            resetearAcumuladores();
             if (validarCampos())
             {
                 for (int i = 0; i < numSim; i++)
@@ -50,6 +58,7 @@ namespace TP5
 
 
                     Cliente clienteAtendido = new Cliente(0, false);
+                    Cliente entrante = new Cliente(0, false);
                     empezoPelicula = false;
                     empezoSimulacion = false;
                     ingresoLlegadaEntrada = false;
@@ -57,13 +66,12 @@ namespace TP5
 
                     List<Cliente> clientes = new List<Cliente>();
 
-                    while (actual.ButacasOcupadas < tamSala && !(actual.PersonasEnColaSala == 0 && empezoPelicula))
+                    while (actual.ButacasOcupadas < tamSala && !(actual.PersonasEnColaSala == 0 && empezoPelicula) || actual.Boletero.Estado == "ocupado")
                     {
                         anterior = actual;
                         actual = new VectorEstado();
                         copiarAnterior();
 
-                        if (actual.Reloj >= minHastaComienzoFuncion * 60) empezoPelicula = true;
                         buscarEvento();
 
                         switch (actual.Evento)
@@ -108,7 +116,6 @@ namespace TP5
                                 {
                                     actual.Boleteria.Enqueue(nuevo);
                                 }
-                                    
                                 else
                                 {
                                     clienteAtendido = nuevo;
@@ -151,7 +158,7 @@ namespace TP5
 
                                 actual.EntradasVendidas += actual.NumeroEntrada;
 
-                                actual.EntradasAnticipadas += 1;
+                                actual.EntradasAnticipadas += actual.NumeroEntrada;
 
                                 for (int j = 0; j < actual.NumeroEntrada; j++)
                                 {
@@ -182,7 +189,10 @@ namespace TP5
                                     acompañante.Estado = "esperando_entrar";
                                     actual.Entrada.Enqueue(acompañante);
                                 }
-                                if (actual.Boleteria.Count != 0)
+
+                                actual.TiempoOcupacionBoletero += actual.Reloj - actual.Boletero.InicioOcupacion;
+
+                                if (actual.Boleteria.Count != 0 && !empezoPelicula)
                                 {
                                     clienteAtendido = actual.Boleteria.Dequeue();
                                     clienteAtendido.Estado = "comprando";
@@ -198,7 +208,6 @@ namespace TP5
                                 else
                                 {
                                     actual.Boletero.Estado = "libre";
-                                    actual.TiempoOcupacionBoletero += actual.Reloj - actual.Boletero.InicioOcupacion;
                                     actual.ProximoFinCompra = -1;
                                 }
                                 break;
@@ -207,9 +216,10 @@ namespace TP5
                                 resetearCampos();
                                 if (actual.ButacasOcupadas < tamSala && actual.PersonasEnColaSala > 0)
                                 {
-                                    Cliente entrante = actual.Entrada.Dequeue();
-                                    entrante.Estado = "en_sala";
+                                    entrante.Estado = "";
                                     actual.ButacasOcupadas += 1;
+                                    entrante = actual.Entrada.Dequeue();
+                                    entrante.Estado = "entrando";
                                     actual.PersonasEnColaSala = actual.Entrada.Count;
                                     actual.RndFinEntrada = random.NextDouble();
                                     actual.FinEntrada = aleatorioU(desdeTiempoEntradaSala, hastaTiempoEntradaSala, actual.RndFinEntrada);
@@ -236,6 +246,8 @@ namespace TP5
                                     actual.RndFinEntrada = random.NextDouble();
                                     actual.FinEntrada = aleatorioU(desdeTiempoEntradaSala, hastaTiempoEntradaSala, actual.RndFinEntrada);
                                     actual.ProximoFinEntrada = actual.Reloj + actual.FinEntrada;
+                                    entrante = actual.Entrada.Dequeue();
+                                    entrante.Estado = "entrando";
                                 }
                                 ingresoASala = true;
                                 break;
@@ -244,17 +256,28 @@ namespace TP5
                                 resetearCampos();
                                 actual.ProximaLlegadaCompra = -1;
                                 actual.ProximaLlegadaEntrada = -1;
-                                actual.Boleteria.Clear();
+                                empezoPelicula = true;
+                                foreach (Cliente cliente in actual.Boleteria)
+                                {
+                                    cliente.Estado = "";
+                                    foreach (Cliente acompañante in cliente.Acompañantes)
+                                        acompañante.Estado = "";
+                                }
                                 break;
                         }
-
+                        
                         if (actual.NumeroSimulacion == simMostrar)
                         {
                             agregarDatosDGV(actual);
 
                             agregarClientesDGV(clientes);
                         }
-                        
+
+                        if (actual.ButacasOcupadas == tamSala || (empezoPelicula && actual.PersonasEnColaSala == 0))
+                        {
+                            agregarDatosDGVFunciones(actual);
+                        }
+                       
                     }
 
                 }
@@ -295,9 +318,8 @@ namespace TP5
         private void agregarDatosDGV(VectorEstado actual)
         {
             String numeroSim = actual.NumeroSimulacion.ToString();
-            String reloj = Math.Round(actual.Reloj,2).ToString();
+            double reloj = Math.Round(actual.Reloj,2);
             String evento = actual.Evento;
-            String proximaLlegadaCompra = Math.Round(actual.ProximaLlegadaCompra,2).ToString();
             
             String personasEnColaBoletaria = actual.Boleteria.Count.ToString();
             String personasEnColaSala = actual.PersonasEnColaSala.ToString();
@@ -311,10 +333,11 @@ namespace TP5
             
 
             String rndLlegadaCompra, llegadaCompra, rndNumeroCompra, numeroCompra, rndLlegadaEntrada, llegadaEntrada, rndNumeroEntrada,
-                numeroEntrada, rndFinCompra, finCompra, rndFinEntrada, finEntrada, salaLlena, proximaLlegadaEntrada, proximoFinCompra, proximoFinEntrada;
+                numeroEntrada, rndFinCompra, finCompra, rndFinEntrada, finEntrada, salaLlena, proximaLlegadaEntrada, proximoFinCompra, proximoFinEntrada,
+                proximaLlegadaCompra;
 
             rndLlegadaCompra = llegadaCompra = rndNumeroCompra = numeroCompra = rndLlegadaEntrada = llegadaEntrada = rndNumeroEntrada =
-                numeroEntrada = rndFinCompra = finCompra = rndFinEntrada = finEntrada = proximaLlegadaEntrada = proximoFinCompra = 
+                numeroEntrada = rndFinCompra = finCompra = rndFinEntrada = finEntrada = proximaLlegadaEntrada = proximoFinCompra = proximaLlegadaCompra =
                 proximoFinEntrada = "";
 
             if (actual.RndLlegadaCompra != -1) rndLlegadaCompra = Math.Round(actual.RndLlegadaCompra,2).ToString();
@@ -329,6 +352,7 @@ namespace TP5
             if (actual.FinCompra != -1) finCompra = Math.Round(actual.FinCompra,2).ToString();
             if (actual.RndFinEntrada != -1) rndFinEntrada = Math.Round(actual.RndFinEntrada,2).ToString();
             if (actual.FinEntrada != -1) finEntrada = Math.Round(actual.FinEntrada,2).ToString();
+            if (actual.ProximaLlegadaCompra != -1) proximaLlegadaCompra = Math.Round(actual.ProximaLlegadaCompra, 2).ToString();
             if (actual.ProximaLlegadaEntrada > 0) proximaLlegadaEntrada = Math.Round(actual.ProximaLlegadaEntrada, 2).ToString();
             if (actual.ProximoFinCompra > 0) proximoFinCompra = Math.Round(actual.ProximoFinCompra, 2).ToString();
             if (actual.ProximoFinEntrada > 0) proximoFinEntrada = Math.Round(actual.ProximoFinEntrada, 2).ToString();
@@ -343,6 +367,64 @@ namespace TP5
 
 
         }
+
+        private void agregarDatosDGVFunciones(VectorEstado actual)
+        {
+            int numeroSim = actual.NumeroSimulacion;
+            String reloj = Math.Round(actual.Reloj, 2).ToString();
+            int personasEnColaSala = actual.PersonasEnColaSala;
+            double porcPersonasNoEntraron = Math.Round(((double)personasEnColaSala / ((double)actual.EntradasVendidas)) * 100, 2);
+            double tiempoOcupacionBoletero = Math.Round(actual.TiempoOcupacionBoletero, 2);
+            double entradasVendidas = actual.EntradasVendidas;
+            double entradasAnticipadas = actual.EntradasAnticipadas;
+            String porcentajeOcupacion = Math.Round((((double)actual.TiempoOcupacionBoletero / actual.Reloj) * 100), 2).ToString();
+            acumPersonasNoEntraron += personasEnColaSala;
+            acumuladorEntradasAnticipadas += actual.EntradasAnticipadas;
+            acumuladorEntradasVendidas += actual.EntradasVendidas;
+            acumReloj += Math.Round(actual.Reloj, 2);
+            acumTiempoBoletero += Math.Round(actual.TiempoOcupacionBoletero,2);
+            double acumPorcPersonasNoEntraron = Math.Round((acumPersonasNoEntraron / acumuladorEntradasVendidas) * 100, 2);
+
+            double acumdescuento15 = Math.Round((acumuladorEntradasAnticipadas * 0.15 / acumuladorEntradasVendidas) * 100, 2);
+
+            double acPorcTiempoBoletero = Math.Round((acumTiempoBoletero / acumReloj) * 100, 2);
+
+            double descuento15 = Math.Round((entradasAnticipadas * 0.15 / entradasVendidas) * 100, 2);
+
+            string salaLlena;
+
+            if (actual.ButacasOcupadas == tamSala) { salaLlena = "Si"; acumSalasLlenas += 1; }
+            else salaLlena = "No";
+
+            double porcSalasLlenas = Math.Round((acumSalasLlenas / actual.NumeroSimulacion) * 100, 2);
+
+            double promEntradasVendidas = Math.Round((acumuladorEntradasVendidas / actual.NumeroSimulacion), 2);
+
+            double porcEntradasAnticipadas = Math.Round((entradasAnticipadas / entradasVendidas) * 100, 2);
+            double porcTotalEntradasAnticipadas = Math.Round((acumuladorEntradasAnticipadas / acumuladorEntradasVendidas) * 100, 2);
+
+            dgvFunciones.Rows.Add(numeroSim,
+                                  reloj,
+                                  tiempoOcupacionBoletero,
+                                  acumTiempoBoletero,
+                                  acumReloj,
+                                  acPorcTiempoBoletero.ToString() + "%",
+                                  salaLlena,
+                                  acumSalasLlenas,
+                                  porcSalasLlenas.ToString() + "%",
+                                  entradasVendidas,
+                                  acumuladorEntradasVendidas,
+                                  promEntradasVendidas,
+                                  entradasAnticipadas,
+                                  porcEntradasAnticipadas.ToString() + "%",
+                                  acumuladorEntradasAnticipadas,
+                                  porcTotalEntradasAnticipadas.ToString() + "%",
+                                  porcPersonasNoEntraron.ToString() + "%",
+                                  acumPorcPersonasNoEntraron.ToString() + "%",
+                                  descuento15.ToString() + "%",
+                                  acumdescuento15.ToString() + "%");
+        }
+
         private void agregarClientesDGV(List<Cliente> clientes)
         {
             for (int k = 0; k < clientes.Count; k++)
@@ -432,6 +514,12 @@ namespace TP5
             {
                 evento = "inicio_ingreso_sala";
                 minimo = (minHastaComienzoFuncion - minAperturaSala) * 60;
+            }
+
+            if (minimo >= (minHastaComienzoFuncion) * 60 && !empezoPelicula)
+            {
+                evento = "inicio_pelicula";
+                minimo = (minHastaComienzoFuncion * 60);
             }
 
             actual.Reloj = minimo;
@@ -534,6 +622,15 @@ namespace TP5
 
             return true;
         }
-        
+
+        private void resetearAcumuladores()
+        {
+            acumReloj = 0;
+            acumTiempoBoletero = 0;
+            acumuladorEntradasVendidas = 0;
+            acumuladorEntradasAnticipadas = 0;
+            acumPersonasNoEntraron = 0;
+            acumSalasLlenas = 0;
+        }
     }
 }
