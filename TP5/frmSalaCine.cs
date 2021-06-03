@@ -26,6 +26,7 @@ namespace TP5
         double acumuladorEntradasVendidas = 0;
         double acumuladorEntradasAnticipadas = 0;
         double acumPersonasNoEntraron = 0;
+
         double acumSalasLlenas = 0;
               
         Boolean empezoPelicula;
@@ -42,6 +43,7 @@ namespace TP5
         private void btnSimular_Click(object sender, EventArgs e)
         {
             dgvFuncion.Rows.Clear();
+            limpiarClientes();
             dgvFunciones.Rows.Clear();
             resetearAcumuladores();
             if (validarCampos())
@@ -265,21 +267,15 @@ namespace TP5
                                 }
                                 break;
                         }
-                        
+
                         if (actual.NumeroSimulacion == simMostrar)
                         {
                             agregarDatosDGV(actual);
 
                             agregarClientesDGV(clientes);
-                        }
-
-                        if (actual.ButacasOcupadas == tamSala || (empezoPelicula && actual.PersonasEnColaSala == 0 && actual.Boletero.Estado == "libre"))
-                        {
-                            agregarDatosDGVFunciones(actual);
-                        }
-                       
+                        }                       
                     }
-
+                    agregarDatosDGVFunciones(actual);
                 }
 
             }
@@ -631,6 +627,15 @@ namespace TP5
             acumuladorEntradasAnticipadas = 0;
             acumPersonasNoEntraron = 0;
             acumSalasLlenas = 0;
+        }
+
+        private void limpiarClientes()
+        {
+            int columnas = dgvFuncion.Columns.Count;
+            for (int i = 28; i < columnas; i++)
+            {
+                dgvFuncion.Columns.RemoveAt(28);
+            }
         }
     }
 }

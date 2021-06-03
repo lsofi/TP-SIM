@@ -165,7 +165,7 @@
             this.dgvFuncion.Location = new System.Drawing.Point(22, 19);
             this.dgvFuncion.Name = "dgvFuncion";
             this.dgvFuncion.ReadOnly = true;
-            this.dgvFuncion.Size = new System.Drawing.Size(1441, 285);
+            this.dgvFuncion.Size = new System.Drawing.Size(1852, 285);
             this.dgvFuncion.TabIndex = 0;
             // 
             // numSimulacion
@@ -589,7 +589,7 @@
             // btnSimular
             // 
             this.btnSimular.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSimular.Location = new System.Drawing.Point(710, 298);
+            this.btnSimular.Location = new System.Drawing.Point(910, 298);
             this.btnSimular.Name = "btnSimular";
             this.btnSimular.Size = new System.Drawing.Size(84, 37);
             this.btnSimular.TabIndex = 37;
@@ -626,7 +626,7 @@
             this.dgvFunciones.Location = new System.Drawing.Point(17, 22);
             this.dgvFunciones.Name = "dgvFunciones";
             this.dgvFunciones.ReadOnly = true;
-            this.dgvFunciones.Size = new System.Drawing.Size(1446, 283);
+            this.dgvFunciones.Size = new System.Drawing.Size(1857, 283);
             this.dgvFunciones.TabIndex = 38;
             // 
             // numSimulacion2
@@ -756,7 +756,7 @@
             this.groupBox1.Controls.Add(this.txtSimAMostrar);
             this.groupBox1.Controls.Add(this.lblSimulacionMostrar);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(404, 12);
+            this.groupBox1.Location = new System.Drawing.Point(604, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(697, 81);
             this.groupBox1.TabIndex = 39;
@@ -798,7 +798,7 @@
             this.groupBox2.Controls.Add(this.txtTiempoEntradaHasta);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(53, 122);
+            this.groupBox2.Location = new System.Drawing.Point(253, 122);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1398, 170);
             this.groupBox2.TabIndex = 40;
@@ -864,7 +864,7 @@
             this.groupBox3.Controls.Add(this.dgvFuncion);
             this.groupBox3.Location = new System.Drawing.Point(12, 341);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1480, 320);
+            this.groupBox3.Size = new System.Drawing.Size(1880, 320);
             this.groupBox3.TabIndex = 41;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Simulaciones";
@@ -875,7 +875,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(12, 667);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1480, 322);
+            this.groupBox4.Size = new System.Drawing.Size(1880, 322);
             this.groupBox4.TabIndex = 42;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Resultados";
@@ -884,7 +884,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1506, 996);
+            this.ClientSize = new System.Drawing.Size(1904, 1006);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
