@@ -90,16 +90,6 @@
             this.txtHorarioComienzoPelicula = new System.Windows.Forms.TextBox();
             this.btnSimular = new System.Windows.Forms.Button();
             this.dgvFunciones = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.numSimulacion2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.relojSim = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tiempoOcupaciónBoletero = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -120,6 +110,16 @@
             this.acumPorcPersonasNoEntraron = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.porcDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.acumPorcentajeDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFuncion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFunciones)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -626,8 +626,128 @@
             this.dgvFunciones.Location = new System.Drawing.Point(17, 22);
             this.dgvFunciones.Name = "dgvFunciones";
             this.dgvFunciones.ReadOnly = true;
-            this.dgvFunciones.Size = new System.Drawing.Size(1446, 276);
+            this.dgvFunciones.Size = new System.Drawing.Size(1446, 283);
             this.dgvFunciones.TabIndex = 38;
+            // 
+            // numSimulacion2
+            // 
+            this.numSimulacion2.HeaderText = "Numero de simulación";
+            this.numSimulacion2.Name = "numSimulacion2";
+            this.numSimulacion2.ReadOnly = true;
+            // 
+            // relojSim
+            // 
+            this.relojSim.HeaderText = "Reloj";
+            this.relojSim.Name = "relojSim";
+            this.relojSim.ReadOnly = true;
+            // 
+            // tiempoOcupaciónBoletero
+            // 
+            this.tiempoOcupaciónBoletero.HeaderText = "Tiempo de Ocupación del Boletero";
+            this.tiempoOcupaciónBoletero.Name = "tiempoOcupaciónBoletero";
+            this.tiempoOcupaciónBoletero.ReadOnly = true;
+            // 
+            // acumTiempoOcupaciónBoletero
+            // 
+            this.acumTiempoOcupaciónBoletero.HeaderText = "AC Tiempo ocupación Boletero";
+            this.acumTiempoOcupaciónBoletero.Name = "acumTiempoOcupaciónBoletero";
+            this.acumTiempoOcupaciónBoletero.ReadOnly = true;
+            // 
+            // acumTiempoSim
+            // 
+            this.acumTiempoSim.HeaderText = "AC Tiempo Simulación";
+            this.acumTiempoSim.Name = "acumTiempoSim";
+            this.acumTiempoSim.ReadOnly = true;
+            // 
+            // porcTiempoOcupacionBoletero
+            // 
+            this.porcTiempoOcupacionBoletero.HeaderText = "Porcentaje Total Tiempo Ocupación Boletero";
+            this.porcTiempoOcupacionBoletero.Name = "porcTiempoOcupacionBoletero";
+            this.porcTiempoOcupacionBoletero.ReadOnly = true;
+            // 
+            // salaLlena2
+            // 
+            this.salaLlena2.HeaderText = "Sala Llena";
+            this.salaLlena2.Name = "salaLlena2";
+            this.salaLlena2.ReadOnly = true;
+            // 
+            // acumSalasLlenas2
+            // 
+            this.acumSalasLlenas2.HeaderText = "Contador salas llenas";
+            this.acumSalasLlenas2.Name = "acumSalasLlenas2";
+            this.acumSalasLlenas2.ReadOnly = true;
+            // 
+            // porcSalaLlena
+            // 
+            this.porcSalaLlena.HeaderText = "Porcentaje Salas Llenas";
+            this.porcSalaLlena.Name = "porcSalaLlena";
+            this.porcSalaLlena.ReadOnly = true;
+            // 
+            // entradasVendidas
+            // 
+            this.entradasVendidas.HeaderText = "Entradas Vendidas";
+            this.entradasVendidas.Name = "entradasVendidas";
+            this.entradasVendidas.ReadOnly = true;
+            // 
+            // totalEntradasVendidas
+            // 
+            this.totalEntradasVendidas.HeaderText = "Total Entradas Vendidas";
+            this.totalEntradasVendidas.Name = "totalEntradasVendidas";
+            this.totalEntradasVendidas.ReadOnly = true;
+            // 
+            // promEntradasVendidas
+            // 
+            this.promEntradasVendidas.HeaderText = "Promedio Entradas Vendidas";
+            this.promEntradasVendidas.Name = "promEntradasVendidas";
+            this.promEntradasVendidas.ReadOnly = true;
+            // 
+            // entradasAnticipadas
+            // 
+            this.entradasAnticipadas.HeaderText = "Entradas Anticipadas";
+            this.entradasAnticipadas.Name = "entradasAnticipadas";
+            this.entradasAnticipadas.ReadOnly = true;
+            // 
+            // porcEntradaAnticipada
+            // 
+            this.porcEntradaAnticipada.HeaderText = "Porcentaje Entradas Anticipadas";
+            this.porcEntradaAnticipada.Name = "porcEntradaAnticipada";
+            this.porcEntradaAnticipada.ReadOnly = true;
+            // 
+            // acumEntradasAnticipadas
+            // 
+            this.acumEntradasAnticipadas.HeaderText = "AC Entradas Anticipadas";
+            this.acumEntradasAnticipadas.Name = "acumEntradasAnticipadas";
+            this.acumEntradasAnticipadas.ReadOnly = true;
+            // 
+            // porcTotalEntradasAnticipadas
+            // 
+            this.porcTotalEntradasAnticipadas.HeaderText = "Porcentaje Total de Entradas Anticipadas";
+            this.porcTotalEntradasAnticipadas.Name = "porcTotalEntradasAnticipadas";
+            this.porcTotalEntradasAnticipadas.ReadOnly = true;
+            // 
+            // porcPersonasNoEntraron
+            // 
+            this.porcPersonasNoEntraron.HeaderText = "Porcentaje de personas que no pudieron entrar";
+            this.porcPersonasNoEntraron.Name = "porcPersonasNoEntraron";
+            this.porcPersonasNoEntraron.ReadOnly = true;
+            // 
+            // acumPorcPersonasNoEntraron
+            // 
+            this.acumPorcPersonasNoEntraron.HeaderText = "AC Porcentaje personas que no pudieron entrar";
+            this.acumPorcPersonasNoEntraron.Name = "acumPorcPersonasNoEntraron";
+            this.acumPorcPersonasNoEntraron.ReadOnly = true;
+            // 
+            // porcDescuento
+            // 
+            this.porcDescuento.HeaderText = "Porcentaje Descuento";
+            this.porcDescuento.Name = "porcDescuento";
+            this.porcDescuento.ReadOnly = true;
+            // 
+            // acumPorcentajeDescuento
+            // 
+            this.acumPorcentajeDescuento.HeaderText = "AC Porcentaje Descuento";
+            this.acumPorcentajeDescuento.Name = "acumPorcentajeDescuento";
+            this.acumPorcentajeDescuento.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -755,136 +875,16 @@
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(12, 667);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1480, 304);
+            this.groupBox4.Size = new System.Drawing.Size(1480, 322);
             this.groupBox4.TabIndex = 42;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Resultados";
-            // 
-            // numSimulacion2
-            // 
-            this.numSimulacion2.HeaderText = "Numero de simulación";
-            this.numSimulacion2.Name = "numSimulacion2";
-            this.numSimulacion2.ReadOnly = true;
-            // 
-            // relojSim
-            // 
-            this.relojSim.HeaderText = "Reloj";
-            this.relojSim.Name = "relojSim";
-            this.relojSim.ReadOnly = true;
-            // 
-            // tiempoOcupaciónBoletero
-            // 
-            this.tiempoOcupaciónBoletero.HeaderText = "Tiempo de Ocupación del Boletero";
-            this.tiempoOcupaciónBoletero.Name = "tiempoOcupaciónBoletero";
-            this.tiempoOcupaciónBoletero.ReadOnly = true;
-            // 
-            // acumTiempoOcupaciónBoletero
-            // 
-            this.acumTiempoOcupaciónBoletero.HeaderText = "AC Tiempo ocupación Boletero";
-            this.acumTiempoOcupaciónBoletero.Name = "acumTiempoOcupaciónBoletero";
-            this.acumTiempoOcupaciónBoletero.ReadOnly = true;
-            // 
-            // acumTiempoSim
-            // 
-            this.acumTiempoSim.HeaderText = "AC Tiempo Simulación";
-            this.acumTiempoSim.Name = "acumTiempoSim";
-            this.acumTiempoSim.ReadOnly = true;
-            // 
-            // porcTiempoOcupacionBoletero
-            // 
-            this.porcTiempoOcupacionBoletero.HeaderText = "Porcentaje Total Tiempo Ocupación Boletero";
-            this.porcTiempoOcupacionBoletero.Name = "porcTiempoOcupacionBoletero";
-            this.porcTiempoOcupacionBoletero.ReadOnly = true;
-            // 
-            // salaLlena2
-            // 
-            this.salaLlena2.HeaderText = "Sala Llena";
-            this.salaLlena2.Name = "salaLlena2";
-            this.salaLlena2.ReadOnly = true;
-            // 
-            // acumSalasLlenas2
-            // 
-            this.acumSalasLlenas2.HeaderText = "Contador salas llenas";
-            this.acumSalasLlenas2.Name = "acumSalasLlenas2";
-            this.acumSalasLlenas2.ReadOnly = true;
-            // 
-            // porcSalaLlena
-            // 
-            this.porcSalaLlena.HeaderText = "Porcentaje Salas Llenas";
-            this.porcSalaLlena.Name = "porcSalaLlena";
-            this.porcSalaLlena.ReadOnly = true;
-            // 
-            // entradasVendidas
-            // 
-            this.entradasVendidas.HeaderText = "Entradas Vendidas";
-            this.entradasVendidas.Name = "entradasVendidas";
-            this.entradasVendidas.ReadOnly = true;
-            // 
-            // totalEntradasVendidas
-            // 
-            this.totalEntradasVendidas.HeaderText = "Total Entradas Vendidas";
-            this.totalEntradasVendidas.Name = "totalEntradasVendidas";
-            this.totalEntradasVendidas.ReadOnly = true;
-            // 
-            // promEntradasVendidas
-            // 
-            this.promEntradasVendidas.HeaderText = "Promedio Entradas Vendidas";
-            this.promEntradasVendidas.Name = "promEntradasVendidas";
-            this.promEntradasVendidas.ReadOnly = true;
-            // 
-            // entradasAnticipadas
-            // 
-            this.entradasAnticipadas.HeaderText = "Entradas Anticipadas";
-            this.entradasAnticipadas.Name = "entradasAnticipadas";
-            this.entradasAnticipadas.ReadOnly = true;
-            // 
-            // porcEntradaAnticipada
-            // 
-            this.porcEntradaAnticipada.HeaderText = "Porcentaje Entradas Anticipadas";
-            this.porcEntradaAnticipada.Name = "porcEntradaAnticipada";
-            this.porcEntradaAnticipada.ReadOnly = true;
-            // 
-            // acumEntradasAnticipadas
-            // 
-            this.acumEntradasAnticipadas.HeaderText = "AC Entradas Anticipadas";
-            this.acumEntradasAnticipadas.Name = "acumEntradasAnticipadas";
-            this.acumEntradasAnticipadas.ReadOnly = true;
-            // 
-            // porcTotalEntradasAnticipadas
-            // 
-            this.porcTotalEntradasAnticipadas.HeaderText = "Porcentaje Total de Entradas Anticipadas";
-            this.porcTotalEntradasAnticipadas.Name = "porcTotalEntradasAnticipadas";
-            this.porcTotalEntradasAnticipadas.ReadOnly = true;
-            // 
-            // porcPersonasNoEntraron
-            // 
-            this.porcPersonasNoEntraron.HeaderText = "Porcentaje de personas que no pudieron entrar";
-            this.porcPersonasNoEntraron.Name = "porcPersonasNoEntraron";
-            this.porcPersonasNoEntraron.ReadOnly = true;
-            // 
-            // acumPorcPersonasNoEntraron
-            // 
-            this.acumPorcPersonasNoEntraron.HeaderText = "AC Porcentaje personas que no pudieron entrar";
-            this.acumPorcPersonasNoEntraron.Name = "acumPorcPersonasNoEntraron";
-            this.acumPorcPersonasNoEntraron.ReadOnly = true;
-            // 
-            // porcDescuento
-            // 
-            this.porcDescuento.HeaderText = "Porcentaje Descuento";
-            this.porcDescuento.Name = "porcDescuento";
-            this.porcDescuento.ReadOnly = true;
-            // 
-            // acumPorcentajeDescuento
-            // 
-            this.acumPorcentajeDescuento.HeaderText = "AC Porcentaje Descuento";
-            this.acumPorcentajeDescuento.Name = "acumPorcentajeDescuento";
-            this.acumPorcentajeDescuento.ReadOnly = true;
             // 
             // frmSimulacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1487, 1035);
+            this.ClientSize = new System.Drawing.Size(1506, 996);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);

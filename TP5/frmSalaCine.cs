@@ -273,7 +273,7 @@ namespace TP5
                             agregarClientesDGV(clientes);
                         }
 
-                        if (actual.ButacasOcupadas == tamSala || (empezoPelicula && actual.PersonasEnColaSala == 0))
+                        if (actual.ButacasOcupadas == tamSala || (empezoPelicula && actual.PersonasEnColaSala == 0 && actual.Boletero.Estado == "libre"))
                         {
                             agregarDatosDGVFunciones(actual);
                         }
