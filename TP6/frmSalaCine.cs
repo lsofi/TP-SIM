@@ -21,6 +21,10 @@ namespace TP5
         VectorEstado aux;
         Random random = new Random();
 
+        frmRungeKutta frmRKLlenado;
+        frmRungeKutta frmRKVaciado;
+        double[] tiemposLlenado;
+
         double acumReloj = 0;
         double acumTiempoBoletero = 0;
         double acumuladorEntradasVendidas = 0;
@@ -28,9 +32,10 @@ namespace TP5
         double acumPersonasNoEntraron = 0;
 
         double acumSalasLlenas = 0;
-              
+
         Boolean empezoPelicula;
         Boolean empezoSimulacion;
+
         Boolean ingresoLlegadaEntrada;
         Boolean ingresoASala;
 
@@ -45,14 +50,9 @@ namespace TP5
             dgvFuncion.Rows.Clear();
             limpiarClientes();
             dgvFunciones.Rows.Clear();
-            RungeKutta rk1 = new RungeKutta(1, 50);
-            rk1.Show();
-            rk1.rungeKuttaGraficoLlenado();
-            
 
-            RungeKutta rk2 = new RungeKutta(1, 50);
-            rk2.rungeKuttaGraficoVaciado();
-            rk2.Show();
+            frmRKLlenado = new frmRungeKutta(1, 100);
+            tiemposLlenado = frmRKLlenado.rungeKuttaGraficoLlenado();
 
             resetearAcumuladores();
             if (validarCampos())
@@ -252,6 +252,8 @@ namespace TP5
 
                             case "inicio_ingreso_sala":
                                 resetearCampos();
+                                actual.RndInterrupcion = random.NextDouble();
+
                                 if(actual.PersonasEnColaSala > 0)
                                 {
                                     actual.RndFinEntrada = random.NextDouble();
@@ -274,6 +276,15 @@ namespace TP5
                                     foreach (Cliente acompañante in cliente.Acompañantes)
                                         acompañante.Estado = "";
                                 }
+                                break;
+
+                            case "inicio_interrupcion":
+                                resetearCampos();
+                                
+                                break;
+
+                            case "fin_interrupcion":
+                                resetearCampos();
                                 break;
                         }
 
@@ -464,6 +475,9 @@ namespace TP5
             actual.LlegadaEntrada = -1;
             actual.RndNumeroEntrada = -1;
             actual.NumeroEntrada = -1;
+            actual.RndInterrupcion = -1;
+            actual.TiempoInterrupcion = -1;
+            actual.TiempoFinInterrupcion = -1;
         }
 
         private double aleatorioU(int desde, int hasta, double aleatorio)
@@ -526,6 +540,18 @@ namespace TP5
             {
                 evento = "inicio_pelicula";
                 minimo = (minHastaComienzoFuncion * 60);
+            }
+
+            if (minimo >= anterior.ProximaInterrupcion && ingresoASala)
+            {
+                evento = "inicio_interrupcion";
+                minimo = anterior.ProximaInterrupcion;
+            }
+
+            if (minimo >= anterior.ProximoFinInterrupcion && ingresoASala)
+            {
+                evento = "fin_interrupcion";
+                minimo = anterior.ProximoFinInterrupcion;
             }
 
             actual.Reloj = minimo;
@@ -648,15 +674,14 @@ namespace TP5
             }
         }
 
-        private float inestable(float random)
+        private void btnMostrarLlenado_Click(object sender, EventArgs e)
         {
-            if(((float) actual.ButacasOcupadas / 60.0) > 0.5)
-            {
-                return 1;
-            }
+            frmRKLlenado.Show();
+        }
 
-            return 0;
-
+        private void btnMostrarVaciado_Click(object sender, EventArgs e)
+        {
+            frmRKVaciado.Show();
         }
     }
 }

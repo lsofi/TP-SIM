@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace TP5
 {
-    public partial class RungeKutta : Form
+    public partial class frmRungeKutta : Form
     {
         private double h;
         private double e;
-        public RungeKutta(double e)
+        public frmRungeKutta(double e)
         {
             InitializeComponent();
             this.h = 0.01;
@@ -22,7 +22,7 @@ namespace TP5
             cargarTxt();
         }
 
-        public RungeKutta(double h, double e)
+        public frmRungeKutta(double h, double e)
         {
             InitializeComponent();
             this.h = h;
@@ -35,8 +35,9 @@ namespace TP5
             txtH.Text = h.ToString();
         }
 
-        public double rungeKuttaGraficoLlenado()
+        public double[] rungeKuttaGraficoLlenado()
         {
+            double[] tiemposLlenado = new double[3];
             VectorRungeKuttaLlenado anterior = new VectorRungeKuttaLlenado(0, 15, h);
             anterior.calcularValores();
             cargarDgv(anterior);
@@ -46,9 +47,15 @@ namespace TP5
             {
                 anterior = actual;
                 actual = anterior.siguiente();
+                if (anterior.X < 50 && actual.X >= 50)
+                    tiemposLlenado[0] = actual.T;
+                if (anterior.X < 70 && actual.X >= 70)
+                    tiemposLlenado[1] = actual.T;
+                if (anterior.X < 100 && actual.X >= 100)
+                    tiemposLlenado[2] = actual.T;
                 cargarDgv(actual);
             }
-            return actual.T * 0.001;
+            return tiemposLlenado;
         }
 
         public double rungeKuttaGraficoVaciado()

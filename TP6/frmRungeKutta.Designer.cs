@@ -1,7 +1,7 @@
 ﻿
 namespace TP5
 {
-    partial class RungeKutta
+    partial class frmRungeKutta
     {
         /// <summary>
         /// Required designer variable.
@@ -53,9 +53,9 @@ namespace TP5
             this.lblH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblH.Location = new System.Drawing.Point(65, 33);
             this.lblH.Name = "lblH";
-            this.lblH.Size = new System.Drawing.Size(25, 20);
+            this.lblH.Size = new System.Drawing.Size(22, 20);
             this.lblH.TabIndex = 0;
-            this.lblH.Text = "H:";
+            this.lblH.Text = "h:";
             // 
             // txtH
             // 

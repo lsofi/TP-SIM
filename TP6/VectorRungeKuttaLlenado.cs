@@ -20,7 +20,7 @@ namespace TP5
         private double th;
         private double xk3h;
         private double k4;
-        private double alfa = 0.001763;
+        private double alfa = 0.01636;
 
         public VectorRungeKuttaLlenado(double x , double h)
         {

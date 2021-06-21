@@ -112,6 +112,11 @@
             this.rndFinEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.finEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.proximoFinEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rndInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tiempoInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proximaInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tiempoFinInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proximoFinInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colaBoleteria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colaSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.acumEntradasVendidas = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -121,6 +126,8 @@
             this.porcTiempoOcupBoletero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contEntradasAnticipadas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.porcNoEntrar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnMostrarLlenado = new System.Windows.Forms.Button();
+            this.btnMostrarVaciado = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFuncion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFunciones)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -155,6 +162,11 @@
             this.rndFinEntrada,
             this.finEntrada,
             this.proximoFinEntrada,
+            this.rndInterrupcion,
+            this.tiempoInterrupcion,
+            this.proximaInterrupcion,
+            this.tiempoFinInterrupcion,
+            this.proximoFinInterrupcion,
             this.colaBoleteria,
             this.colaSala,
             this.acumEntradasVendidas,
@@ -834,6 +846,36 @@
             this.proximoFinEntrada.Name = "proximoFinEntrada";
             this.proximoFinEntrada.ReadOnly = true;
             // 
+            // rndInterrupcion
+            // 
+            this.rndInterrupcion.HeaderText = "RND Interrupción";
+            this.rndInterrupcion.Name = "rndInterrupcion";
+            this.rndInterrupcion.ReadOnly = true;
+            // 
+            // tiempoInterrupcion
+            // 
+            this.tiempoInterrupcion.HeaderText = "Tiempo interrupción";
+            this.tiempoInterrupcion.Name = "tiempoInterrupcion";
+            this.tiempoInterrupcion.ReadOnly = true;
+            // 
+            // proximaInterrupcion
+            // 
+            this.proximaInterrupcion.HeaderText = "Próxima interrupción";
+            this.proximaInterrupcion.Name = "proximaInterrupcion";
+            this.proximaInterrupcion.ReadOnly = true;
+            // 
+            // tiempoFinInterrupcion
+            // 
+            this.tiempoFinInterrupcion.HeaderText = "Tiempo fin interrupción";
+            this.tiempoFinInterrupcion.Name = "tiempoFinInterrupcion";
+            this.tiempoFinInterrupcion.ReadOnly = true;
+            // 
+            // proximoFinInterrupcion
+            // 
+            this.proximoFinInterrupcion.HeaderText = "Próximo fin interrupción";
+            this.proximoFinInterrupcion.Name = "proximoFinInterrupcion";
+            this.proximoFinInterrupcion.ReadOnly = true;
+            // 
             // colaBoleteria
             // 
             this.colaBoleteria.HeaderText = "Cola Boleteria";
@@ -888,11 +930,31 @@
             this.porcNoEntrar.Name = "porcNoEntrar";
             this.porcNoEntrar.ReadOnly = true;
             // 
+            // btnMostrarLlenado
+            // 
+            this.btnMostrarLlenado.Location = new System.Drawing.Point(1744, 159);
+            this.btnMostrarLlenado.Name = "btnMostrarLlenado";
+            this.btnMostrarLlenado.Size = new System.Drawing.Size(75, 45);
+            this.btnMostrarLlenado.TabIndex = 43;
+            this.btnMostrarLlenado.Text = "Mostrar RK Llenado";
+            this.btnMostrarLlenado.UseVisualStyleBackColor = true;
+            // 
+            // btnMostrarVaciado
+            // 
+            this.btnMostrarVaciado.Location = new System.Drawing.Point(1744, 213);
+            this.btnMostrarVaciado.Name = "btnMostrarVaciado";
+            this.btnMostrarVaciado.Size = new System.Drawing.Size(75, 45);
+            this.btnMostrarVaciado.TabIndex = 44;
+            this.btnMostrarVaciado.Text = "Mostrar RK Vaciado";
+            this.btnMostrarVaciado.UseVisualStyleBackColor = true;
+            // 
             // frmSimulacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1904, 1006);
+            this.Controls.Add(this.btnMostrarVaciado);
+            this.Controls.Add(this.btnMostrarLlenado);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -998,6 +1060,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn rndFinEntrada;
         private System.Windows.Forms.DataGridViewTextBoxColumn finEntrada;
         private System.Windows.Forms.DataGridViewTextBoxColumn proximoFinEntrada;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rndInterrupcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tiempoInterrupcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn proximaInterrupcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tiempoFinInterrupcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn proximoFinInterrupcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn colaBoleteria;
         private System.Windows.Forms.DataGridViewTextBoxColumn colaSala;
         private System.Windows.Forms.DataGridViewTextBoxColumn acumEntradasVendidas;
@@ -1007,6 +1074,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn porcTiempoOcupBoletero;
         private System.Windows.Forms.DataGridViewTextBoxColumn contEntradasAnticipadas;
         private System.Windows.Forms.DataGridViewTextBoxColumn porcNoEntrar;
+        private System.Windows.Forms.Button btnMostrarLlenado;
+        private System.Windows.Forms.Button btnMostrarVaciado;
     }
 }
 

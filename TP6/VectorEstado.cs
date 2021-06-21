@@ -30,6 +30,13 @@ namespace TP5
         private double rndFinEntrada;
         private double finEntrada;
         private double proximoFinEntrada;
+        private double rndInterrupcion;
+        private double tiempoInterrupcion;
+        private double proximaInterrupcion;
+        private double tiempoFinInterrupcion;
+        private double proximoFinInterrupcion;
+        private double tiempoRestanteEntrada;
+        private String estadoPortero;
         private int personasEnColaSala;
         private int butacasOcupadas;
         private double tiempoOcupacionBoletero;
@@ -56,6 +63,13 @@ namespace TP5
         public double RndFinEntrada { get => rndFinEntrada; set => rndFinEntrada = value; }
         public double FinEntrada { get => finEntrada; set => finEntrada = value; }
         public double ProximoFinEntrada { get => proximoFinEntrada; set => proximoFinEntrada = value; }
+        public double RndInterrupcion { get => rndInterrupcion; set => rndInterrupcion = value; }
+        public double TiempoInterrupcion { get => tiempoInterrupcion; set => tiempoInterrupcion = value; }
+        public double ProximaInterrupcion { get => proximaInterrupcion; set => proximaInterrupcion = value; }
+        public double TiempoFinInterrupcion { get => tiempoFinInterrupcion; set => tiempoFinInterrupcion = value; }
+        public double ProximoFinInterrupcion { get => proximoFinInterrupcion; set => proximoFinInterrupcion = value; }
+        public double TiempoRestanteEntrada { get => tiempoRestanteEntrada; set => tiempoRestanteEntrada = value; }
+        public string EstadoPortero { get => estadoPortero; set => estadoPortero = value; }
         public int PersonasEnColaSala { get => personasEnColaSala; set => personasEnColaSala = value; }
         public int ButacasOcupadas { get => butacasOcupadas; set => butacasOcupadas = value; }
         public int NumeroSimulacion { get => numeroSimulacion; set => numeroSimulacion = value; }
@@ -63,5 +77,6 @@ namespace TP5
         public int EntradasVendidas { get => entradasVendidas; set => entradasVendidas = value; }
         public Queue<Cliente> Entrada { get => entrada; set => entrada = value; }
         public int EntradasAnticipadas { get => entradasAnticipadas; set => entradasAnticipadas = value; }
+        
     }
 }
