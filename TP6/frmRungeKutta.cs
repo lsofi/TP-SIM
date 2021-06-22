@@ -14,6 +14,7 @@ namespace TP5
     {
         private double h;
         private double e;
+        private int numInt = 0;
         public frmRungeKutta(double e)
         {
             InitializeComponent();
@@ -38,6 +39,7 @@ namespace TP5
         public double[] rungeKuttaGraficoLlenado()
         {
             double[] tiemposLlenado = new double[3];
+            bool encontro = false;
             VectorRungeKuttaLlenado anterior = new VectorRungeKuttaLlenado(0, 15, h);
             anterior.calcularValores();
             cargarDgv(anterior);
@@ -48,19 +50,35 @@ namespace TP5
                 anterior = actual;
                 actual = anterior.siguiente();
                 if (anterior.X < 50 && actual.X >= 50)
+                {
                     tiemposLlenado[0] = actual.T;
+                    encontro = true;
+                }
                 if (anterior.X < 70 && actual.X >= 70)
+                {
                     tiemposLlenado[1] = actual.T;
+                    encontro = true;
+                }
                 if (anterior.X < 100 && actual.X >= 100)
+                {
                     tiemposLlenado[2] = actual.T;
+                    encontro = true;
+                }
                 cargarDgv(actual);
+                if (encontro)
+                {
+                    dgvRungeKutta.Rows[dgvRungeKutta.Rows.Count - 1].Cells[2].Style.BackColor = Color.FromArgb(3,192,74);
+                    dgvRungeKutta.Rows[dgvRungeKutta.Rows.Count - 1].Cells[1].Style.BackColor = Color.FromArgb(3, 192, 74);
+                    encontro = false;
+                }
             }
             return tiemposLlenado;
         }
 
-        public double rungeKuttaGraficoVaciado()
+        public double rungeKuttaGraficoVaciado(int desborde)
         {
-            VectorRungeKuttaVaciado anterior = new VectorRungeKuttaVaciado(0, e, h);
+            numInt++;
+            VectorRungeKuttaVaciado anterior = new VectorRungeKuttaVaciado(0, desborde, h);
             anterior.calcularValores();
             cargarDgv(anterior);
             VectorRungeKuttaVaciado actual = anterior.siguiente();
@@ -71,44 +89,39 @@ namespace TP5
                 actual = anterior.siguiente();
                 cargarDgv(actual);
             } while (Math.Abs(anterior.X - actual.X) > 0.02);
-
-            return actual.T * 0.001;
+            dgvRungeKutta.Rows[dgvRungeKutta.Rows.Count - 1].Cells[2].Style.BackColor = Color.FromArgb(3,192,74);
+            dgvRungeKutta.Rows[dgvRungeKutta.Rows.Count - 1].Cells[1].Style.BackColor = Color.FromArgb(3,192,74);
+            return actual.T * 0.1;
         }
-
-        public double rungeKuttaLlenado()
+        public double rungeKuttaVaciado(int desborde)
         {
-            VectorRungeKuttaLlenado anterior = new VectorRungeKuttaLlenado(h, e);
-            VectorRungeKuttaLlenado actual = anterior.siguiente();
-            while (actual.X < e)
-            {
-                anterior = actual;
-                actual = anterior.siguiente();
-            }
-            return actual.T;
-        }
-
-        public double rungeKuttaVaciado()
-        {
-            VectorRungeKuttaVaciado anterior = new VectorRungeKuttaVaciado(h, e);
+            numInt++;
+            VectorRungeKuttaVaciado anterior = new VectorRungeKuttaVaciado(0, desborde, h);
+            anterior.calcularValores();
             VectorRungeKuttaVaciado actual = anterior.siguiente();
             do
             {
                 anterior = actual;
                 actual = anterior.siguiente();
-            } while (Math.Abs(anterior.X - actual.X) < 0.02);
+            } while (Math.Abs(anterior.X - actual.X) > 0.02);
 
-            return actual.T;
+            return actual.T * 0.1;
         }
-
 
         private void cargarDgv(VectorRungeKuttaLlenado v)
         {
-            dgvRungeKutta.Rows.Add(v.T, v.X, v.K1, v.Th2, v.Xk1h2, v.K2, v.Th2, v.Xk2h2, v.K3, v.Th, v.Xk3h, v.K4);
+            dgvRungeKutta.Rows.Add("",v.T, v.X, v.K1, v.Th2, v.Xk1h2, v.K2, v.Th2, v.Xk2h2, v.K3, v.Th, v.Xk3h, v.K4);
         }
 
         private void cargarDgv(VectorRungeKuttaVaciado v)
         {
-            dgvRungeKutta.Rows.Add(v.T, v.X, v.K1, v.Th2, v.Xk1h2, v.K2, v.Th2, v.Xk2h2, v.K3, v.Th, v.Xk3h, v.K4);
+            dgvRungeKutta.Rows.Add(numInt, v.T, v.X, v.K1, v.Th2, v.Xk1h2, v.K2, v.Th2, v.Xk2h2, v.K3, v.Th, v.Xk3h, v.K4);
+        }
+
+        private void frmRungeKutta_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            e.Cancel = true ;
         }
     }
 }

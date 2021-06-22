@@ -31,6 +31,7 @@ namespace TP5
         private double finEntrada;
         private double proximoFinEntrada;
         private double rndInterrupcion;
+        private int puntoDesborde;
         private double tiempoInterrupcion;
         private double proximaInterrupcion;
         private double tiempoFinInterrupcion;
@@ -77,6 +78,6 @@ namespace TP5
         public int EntradasVendidas { get => entradasVendidas; set => entradasVendidas = value; }
         public Queue<Cliente> Entrada { get => entrada; set => entrada = value; }
         public int EntradasAnticipadas { get => entradasAnticipadas; set => entradasAnticipadas = value; }
-        
+        public int PuntoDesborde { get => puntoDesborde; set => puntoDesborde = value; }
     }
 }

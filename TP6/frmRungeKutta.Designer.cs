@@ -32,6 +32,7 @@ namespace TP5
             this.lblH = new System.Windows.Forms.Label();
             this.txtH = new System.Windows.Forms.TextBox();
             this.dgvRungeKutta = new System.Windows.Forms.DataGridView();
+            this.interrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.t = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.x = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.k1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,6 +72,7 @@ namespace TP5
             this.dgvRungeKutta.AllowUserToDeleteRows = false;
             this.dgvRungeKutta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRungeKutta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.interrupcion,
             this.t,
             this.x,
             this.k1,
@@ -88,6 +90,12 @@ namespace TP5
             this.dgvRungeKutta.ReadOnly = true;
             this.dgvRungeKutta.Size = new System.Drawing.Size(1273, 565);
             this.dgvRungeKutta.TabIndex = 4;
+            // 
+            // interrupcion
+            // 
+            this.interrupcion.HeaderText = "N Interrupción";
+            this.interrupcion.Name = "interrupcion";
+            this.interrupcion.ReadOnly = true;
             // 
             // t
             // 
@@ -162,7 +170,7 @@ namespace TP5
             this.k4.Name = "k4";
             this.k4.ReadOnly = true;
             // 
-            // RungeKutta
+            // frmRungeKutta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -170,8 +178,9 @@ namespace TP5
             this.Controls.Add(this.dgvRungeKutta);
             this.Controls.Add(this.txtH);
             this.Controls.Add(this.lblH);
-            this.Name = "RungeKutta";
+            this.Name = "frmRungeKutta";
             this.Text = "RungeKuta";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmRungeKutta_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRungeKutta)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -183,6 +192,7 @@ namespace TP5
         private System.Windows.Forms.Label lblH;
         private System.Windows.Forms.TextBox txtH;
         private System.Windows.Forms.DataGridView dgvRungeKutta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn interrupcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn t;
         private System.Windows.Forms.DataGridViewTextBoxColumn x;
         private System.Windows.Forms.DataGridViewTextBoxColumn k1;
