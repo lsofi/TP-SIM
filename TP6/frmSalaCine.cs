@@ -16,6 +16,9 @@ namespace TP5
             desdeEntradasComprar, hastaEntradasComprar, desdeEntradasAnticipadas, hastaEntradasAnticipadas,
             desdeTiempoCompra, hastaTiempoCompra, desdeTiempoEntradaSala, hastaTiempoEntradaSala,
             desdeTiempoLlegadaCompra, hastaTiempoLlegadaCompra, desdeTiempoLlegadaAnticipada, hastaTiempoLlegadaAnticipada;
+
+        double h, alfa, desb1, desb2, desb3, prob1, prob2, prob3;
+        
         VectorEstado anterior;
         VectorEstado actual;
         VectorEstado aux;
@@ -56,14 +59,15 @@ namespace TP5
             dgvFunciones.Rows.Clear();
             if (frmRKVaciado != null) frmRKVaciado.Close();
 
-            frmRKLlenado = new frmRungeKutta(1, 100);
-            tiemposLlenado = frmRKLlenado.rungeKuttaGraficoLlenado();
 
-            frmRKVaciado = new frmRungeKutta(1, 100);
 
             resetearAcumuladores();
             if (validarCampos())
             {
+                frmRKLlenado = new frmRungeKutta(h, alfa, desb1, desb2, desb3);
+                tiemposLlenado = frmRKLlenado.rungeKuttaGraficoLlenado();
+
+                frmRKVaciado = new frmRungeKutta(h, alfa, desb1, desb2, desb3);
                 for (int i = 0; i < numSim; i++)
                 {
                     anterior = new VectorEstado();
@@ -104,7 +108,7 @@ namespace TP5
                                 actual.LlegadaCompra = aleatorioU(desdeTiempoLlegadaCompra, hastaTiempoLlegadaCompra, actual.RndLlegadaCompra);
                                 actual.ProximaLlegadaCompra = actual.Reloj + actual.LlegadaCompra;
                                 empezoSimulacion = true;
-                                actual.EstadoPortero = "Libre";
+                                actual.EstadoPortero = "libre";
                                 break;
 
                             case "llegada_compra":
@@ -244,6 +248,7 @@ namespace TP5
                                     actual.FinEntrada = aleatorioU(desdeTiempoEntradaSala, hastaTiempoEntradaSala, actual.RndFinEntrada);
                                     actual.ProximoFinEntrada = actual.Reloj + actual.FinEntrada;
                                     actual.EstadoPortero = "ocupado";
+                                    actual.LlegadasPortero++;
                                 }
                                 else
                                 {
@@ -274,6 +279,7 @@ namespace TP5
                                     entrante = actual.Entrada.Dequeue();
                                     entrante.Estado = "entrando";
                                     actual.EstadoPortero = "ocupado";
+                                    actual.LlegadasPortero++;
                                 }
                                 ingresoASala = true;
                                 break;
@@ -293,14 +299,15 @@ namespace TP5
 
                             case "inicio_interrupcion":
                                 resetearCampos();
-                                if(actual.NumeroSimulacion == simMostrar) actual.TiempoFinInterrupcion = frmRKVaciado.rungeKuttaGraficoVaciado(actual.PuntoDesborde);
-                                else actual.TiempoFinInterrupcion = frmRKVaciado.rungeKuttaVaciado(actual.PuntoDesborde);
+                                if(actual.NumeroSimulacion == simMostrar) actual.TiempoFinInterrupcion = frmRKVaciado.rungeKuttaGraficoVaciado(actual.LlegadasPortero);
+                                else actual.TiempoFinInterrupcion = frmRKVaciado.rungeKuttaVaciado(actual.LlegadasPortero);
                                 actual.ProximoFinInterrupcion = actual.Reloj + actual.TiempoFinInterrupcion;
                                 if(actual.EstadoPortero == "ocupado") actual.TiempoRestanteEntrada = actual.ProximoFinEntrada - actual.Reloj;
                                 actual.ProximoFinEntrada = -1;
                                 actual.ProximaInterrupcion = -1;
                                 actual.PuntoDesborde = -1;
                                 actual.EstadoPortero = "interrumpido";
+                                actual.LlegadasPortero = 0;
                                 break;
 
                             case "fin_interrupcion":
@@ -311,7 +318,7 @@ namespace TP5
                                 actual.ProximaInterrupcion = actual.Reloj + actual.TiempoInterrupcion;
 
                                 actual.ProximoFinEntrada = actual.Reloj + actual.TiempoRestanteEntrada;
-                                actual.TiempoRestanteEntrada = -1;
+                                actual.TiempoRestanteEntrada = 0;
                                 actual.ProximoFinInterrupcion = -1;
                                 actual.EstadoPortero = "ocupado";
                                 break;
@@ -367,6 +374,7 @@ namespace TP5
             actual.ProximaInterrupcion = anterior.ProximaInterrupcion;
             actual.ProximoFinInterrupcion = anterior.ProximoFinInterrupcion;
             actual.EstadoPortero = anterior.EstadoPortero;
+            actual.LlegadasPortero = anterior.LlegadasPortero;
         }
         private void agregarDatosDGV(VectorEstado actual)
         {
@@ -389,12 +397,12 @@ namespace TP5
             String rndLlegadaCompra, llegadaCompra, rndNumeroCompra, numeroCompra, rndLlegadaEntrada, llegadaEntrada, rndNumeroEntrada,
                 numeroEntrada, rndFinCompra, finCompra, rndFinEntrada, finEntrada, salaLlena, proximaLlegadaEntrada, proximoFinCompra, proximoFinEntrada,
                 proximaLlegadaCompra, tiempoRestanteEntrada, rndProximaInterrupcion, puntoDesborde, tiempoInterrupcion, tiempoFinInterrupcion
-                , proximoFinInterrupcion, proximaInterrupcion;
+                , proximoFinInterrupcion, proximaInterrupcion, llegadasPortero;
 
             rndLlegadaCompra = llegadaCompra = rndNumeroCompra = numeroCompra = rndLlegadaEntrada = llegadaEntrada = rndNumeroEntrada =
                 numeroEntrada = rndFinCompra = finCompra = rndFinEntrada = finEntrada = proximaLlegadaEntrada = proximoFinCompra = proximaLlegadaCompra =
                 proximoFinEntrada = tiempoRestanteEntrada =rndProximaInterrupcion = puntoDesborde = tiempoInterrupcion = tiempoFinInterrupcion
-                = proximoFinInterrupcion = proximaInterrupcion = "";
+                = proximoFinInterrupcion = proximaInterrupcion = llegadasPortero  = "";
 
             if (actual.RndLlegadaCompra != -1) rndLlegadaCompra = Math.Round(actual.RndLlegadaCompra,2).ToString();
             if (actual.LlegadaCompra != -1) llegadaCompra = Math.Round(actual.RndLlegadaCompra,2).ToString();
@@ -419,6 +427,7 @@ namespace TP5
             if (actual.TiempoFinInterrupcion != -1) tiempoFinInterrupcion = Math.Round(actual.TiempoFinInterrupcion, 2).ToString();
             if (actual.ProximoFinInterrupcion > 0) proximoFinInterrupcion = Math.Round(actual.ProximoFinInterrupcion, 2).ToString();
             if (actual.ProximaInterrupcion > 0) proximaInterrupcion = Math.Round(actual.ProximaInterrupcion, 2).ToString();
+            if (actual.LlegadasPortero > 0) llegadasPortero = actual.LlegadasPortero.ToString();
 
             if (actual.ButacasOcupadas == tamSala) salaLlena = "Si";
             else salaLlena = "No";
@@ -426,7 +435,7 @@ namespace TP5
             dgvFuncion.Rows.Add(numeroSim, evento, reloj, rndLlegadaCompra, llegadaCompra, proximaLlegadaCompra, rndNumeroCompra,
                 numeroCompra, rndLlegadaEntrada, llegadaEntrada, proximaLlegadaEntrada, rndNumeroEntrada, numeroEntrada, estadoBoletero,
                 rndFinCompra, finCompra, proximoFinCompra, rndFinEntrada, finEntrada,tiempoRestanteEntrada, proximoFinEntrada, rndProximaInterrupcion, puntoDesborde
-                ,tiempoInterrupcion, proximaInterrupcion, tiempoFinInterrupcion, proximoFinInterrupcion, personasEnColaBoletaria, actual.EstadoPortero ,personasEnColaSala,
+                ,tiempoInterrupcion, proximaInterrupcion, llegadasPortero, tiempoFinInterrupcion, proximoFinInterrupcion, personasEnColaBoletaria, actual.EstadoPortero ,personasEnColaSala,
                 entradasVendidas, actual.ButacasOcupadas, salaLlena, tiempoOcupacionBoletero, porcentajeOcupacion, entradasAnticipadas );
 
 
@@ -525,6 +534,7 @@ namespace TP5
             actual.RndInterrupcion = -1;
             actual.TiempoInterrupcion = -1;
             actual.TiempoFinInterrupcion = -1;
+            actual.PuntoDesborde = -1;
         }
 
         private double aleatorioU(int desde, int hasta, double aleatorio)
@@ -698,6 +708,52 @@ namespace TP5
                 MessageBox.Show("El valor máximo del rango de tiempo en el que llegan clientes con entradas anticipadas debe ser un número entero positivo mayor al mínimo", "Rango de tiempo llegada de clientes con entradas anticipadas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            if (!(double.TryParse(txtH.Text, out h) && h > 0))
+            {
+                MessageBox.Show("Revise los valores del Runge Kutta.", "Valores Runge Kutta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!(double.TryParse(txtAlfa.Text, out alfa) && alfa > 0))
+            {
+                MessageBox.Show("Revise los valores del Runge Kutta.", "Valores Runge Kutta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!(double.TryParse(txtDesb1.Text, out desb1) && desb1 > 0))
+            {
+                MessageBox.Show("Revise los valores del Runge Kutta.", "Valores Runge Kutta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!(double.TryParse(txtDesb2.Text, out desb2) && desb2 > 0))
+            {
+                MessageBox.Show("Revise los valores del Runge Kutta.", "Valores Runge Kutta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!(double.TryParse(txtDesb3.Text, out desb3) && desb3 > 0))
+            {
+                MessageBox.Show("Revise los valores del Runge Kutta.", "Valores Runge Kutta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!(double.TryParse(txtProb1.Text, out prob1) && prob1 >= 0))
+            {
+                MessageBox.Show("Revise los valores del Runge Kutta.", "Valores Runge Kutta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!(double.TryParse(txtProb2.Text, out prob2) && prob2 >= 0))
+            {
+                MessageBox.Show("Revise los valores del Runge Kutta.", "Valores Runge Kutta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!(double.TryParse(txtProb3.Text, out prob3) && prob3 >= 0))
+            {
+                MessageBox.Show("Revise los valores del Runge Kutta.", "Valores Runge Kutta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if(prob1 + prob2 + prob3 != 100)
+            {
+                MessageBox.Show("Revise los valores del Runge Kutta.", "Valores Runge Kutta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
 
             return true;
         }
@@ -715,23 +771,23 @@ namespace TP5
         private void limpiarClientes()
         {
             int columnas = dgvFuncion.Columns.Count;
-            for (int i = 36; i < columnas; i++)
+            for (int i = 37; i < columnas; i++)
             {
-                dgvFuncion.Columns.RemoveAt(36);
+                dgvFuncion.Columns.RemoveAt(37);
             }
         }
 
         private int desborde(double random)
         {
-            if (random < 0.20) return 50;
-            if (random < 0.50) return 70;
-            return 100;
+            if (random < prob1) return (int) desb1;
+            if (random < prob2 + prob1) return (int) desb2;
+            return (int) desb3;
         }
 
         private double getTiempoInterrupcion(int desborde)
         {
-            if (desborde == 50) return tiemposLlenado[0];
-            if (desborde == 70) return tiemposLlenado[1];
+            if (desborde == desb1) return tiemposLlenado[0];
+            if (desborde == desb2) return tiemposLlenado[1];
             return tiemposLlenado[2];
         }
 

@@ -119,6 +119,7 @@
             this.puntoDesborde = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tiempoInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.proximaInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.llegadasPortero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tiempoFinInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.proximoFinInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colaBoleteria = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -131,12 +132,25 @@
             this.porcTiempoOcupBoletero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contEntradasAnticipadas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.porcNoEntrar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gbRungeKutta = new System.Windows.Forms.GroupBox();
+            this.lblH = new System.Windows.Forms.Label();
+            this.lblAlfa = new System.Windows.Forms.Label();
+            this.lblPuntosDesborde = new System.Windows.Forms.Label();
+            this.txtH = new System.Windows.Forms.TextBox();
+            this.txtAlfa = new System.Windows.Forms.TextBox();
+            this.txtDesb1 = new System.Windows.Forms.TextBox();
+            this.txtProb1 = new System.Windows.Forms.TextBox();
+            this.txtDesb2 = new System.Windows.Forms.TextBox();
+            this.txtProb2 = new System.Windows.Forms.TextBox();
+            this.txtDesb3 = new System.Windows.Forms.TextBox();
+            this.txtProb3 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFuncion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFunciones)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.gbRungeKutta.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvFuncion
@@ -170,6 +184,7 @@
             this.puntoDesborde,
             this.tiempoInterrupcion,
             this.proximaInterrupcion,
+            this.llegadasPortero,
             this.tiempoFinInterrupcion,
             this.proximoFinInterrupcion,
             this.colaBoleteria,
@@ -650,7 +665,7 @@
             this.groupBox2.Controls.Add(this.txtTiempoEntradaHasta);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(253, 122);
+            this.groupBox2.Location = new System.Drawing.Point(34, 122);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1398, 170);
             this.groupBox2.TabIndex = 40;
@@ -904,6 +919,12 @@
             this.proximaInterrupcion.Name = "proximaInterrupcion";
             this.proximaInterrupcion.ReadOnly = true;
             // 
+            // llegadasPortero
+            // 
+            this.llegadasPortero.HeaderText = "Llegadas al Portero";
+            this.llegadasPortero.Name = "llegadasPortero";
+            this.llegadasPortero.ReadOnly = true;
+            // 
             // tiempoFinInterrupcion
             // 
             this.tiempoFinInterrupcion.HeaderText = "Tiempo fin interrupción";
@@ -976,11 +997,134 @@
             this.porcNoEntrar.Name = "porcNoEntrar";
             this.porcNoEntrar.ReadOnly = true;
             // 
+            // gbRungeKutta
+            // 
+            this.gbRungeKutta.Controls.Add(this.txtProb3);
+            this.gbRungeKutta.Controls.Add(this.txtDesb3);
+            this.gbRungeKutta.Controls.Add(this.txtProb2);
+            this.gbRungeKutta.Controls.Add(this.txtDesb2);
+            this.gbRungeKutta.Controls.Add(this.txtProb1);
+            this.gbRungeKutta.Controls.Add(this.txtDesb1);
+            this.gbRungeKutta.Controls.Add(this.txtAlfa);
+            this.gbRungeKutta.Controls.Add(this.txtH);
+            this.gbRungeKutta.Controls.Add(this.lblPuntosDesborde);
+            this.gbRungeKutta.Controls.Add(this.lblAlfa);
+            this.gbRungeKutta.Controls.Add(this.lblH);
+            this.gbRungeKutta.Location = new System.Drawing.Point(1450, 123);
+            this.gbRungeKutta.Name = "gbRungeKutta";
+            this.gbRungeKutta.Size = new System.Drawing.Size(277, 212);
+            this.gbRungeKutta.TabIndex = 45;
+            this.gbRungeKutta.TabStop = false;
+            this.gbRungeKutta.Text = "RungeKutta";
+            // 
+            // lblH
+            // 
+            this.lblH.AutoSize = true;
+            this.lblH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblH.Location = new System.Drawing.Point(16, 36);
+            this.lblH.Name = "lblH";
+            this.lblH.Size = new System.Drawing.Size(22, 20);
+            this.lblH.TabIndex = 0;
+            this.lblH.Text = "h:";
+            // 
+            // lblAlfa
+            // 
+            this.lblAlfa.AutoSize = true;
+            this.lblAlfa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlfa.Location = new System.Drawing.Point(101, 36);
+            this.lblAlfa.Name = "lblAlfa";
+            this.lblAlfa.Size = new System.Drawing.Size(41, 20);
+            this.lblAlfa.TabIndex = 1;
+            this.lblAlfa.Text = "Alfa:";
+            // 
+            // lblPuntosDesborde
+            // 
+            this.lblPuntosDesborde.AutoSize = true;
+            this.lblPuntosDesborde.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPuntosDesborde.Location = new System.Drawing.Point(16, 71);
+            this.lblPuntosDesborde.Name = "lblPuntosDesborde";
+            this.lblPuntosDesborde.Size = new System.Drawing.Size(129, 20);
+            this.lblPuntosDesborde.TabIndex = 2;
+            this.lblPuntosDesborde.Text = "PuntosDesborde";
+            // 
+            // txtH
+            // 
+            this.txtH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtH.Location = new System.Drawing.Point(40, 33);
+            this.txtH.Name = "txtH";
+            this.txtH.Size = new System.Drawing.Size(55, 26);
+            this.txtH.TabIndex = 3;
+            this.txtH.Text = "1";
+            // 
+            // txtAlfa
+            // 
+            this.txtAlfa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAlfa.Location = new System.Drawing.Point(148, 33);
+            this.txtAlfa.Name = "txtAlfa";
+            this.txtAlfa.Size = new System.Drawing.Size(100, 26);
+            this.txtAlfa.TabIndex = 4;
+            this.txtAlfa.Text = "0,01636";
+            // 
+            // txtDesb1
+            // 
+            this.txtDesb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDesb1.Location = new System.Drawing.Point(20, 98);
+            this.txtDesb1.Name = "txtDesb1";
+            this.txtDesb1.Size = new System.Drawing.Size(55, 26);
+            this.txtDesb1.TabIndex = 5;
+            this.txtDesb1.Text = "50";
+            // 
+            // txtProb1
+            // 
+            this.txtProb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProb1.Location = new System.Drawing.Point(148, 98);
+            this.txtProb1.Name = "txtProb1";
+            this.txtProb1.Size = new System.Drawing.Size(55, 26);
+            this.txtProb1.TabIndex = 6;
+            this.txtProb1.Text = "20";
+            // 
+            // txtDesb2
+            // 
+            this.txtDesb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDesb2.Location = new System.Drawing.Point(20, 127);
+            this.txtDesb2.Name = "txtDesb2";
+            this.txtDesb2.Size = new System.Drawing.Size(55, 26);
+            this.txtDesb2.TabIndex = 7;
+            this.txtDesb2.Text = "70";
+            // 
+            // txtProb2
+            // 
+            this.txtProb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProb2.Location = new System.Drawing.Point(148, 127);
+            this.txtProb2.Name = "txtProb2";
+            this.txtProb2.Size = new System.Drawing.Size(55, 26);
+            this.txtProb2.TabIndex = 8;
+            this.txtProb2.Text = "30";
+            // 
+            // txtDesb3
+            // 
+            this.txtDesb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDesb3.Location = new System.Drawing.Point(20, 159);
+            this.txtDesb3.Name = "txtDesb3";
+            this.txtDesb3.Size = new System.Drawing.Size(55, 26);
+            this.txtDesb3.TabIndex = 9;
+            this.txtDesb3.Text = "100";
+            // 
+            // txtProb3
+            // 
+            this.txtProb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProb3.Location = new System.Drawing.Point(148, 159);
+            this.txtProb3.Name = "txtProb3";
+            this.txtProb3.Size = new System.Drawing.Size(55, 26);
+            this.txtProb3.TabIndex = 10;
+            this.txtProb3.Text = "50";
+            // 
             // frmSimulacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1904, 1006);
+            this.Controls.Add(this.gbRungeKutta);
             this.Controls.Add(this.btnMostrarVaciado);
             this.Controls.Add(this.btnMostrarLlenado);
             this.Controls.Add(this.groupBox4);
@@ -999,6 +1143,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            this.gbRungeKutta.ResumeLayout(false);
+            this.gbRungeKutta.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1095,6 +1241,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn puntoDesborde;
         private System.Windows.Forms.DataGridViewTextBoxColumn tiempoInterrupcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn proximaInterrupcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn llegadasPortero;
         private System.Windows.Forms.DataGridViewTextBoxColumn tiempoFinInterrupcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn proximoFinInterrupcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn colaBoleteria;
@@ -1107,6 +1254,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn porcTiempoOcupBoletero;
         private System.Windows.Forms.DataGridViewTextBoxColumn contEntradasAnticipadas;
         private System.Windows.Forms.DataGridViewTextBoxColumn porcNoEntrar;
+        private System.Windows.Forms.GroupBox gbRungeKutta;
+        private System.Windows.Forms.TextBox txtAlfa;
+        private System.Windows.Forms.TextBox txtH;
+        private System.Windows.Forms.Label lblPuntosDesborde;
+        private System.Windows.Forms.Label lblAlfa;
+        private System.Windows.Forms.Label lblH;
+        private System.Windows.Forms.TextBox txtProb3;
+        private System.Windows.Forms.TextBox txtDesb3;
+        private System.Windows.Forms.TextBox txtProb2;
+        private System.Windows.Forms.TextBox txtDesb2;
+        private System.Windows.Forms.TextBox txtProb1;
+        private System.Windows.Forms.TextBox txtDesb1;
     }
 }
 

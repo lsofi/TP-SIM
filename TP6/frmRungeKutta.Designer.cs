@@ -29,8 +29,6 @@ namespace TP5
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblH = new System.Windows.Forms.Label();
-            this.txtH = new System.Windows.Forms.TextBox();
             this.dgvRungeKutta = new System.Windows.Forms.DataGridView();
             this.interrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.t = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,24 +45,6 @@ namespace TP5
             this.k4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRungeKutta)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblH
-            // 
-            this.lblH.AutoSize = true;
-            this.lblH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblH.Location = new System.Drawing.Point(65, 33);
-            this.lblH.Name = "lblH";
-            this.lblH.Size = new System.Drawing.Size(22, 20);
-            this.lblH.TabIndex = 0;
-            this.lblH.Text = "h:";
-            // 
-            // txtH
-            // 
-            this.txtH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtH.Location = new System.Drawing.Point(96, 30);
-            this.txtH.Name = "txtH";
-            this.txtH.Size = new System.Drawing.Size(100, 26);
-            this.txtH.TabIndex = 1;
             // 
             // dgvRungeKutta
             // 
@@ -85,10 +65,10 @@ namespace TP5
             this.th,
             this.xk3h,
             this.k4});
-            this.dgvRungeKutta.Location = new System.Drawing.Point(12, 85);
+            this.dgvRungeKutta.Location = new System.Drawing.Point(12, 12);
             this.dgvRungeKutta.Name = "dgvRungeKutta";
             this.dgvRungeKutta.ReadOnly = true;
-            this.dgvRungeKutta.Size = new System.Drawing.Size(1273, 565);
+            this.dgvRungeKutta.Size = new System.Drawing.Size(1273, 638);
             this.dgvRungeKutta.TabIndex = 4;
             // 
             // interrupcion
@@ -176,21 +156,15 @@ namespace TP5
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1297, 662);
             this.Controls.Add(this.dgvRungeKutta);
-            this.Controls.Add(this.txtH);
-            this.Controls.Add(this.lblH);
             this.Name = "frmRungeKutta";
             this.Text = "RungeKuta";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmRungeKutta_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRungeKutta)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblH;
-        private System.Windows.Forms.TextBox txtH;
         private System.Windows.Forms.DataGridView dgvRungeKutta;
         private System.Windows.Forms.DataGridViewTextBoxColumn interrupcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn t;

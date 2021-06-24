@@ -13,53 +13,47 @@ namespace TP5
     public partial class frmRungeKutta : Form
     {
         private double h;
-        private double e;
+        private double alfa;
+        private double desb1;
+        private double desb2;
+        private double desb3;
         private int numInt = 0;
-        public frmRungeKutta(double e)
-        {
-            InitializeComponent();
-            this.h = 0.01;
-            this.e = e;
-            cargarTxt();
-        }
 
-        public frmRungeKutta(double h, double e)
+
+        public frmRungeKutta(double h, double alfa , double desb1, double desb2, double desb3)
         {
             InitializeComponent();
             this.h = h;
-            this.e = e;
-            cargarTxt();
-        }
-
-        private void cargarTxt()
-        {
-            txtH.Text = h.ToString();
+            this.alfa = alfa;
+            this.desb1 = desb1;
+            this.desb2 = desb2;
+            this.desb3 = desb3;
         }
 
         public double[] rungeKuttaGraficoLlenado()
         {
             double[] tiemposLlenado = new double[3];
             bool encontro = false;
-            VectorRungeKuttaLlenado anterior = new VectorRungeKuttaLlenado(0, 15, h);
+            VectorRungeKuttaLlenado anterior = new VectorRungeKuttaLlenado(0, 15, h, alfa);
             anterior.calcularValores();
             cargarDgv(anterior);
             VectorRungeKuttaLlenado actual = anterior.siguiente();
             cargarDgv(actual);
-            while (actual.X < e)
+            while (actual.X < desb3)
             {
                 anterior = actual;
                 actual = anterior.siguiente();
-                if (anterior.X < 50 && actual.X >= 50)
+                if (anterior.X < desb1 && actual.X >= desb1)
                 {
                     tiemposLlenado[0] = actual.T;
                     encontro = true;
                 }
-                if (anterior.X < 70 && actual.X >= 70)
+                if (anterior.X < desb2 && actual.X >= desb2)
                 {
                     tiemposLlenado[1] = actual.T;
                     encontro = true;
                 }
-                if (anterior.X < 100 && actual.X >= 100)
+                if (anterior.X < desb3 && actual.X >= desb3)
                 {
                     tiemposLlenado[2] = actual.T;
                     encontro = true;
@@ -78,7 +72,7 @@ namespace TP5
         public double rungeKuttaGraficoVaciado(int desborde)
         {
             numInt++;
-            VectorRungeKuttaVaciado anterior = new VectorRungeKuttaVaciado(0, desborde, h);
+            VectorRungeKuttaVaciado anterior = new VectorRungeKuttaVaciado(0, desborde, h, alfa);
             anterior.calcularValores();
             cargarDgv(anterior);
             VectorRungeKuttaVaciado actual = anterior.siguiente();
@@ -96,7 +90,7 @@ namespace TP5
         public double rungeKuttaVaciado(int desborde)
         {
             numInt++;
-            VectorRungeKuttaVaciado anterior = new VectorRungeKuttaVaciado(0, desborde, h);
+            VectorRungeKuttaVaciado anterior = new VectorRungeKuttaVaciado(0, desborde, h, alfa);
             anterior.calcularValores();
             VectorRungeKuttaVaciado actual = anterior.siguiente();
             do

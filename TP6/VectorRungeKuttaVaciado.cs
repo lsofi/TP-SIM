@@ -22,18 +22,20 @@ namespace TP5
         private double k4;
         private double alfa = 0.01636;
 
-        public VectorRungeKuttaVaciado(double t, double x, double h)
+        public VectorRungeKuttaVaciado(double t, double x, double h, double alfa)
         {
             this.t = t;
             this.x = x;
             this.h = h;
+            this.alfa = alfa;
         }
 
-        public VectorRungeKuttaVaciado(double x, double h)
+        public VectorRungeKuttaVaciado(double x, double h, double alfa)
         {
             this.t = 0;
             this.x = x;
             this.h = h;
+            this.alfa = alfa;
         }
 
         public double T { get => t; set => t = value; }
@@ -51,7 +53,7 @@ namespace TP5
         public VectorRungeKuttaVaciado siguiente()
         {
             double incX = (h / 6) * (k1 + 2 * k2 + 2 * k3 + k4);
-            VectorRungeKuttaVaciado res = new VectorRungeKuttaVaciado(t + h, x + incX, h);
+            VectorRungeKuttaVaciado res = new VectorRungeKuttaVaciado(t + h, x + incX, h, alfa);
             res.calcularValores();
             return res;
         }

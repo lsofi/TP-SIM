@@ -43,6 +43,7 @@ namespace TP5
         private double tiempoOcupacionBoletero;
         private int entradasVendidas;
         private int entradasAnticipadas;
+        private int llegadasPortero;
 
         public string Evento { get => evento; set => evento = value; }
         public double Reloj { get => reloj; set => reloj = value; }
@@ -79,5 +80,6 @@ namespace TP5
         public Queue<Cliente> Entrada { get => entrada; set => entrada = value; }
         public int EntradasAnticipadas { get => entradasAnticipadas; set => entradasAnticipadas = value; }
         public int PuntoDesborde { get => puntoDesborde; set => puntoDesborde = value; }
+        public int LlegadasPortero { get => llegadasPortero; set => llegadasPortero = value; }
     }
 }
