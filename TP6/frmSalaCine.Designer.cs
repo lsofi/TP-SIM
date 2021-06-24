@@ -30,6 +30,44 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSimulacion));
             this.dgvFuncion = new System.Windows.Forms.DataGridView();
+            this.numSimulacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.reloj = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rndLlegadaCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.llegadaCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proximaLlegadaCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rndNumeroCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numeroCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rndLlegadaEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.llegadaEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proximaLlegadaEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rndNumeroEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numeroEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estadoBoletero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rndFinCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.finCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proximoFinCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rndFinEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.finEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tiempoRestanteEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proximoFinEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rndInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.puntoDesborde = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tiempoInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proximaInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.llegadasPortero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tiempoFinInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proximoFinInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colaBoleteria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estadoPortero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colaSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.acumEntradasVendidas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.butacasOcupadas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salaLlena = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tiempoOcupBoletero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.porcTiempoOcupBoletero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contEntradasAnticipadas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.porcNoEntrar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtN = new System.Windows.Forms.TextBox();
             this.lblN = new System.Windows.Forms.Label();
             this.lblSimulacionMostrar = new System.Windows.Forms.Label();
@@ -94,56 +132,18 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnMostrarLlenado = new System.Windows.Forms.Button();
             this.btnMostrarVaciado = new System.Windows.Forms.Button();
-            this.numSimulacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.reloj = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rndLlegadaCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.llegadaCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proximaLlegadaCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rndNumeroCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numeroCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rndLlegadaEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.llegadaEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proximaLlegadaEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rndNumeroEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numeroEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estadoBoletero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rndFinCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.finCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proximoFinCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rndFinEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.finEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tiempoRestanteEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proximoFinEntrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rndInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.puntoDesborde = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tiempoInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proximaInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.llegadasPortero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tiempoFinInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proximoFinInterrupcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colaBoleteria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estadoPortero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colaSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.acumEntradasVendidas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.butacasOcupadas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salaLlena = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tiempoOcupBoletero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.porcTiempoOcupBoletero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contEntradasAnticipadas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.porcNoEntrar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbRungeKutta = new System.Windows.Forms.GroupBox();
-            this.lblH = new System.Windows.Forms.Label();
-            this.lblAlfa = new System.Windows.Forms.Label();
-            this.lblPuntosDesborde = new System.Windows.Forms.Label();
-            this.txtH = new System.Windows.Forms.TextBox();
-            this.txtAlfa = new System.Windows.Forms.TextBox();
-            this.txtDesb1 = new System.Windows.Forms.TextBox();
-            this.txtProb1 = new System.Windows.Forms.TextBox();
-            this.txtDesb2 = new System.Windows.Forms.TextBox();
-            this.txtProb2 = new System.Windows.Forms.TextBox();
-            this.txtDesb3 = new System.Windows.Forms.TextBox();
             this.txtProb3 = new System.Windows.Forms.TextBox();
+            this.txtDesb3 = new System.Windows.Forms.TextBox();
+            this.txtProb2 = new System.Windows.Forms.TextBox();
+            this.txtDesb2 = new System.Windows.Forms.TextBox();
+            this.txtProb1 = new System.Windows.Forms.TextBox();
+            this.txtDesb1 = new System.Windows.Forms.TextBox();
+            this.txtAlfa = new System.Windows.Forms.TextBox();
+            this.txtH = new System.Windows.Forms.TextBox();
+            this.lblPuntosDesborde = new System.Windows.Forms.Label();
+            this.lblAlfa = new System.Windows.Forms.Label();
+            this.lblH = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFuncion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFunciones)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -202,6 +202,234 @@
             this.dgvFuncion.ReadOnly = true;
             this.dgvFuncion.Size = new System.Drawing.Size(1852, 285);
             this.dgvFuncion.TabIndex = 0;
+            // 
+            // numSimulacion
+            // 
+            this.numSimulacion.HeaderText = "Numero de simulación";
+            this.numSimulacion.Name = "numSimulacion";
+            this.numSimulacion.ReadOnly = true;
+            // 
+            // evento
+            // 
+            this.evento.HeaderText = "Evento";
+            this.evento.Name = "evento";
+            this.evento.ReadOnly = true;
+            // 
+            // reloj
+            // 
+            this.reloj.HeaderText = "Reloj";
+            this.reloj.Name = "reloj";
+            this.reloj.ReadOnly = true;
+            // 
+            // rndLlegadaCompra
+            // 
+            this.rndLlegadaCompra.HeaderText = "RND Llegada compra";
+            this.rndLlegadaCompra.Name = "rndLlegadaCompra";
+            this.rndLlegadaCompra.ReadOnly = true;
+            // 
+            // llegadaCompra
+            // 
+            this.llegadaCompra.HeaderText = "Llegada Compra";
+            this.llegadaCompra.Name = "llegadaCompra";
+            this.llegadaCompra.ReadOnly = true;
+            // 
+            // proximaLlegadaCompra
+            // 
+            this.proximaLlegadaCompra.HeaderText = "Próxima llegada compra";
+            this.proximaLlegadaCompra.Name = "proximaLlegadaCompra";
+            this.proximaLlegadaCompra.ReadOnly = true;
+            // 
+            // rndNumeroCompra
+            // 
+            this.rndNumeroCompra.HeaderText = "RND Número Compra";
+            this.rndNumeroCompra.Name = "rndNumeroCompra";
+            this.rndNumeroCompra.ReadOnly = true;
+            // 
+            // numeroCompra
+            // 
+            this.numeroCompra.HeaderText = "Entradas compradas";
+            this.numeroCompra.Name = "numeroCompra";
+            this.numeroCompra.ReadOnly = true;
+            // 
+            // rndLlegadaEntrada
+            // 
+            this.rndLlegadaEntrada.HeaderText = "RND Llegada Entrada";
+            this.rndLlegadaEntrada.Name = "rndLlegadaEntrada";
+            this.rndLlegadaEntrada.ReadOnly = true;
+            // 
+            // llegadaEntrada
+            // 
+            this.llegadaEntrada.HeaderText = "Llegada Entrada";
+            this.llegadaEntrada.Name = "llegadaEntrada";
+            this.llegadaEntrada.ReadOnly = true;
+            // 
+            // proximaLlegadaEntrada
+            // 
+            this.proximaLlegadaEntrada.HeaderText = "Próxima llegada entrada";
+            this.proximaLlegadaEntrada.Name = "proximaLlegadaEntrada";
+            this.proximaLlegadaEntrada.ReadOnly = true;
+            // 
+            // rndNumeroEntrada
+            // 
+            this.rndNumeroEntrada.HeaderText = "RND Número de entradas";
+            this.rndNumeroEntrada.Name = "rndNumeroEntrada";
+            this.rndNumeroEntrada.ReadOnly = true;
+            // 
+            // numeroEntrada
+            // 
+            this.numeroEntrada.HeaderText = "Número Entrada";
+            this.numeroEntrada.Name = "numeroEntrada";
+            this.numeroEntrada.ReadOnly = true;
+            // 
+            // estadoBoletero
+            // 
+            this.estadoBoletero.HeaderText = "Estado boletero";
+            this.estadoBoletero.Name = "estadoBoletero";
+            this.estadoBoletero.ReadOnly = true;
+            // 
+            // rndFinCompra
+            // 
+            this.rndFinCompra.HeaderText = "RND fin compra";
+            this.rndFinCompra.Name = "rndFinCompra";
+            this.rndFinCompra.ReadOnly = true;
+            // 
+            // finCompra
+            // 
+            this.finCompra.HeaderText = "Fin compra";
+            this.finCompra.Name = "finCompra";
+            this.finCompra.ReadOnly = true;
+            // 
+            // proximoFinCompra
+            // 
+            this.proximoFinCompra.HeaderText = "Próximo fin compra";
+            this.proximoFinCompra.Name = "proximoFinCompra";
+            this.proximoFinCompra.ReadOnly = true;
+            // 
+            // rndFinEntrada
+            // 
+            this.rndFinEntrada.HeaderText = "RND fin entrada";
+            this.rndFinEntrada.Name = "rndFinEntrada";
+            this.rndFinEntrada.ReadOnly = true;
+            // 
+            // finEntrada
+            // 
+            this.finEntrada.HeaderText = "Fin de entrada";
+            this.finEntrada.Name = "finEntrada";
+            this.finEntrada.ReadOnly = true;
+            // 
+            // tiempoRestanteEntrada
+            // 
+            this.tiempoRestanteEntrada.HeaderText = "Tiempo Restante Entrada";
+            this.tiempoRestanteEntrada.Name = "tiempoRestanteEntrada";
+            this.tiempoRestanteEntrada.ReadOnly = true;
+            // 
+            // proximoFinEntrada
+            // 
+            this.proximoFinEntrada.HeaderText = "Próximo fin de entrada";
+            this.proximoFinEntrada.Name = "proximoFinEntrada";
+            this.proximoFinEntrada.ReadOnly = true;
+            // 
+            // rndInterrupcion
+            // 
+            this.rndInterrupcion.HeaderText = "RND Interrupción";
+            this.rndInterrupcion.Name = "rndInterrupcion";
+            this.rndInterrupcion.ReadOnly = true;
+            // 
+            // puntoDesborde
+            // 
+            this.puntoDesborde.HeaderText = "Punto de Desborde";
+            this.puntoDesborde.Name = "puntoDesborde";
+            this.puntoDesborde.ReadOnly = true;
+            // 
+            // tiempoInterrupcion
+            // 
+            this.tiempoInterrupcion.HeaderText = "Tiempo interrupción";
+            this.tiempoInterrupcion.Name = "tiempoInterrupcion";
+            this.tiempoInterrupcion.ReadOnly = true;
+            // 
+            // proximaInterrupcion
+            // 
+            this.proximaInterrupcion.HeaderText = "Próxima interrupción";
+            this.proximaInterrupcion.Name = "proximaInterrupcion";
+            this.proximaInterrupcion.ReadOnly = true;
+            // 
+            // llegadasPortero
+            // 
+            this.llegadasPortero.HeaderText = "Llegadas al Portero";
+            this.llegadasPortero.Name = "llegadasPortero";
+            this.llegadasPortero.ReadOnly = true;
+            // 
+            // tiempoFinInterrupcion
+            // 
+            this.tiempoFinInterrupcion.HeaderText = "Tiempo fin interrupción";
+            this.tiempoFinInterrupcion.Name = "tiempoFinInterrupcion";
+            this.tiempoFinInterrupcion.ReadOnly = true;
+            // 
+            // proximoFinInterrupcion
+            // 
+            this.proximoFinInterrupcion.HeaderText = "Próximo fin interrupción";
+            this.proximoFinInterrupcion.Name = "proximoFinInterrupcion";
+            this.proximoFinInterrupcion.ReadOnly = true;
+            // 
+            // colaBoleteria
+            // 
+            this.colaBoleteria.HeaderText = "Cola Boleteria";
+            this.colaBoleteria.Name = "colaBoleteria";
+            this.colaBoleteria.ReadOnly = true;
+            // 
+            // estadoPortero
+            // 
+            this.estadoPortero.HeaderText = "Estado Portero";
+            this.estadoPortero.Name = "estadoPortero";
+            this.estadoPortero.ReadOnly = true;
+            // 
+            // colaSala
+            // 
+            this.colaSala.HeaderText = "Cola Sala";
+            this.colaSala.Name = "colaSala";
+            this.colaSala.ReadOnly = true;
+            // 
+            // acumEntradasVendidas
+            // 
+            this.acumEntradasVendidas.HeaderText = "Total Entradas Vendidas";
+            this.acumEntradasVendidas.Name = "acumEntradasVendidas";
+            this.acumEntradasVendidas.ReadOnly = true;
+            // 
+            // butacasOcupadas
+            // 
+            this.butacasOcupadas.HeaderText = "Butacas Ocupadas";
+            this.butacasOcupadas.Name = "butacasOcupadas";
+            this.butacasOcupadas.ReadOnly = true;
+            // 
+            // salaLlena
+            // 
+            this.salaLlena.HeaderText = "Sala llena";
+            this.salaLlena.Name = "salaLlena";
+            this.salaLlena.ReadOnly = true;
+            // 
+            // tiempoOcupBoletero
+            // 
+            this.tiempoOcupBoletero.HeaderText = "Total tiempo de ocupación del boletero";
+            this.tiempoOcupBoletero.Name = "tiempoOcupBoletero";
+            this.tiempoOcupBoletero.ReadOnly = true;
+            // 
+            // porcTiempoOcupBoletero
+            // 
+            this.porcTiempoOcupBoletero.HeaderText = "Porcentaje de tiempo de ocupación del boletero";
+            this.porcTiempoOcupBoletero.Name = "porcTiempoOcupBoletero";
+            this.porcTiempoOcupBoletero.ReadOnly = true;
+            // 
+            // contEntradasAnticipadas
+            // 
+            this.contEntradasAnticipadas.HeaderText = "Total entradas anticipadas";
+            this.contEntradasAnticipadas.Name = "contEntradasAnticipadas";
+            this.contEntradasAnticipadas.ReadOnly = true;
+            // 
+            // porcNoEntrar
+            // 
+            this.porcNoEntrar.HeaderText = "Porcentaje de entradas que no pudieron entrar";
+            this.porcNoEntrar.Name = "porcNoEntrar";
+            this.porcNoEntrar.ReadOnly = true;
             // 
             // txtN
             // 
@@ -769,234 +997,6 @@
             this.btnMostrarVaciado.UseVisualStyleBackColor = true;
             this.btnMostrarVaciado.Click += new System.EventHandler(this.btnMostrarVaciado_Click);
             // 
-            // numSimulacion
-            // 
-            this.numSimulacion.HeaderText = "Numero de simulación";
-            this.numSimulacion.Name = "numSimulacion";
-            this.numSimulacion.ReadOnly = true;
-            // 
-            // evento
-            // 
-            this.evento.HeaderText = "Evento";
-            this.evento.Name = "evento";
-            this.evento.ReadOnly = true;
-            // 
-            // reloj
-            // 
-            this.reloj.HeaderText = "Reloj";
-            this.reloj.Name = "reloj";
-            this.reloj.ReadOnly = true;
-            // 
-            // rndLlegadaCompra
-            // 
-            this.rndLlegadaCompra.HeaderText = "RND Llegada compra";
-            this.rndLlegadaCompra.Name = "rndLlegadaCompra";
-            this.rndLlegadaCompra.ReadOnly = true;
-            // 
-            // llegadaCompra
-            // 
-            this.llegadaCompra.HeaderText = "Llegada Compra";
-            this.llegadaCompra.Name = "llegadaCompra";
-            this.llegadaCompra.ReadOnly = true;
-            // 
-            // proximaLlegadaCompra
-            // 
-            this.proximaLlegadaCompra.HeaderText = "Próxima llegada compra";
-            this.proximaLlegadaCompra.Name = "proximaLlegadaCompra";
-            this.proximaLlegadaCompra.ReadOnly = true;
-            // 
-            // rndNumeroCompra
-            // 
-            this.rndNumeroCompra.HeaderText = "RND Número Compra";
-            this.rndNumeroCompra.Name = "rndNumeroCompra";
-            this.rndNumeroCompra.ReadOnly = true;
-            // 
-            // numeroCompra
-            // 
-            this.numeroCompra.HeaderText = "Entradas compradas";
-            this.numeroCompra.Name = "numeroCompra";
-            this.numeroCompra.ReadOnly = true;
-            // 
-            // rndLlegadaEntrada
-            // 
-            this.rndLlegadaEntrada.HeaderText = "RND Llegada Entrada";
-            this.rndLlegadaEntrada.Name = "rndLlegadaEntrada";
-            this.rndLlegadaEntrada.ReadOnly = true;
-            // 
-            // llegadaEntrada
-            // 
-            this.llegadaEntrada.HeaderText = "Llegada Entrada";
-            this.llegadaEntrada.Name = "llegadaEntrada";
-            this.llegadaEntrada.ReadOnly = true;
-            // 
-            // proximaLlegadaEntrada
-            // 
-            this.proximaLlegadaEntrada.HeaderText = "Próxima llegada entrada";
-            this.proximaLlegadaEntrada.Name = "proximaLlegadaEntrada";
-            this.proximaLlegadaEntrada.ReadOnly = true;
-            // 
-            // rndNumeroEntrada
-            // 
-            this.rndNumeroEntrada.HeaderText = "RND Número de entradas";
-            this.rndNumeroEntrada.Name = "rndNumeroEntrada";
-            this.rndNumeroEntrada.ReadOnly = true;
-            // 
-            // numeroEntrada
-            // 
-            this.numeroEntrada.HeaderText = "Número Entrada";
-            this.numeroEntrada.Name = "numeroEntrada";
-            this.numeroEntrada.ReadOnly = true;
-            // 
-            // estadoBoletero
-            // 
-            this.estadoBoletero.HeaderText = "Estado boletero";
-            this.estadoBoletero.Name = "estadoBoletero";
-            this.estadoBoletero.ReadOnly = true;
-            // 
-            // rndFinCompra
-            // 
-            this.rndFinCompra.HeaderText = "RND fin compra";
-            this.rndFinCompra.Name = "rndFinCompra";
-            this.rndFinCompra.ReadOnly = true;
-            // 
-            // finCompra
-            // 
-            this.finCompra.HeaderText = "Fin compra";
-            this.finCompra.Name = "finCompra";
-            this.finCompra.ReadOnly = true;
-            // 
-            // proximoFinCompra
-            // 
-            this.proximoFinCompra.HeaderText = "Próximo fin compra";
-            this.proximoFinCompra.Name = "proximoFinCompra";
-            this.proximoFinCompra.ReadOnly = true;
-            // 
-            // rndFinEntrada
-            // 
-            this.rndFinEntrada.HeaderText = "RND fin entrada";
-            this.rndFinEntrada.Name = "rndFinEntrada";
-            this.rndFinEntrada.ReadOnly = true;
-            // 
-            // finEntrada
-            // 
-            this.finEntrada.HeaderText = "Fin de entrada";
-            this.finEntrada.Name = "finEntrada";
-            this.finEntrada.ReadOnly = true;
-            // 
-            // tiempoRestanteEntrada
-            // 
-            this.tiempoRestanteEntrada.HeaderText = "Tiempo Restante Entrada";
-            this.tiempoRestanteEntrada.Name = "tiempoRestanteEntrada";
-            this.tiempoRestanteEntrada.ReadOnly = true;
-            // 
-            // proximoFinEntrada
-            // 
-            this.proximoFinEntrada.HeaderText = "Próximo fin de entrada";
-            this.proximoFinEntrada.Name = "proximoFinEntrada";
-            this.proximoFinEntrada.ReadOnly = true;
-            // 
-            // rndInterrupcion
-            // 
-            this.rndInterrupcion.HeaderText = "RND Interrupción";
-            this.rndInterrupcion.Name = "rndInterrupcion";
-            this.rndInterrupcion.ReadOnly = true;
-            // 
-            // puntoDesborde
-            // 
-            this.puntoDesborde.HeaderText = "Punto de Desborde";
-            this.puntoDesborde.Name = "puntoDesborde";
-            this.puntoDesborde.ReadOnly = true;
-            // 
-            // tiempoInterrupcion
-            // 
-            this.tiempoInterrupcion.HeaderText = "Tiempo interrupción";
-            this.tiempoInterrupcion.Name = "tiempoInterrupcion";
-            this.tiempoInterrupcion.ReadOnly = true;
-            // 
-            // proximaInterrupcion
-            // 
-            this.proximaInterrupcion.HeaderText = "Próxima interrupción";
-            this.proximaInterrupcion.Name = "proximaInterrupcion";
-            this.proximaInterrupcion.ReadOnly = true;
-            // 
-            // llegadasPortero
-            // 
-            this.llegadasPortero.HeaderText = "Llegadas al Portero";
-            this.llegadasPortero.Name = "llegadasPortero";
-            this.llegadasPortero.ReadOnly = true;
-            // 
-            // tiempoFinInterrupcion
-            // 
-            this.tiempoFinInterrupcion.HeaderText = "Tiempo fin interrupción";
-            this.tiempoFinInterrupcion.Name = "tiempoFinInterrupcion";
-            this.tiempoFinInterrupcion.ReadOnly = true;
-            // 
-            // proximoFinInterrupcion
-            // 
-            this.proximoFinInterrupcion.HeaderText = "Próximo fin interrupción";
-            this.proximoFinInterrupcion.Name = "proximoFinInterrupcion";
-            this.proximoFinInterrupcion.ReadOnly = true;
-            // 
-            // colaBoleteria
-            // 
-            this.colaBoleteria.HeaderText = "Cola Boleteria";
-            this.colaBoleteria.Name = "colaBoleteria";
-            this.colaBoleteria.ReadOnly = true;
-            // 
-            // estadoPortero
-            // 
-            this.estadoPortero.HeaderText = "Estado Portero";
-            this.estadoPortero.Name = "estadoPortero";
-            this.estadoPortero.ReadOnly = true;
-            // 
-            // colaSala
-            // 
-            this.colaSala.HeaderText = "Cola Sala";
-            this.colaSala.Name = "colaSala";
-            this.colaSala.ReadOnly = true;
-            // 
-            // acumEntradasVendidas
-            // 
-            this.acumEntradasVendidas.HeaderText = "Total Entradas Vendidas";
-            this.acumEntradasVendidas.Name = "acumEntradasVendidas";
-            this.acumEntradasVendidas.ReadOnly = true;
-            // 
-            // butacasOcupadas
-            // 
-            this.butacasOcupadas.HeaderText = "Butacas Ocupadas";
-            this.butacasOcupadas.Name = "butacasOcupadas";
-            this.butacasOcupadas.ReadOnly = true;
-            // 
-            // salaLlena
-            // 
-            this.salaLlena.HeaderText = "Sala llena";
-            this.salaLlena.Name = "salaLlena";
-            this.salaLlena.ReadOnly = true;
-            // 
-            // tiempoOcupBoletero
-            // 
-            this.tiempoOcupBoletero.HeaderText = "Total tiempo de ocupación del boletero";
-            this.tiempoOcupBoletero.Name = "tiempoOcupBoletero";
-            this.tiempoOcupBoletero.ReadOnly = true;
-            // 
-            // porcTiempoOcupBoletero
-            // 
-            this.porcTiempoOcupBoletero.HeaderText = "Porcentaje de tiempo de ocupación del boletero";
-            this.porcTiempoOcupBoletero.Name = "porcTiempoOcupBoletero";
-            this.porcTiempoOcupBoletero.ReadOnly = true;
-            // 
-            // contEntradasAnticipadas
-            // 
-            this.contEntradasAnticipadas.HeaderText = "Total entradas anticipadas";
-            this.contEntradasAnticipadas.Name = "contEntradasAnticipadas";
-            this.contEntradasAnticipadas.ReadOnly = true;
-            // 
-            // porcNoEntrar
-            // 
-            this.porcNoEntrar.HeaderText = "Porcentaje de entradas que no pudieron entrar";
-            this.porcNoEntrar.Name = "porcNoEntrar";
-            this.porcNoEntrar.ReadOnly = true;
-            // 
             // gbRungeKutta
             // 
             this.gbRungeKutta.Controls.Add(this.txtProb3);
@@ -1017,25 +1017,77 @@
             this.gbRungeKutta.TabStop = false;
             this.gbRungeKutta.Text = "RungeKutta";
             // 
-            // lblH
+            // txtProb3
             // 
-            this.lblH.AutoSize = true;
-            this.lblH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblH.Location = new System.Drawing.Point(16, 36);
-            this.lblH.Name = "lblH";
-            this.lblH.Size = new System.Drawing.Size(22, 20);
-            this.lblH.TabIndex = 0;
-            this.lblH.Text = "h:";
+            this.txtProb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProb3.Location = new System.Drawing.Point(148, 159);
+            this.txtProb3.Name = "txtProb3";
+            this.txtProb3.Size = new System.Drawing.Size(55, 26);
+            this.txtProb3.TabIndex = 10;
+            this.txtProb3.Text = "0,50";
             // 
-            // lblAlfa
+            // txtDesb3
             // 
-            this.lblAlfa.AutoSize = true;
-            this.lblAlfa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAlfa.Location = new System.Drawing.Point(101, 36);
-            this.lblAlfa.Name = "lblAlfa";
-            this.lblAlfa.Size = new System.Drawing.Size(41, 20);
-            this.lblAlfa.TabIndex = 1;
-            this.lblAlfa.Text = "Alfa:";
+            this.txtDesb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDesb3.Location = new System.Drawing.Point(20, 159);
+            this.txtDesb3.Name = "txtDesb3";
+            this.txtDesb3.Size = new System.Drawing.Size(55, 26);
+            this.txtDesb3.TabIndex = 9;
+            this.txtDesb3.Text = "100";
+            // 
+            // txtProb2
+            // 
+            this.txtProb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProb2.Location = new System.Drawing.Point(148, 127);
+            this.txtProb2.Name = "txtProb2";
+            this.txtProb2.Size = new System.Drawing.Size(55, 26);
+            this.txtProb2.TabIndex = 8;
+            this.txtProb2.Text = "0,30";
+            // 
+            // txtDesb2
+            // 
+            this.txtDesb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDesb2.Location = new System.Drawing.Point(20, 127);
+            this.txtDesb2.Name = "txtDesb2";
+            this.txtDesb2.Size = new System.Drawing.Size(55, 26);
+            this.txtDesb2.TabIndex = 7;
+            this.txtDesb2.Text = "70";
+            // 
+            // txtProb1
+            // 
+            this.txtProb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProb1.Location = new System.Drawing.Point(148, 98);
+            this.txtProb1.Name = "txtProb1";
+            this.txtProb1.Size = new System.Drawing.Size(55, 26);
+            this.txtProb1.TabIndex = 6;
+            this.txtProb1.Text = "0,20";
+            // 
+            // txtDesb1
+            // 
+            this.txtDesb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDesb1.Location = new System.Drawing.Point(20, 98);
+            this.txtDesb1.Name = "txtDesb1";
+            this.txtDesb1.Size = new System.Drawing.Size(55, 26);
+            this.txtDesb1.TabIndex = 5;
+            this.txtDesb1.Text = "50";
+            // 
+            // txtAlfa
+            // 
+            this.txtAlfa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAlfa.Location = new System.Drawing.Point(148, 33);
+            this.txtAlfa.Name = "txtAlfa";
+            this.txtAlfa.Size = new System.Drawing.Size(100, 26);
+            this.txtAlfa.TabIndex = 4;
+            this.txtAlfa.Text = "0,01636";
+            // 
+            // txtH
+            // 
+            this.txtH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtH.Location = new System.Drawing.Point(40, 33);
+            this.txtH.Name = "txtH";
+            this.txtH.Size = new System.Drawing.Size(55, 26);
+            this.txtH.TabIndex = 3;
+            this.txtH.Text = "1";
             // 
             // lblPuntosDesborde
             // 
@@ -1047,77 +1099,25 @@
             this.lblPuntosDesborde.TabIndex = 2;
             this.lblPuntosDesborde.Text = "PuntosDesborde";
             // 
-            // txtH
+            // lblAlfa
             // 
-            this.txtH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtH.Location = new System.Drawing.Point(40, 33);
-            this.txtH.Name = "txtH";
-            this.txtH.Size = new System.Drawing.Size(55, 26);
-            this.txtH.TabIndex = 3;
-            this.txtH.Text = "1";
+            this.lblAlfa.AutoSize = true;
+            this.lblAlfa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlfa.Location = new System.Drawing.Point(101, 36);
+            this.lblAlfa.Name = "lblAlfa";
+            this.lblAlfa.Size = new System.Drawing.Size(41, 20);
+            this.lblAlfa.TabIndex = 1;
+            this.lblAlfa.Text = "Alfa:";
             // 
-            // txtAlfa
+            // lblH
             // 
-            this.txtAlfa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAlfa.Location = new System.Drawing.Point(148, 33);
-            this.txtAlfa.Name = "txtAlfa";
-            this.txtAlfa.Size = new System.Drawing.Size(100, 26);
-            this.txtAlfa.TabIndex = 4;
-            this.txtAlfa.Text = "0,01636";
-            // 
-            // txtDesb1
-            // 
-            this.txtDesb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDesb1.Location = new System.Drawing.Point(20, 98);
-            this.txtDesb1.Name = "txtDesb1";
-            this.txtDesb1.Size = new System.Drawing.Size(55, 26);
-            this.txtDesb1.TabIndex = 5;
-            this.txtDesb1.Text = "50";
-            // 
-            // txtProb1
-            // 
-            this.txtProb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProb1.Location = new System.Drawing.Point(148, 98);
-            this.txtProb1.Name = "txtProb1";
-            this.txtProb1.Size = new System.Drawing.Size(55, 26);
-            this.txtProb1.TabIndex = 6;
-            this.txtProb1.Text = "20";
-            // 
-            // txtDesb2
-            // 
-            this.txtDesb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDesb2.Location = new System.Drawing.Point(20, 127);
-            this.txtDesb2.Name = "txtDesb2";
-            this.txtDesb2.Size = new System.Drawing.Size(55, 26);
-            this.txtDesb2.TabIndex = 7;
-            this.txtDesb2.Text = "70";
-            // 
-            // txtProb2
-            // 
-            this.txtProb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProb2.Location = new System.Drawing.Point(148, 127);
-            this.txtProb2.Name = "txtProb2";
-            this.txtProb2.Size = new System.Drawing.Size(55, 26);
-            this.txtProb2.TabIndex = 8;
-            this.txtProb2.Text = "30";
-            // 
-            // txtDesb3
-            // 
-            this.txtDesb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDesb3.Location = new System.Drawing.Point(20, 159);
-            this.txtDesb3.Name = "txtDesb3";
-            this.txtDesb3.Size = new System.Drawing.Size(55, 26);
-            this.txtDesb3.TabIndex = 9;
-            this.txtDesb3.Text = "100";
-            // 
-            // txtProb3
-            // 
-            this.txtProb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProb3.Location = new System.Drawing.Point(148, 159);
-            this.txtProb3.Name = "txtProb3";
-            this.txtProb3.Size = new System.Drawing.Size(55, 26);
-            this.txtProb3.TabIndex = 10;
-            this.txtProb3.Text = "50";
+            this.lblH.AutoSize = true;
+            this.lblH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblH.Location = new System.Drawing.Point(16, 36);
+            this.lblH.Name = "lblH";
+            this.lblH.Size = new System.Drawing.Size(22, 20);
+            this.lblH.TabIndex = 0;
+            this.lblH.Text = "h:";
             // 
             // frmSimulacion
             // 

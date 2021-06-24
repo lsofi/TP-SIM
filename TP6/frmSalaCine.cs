@@ -52,18 +52,16 @@ namespace TP5
 
         private void btnSimular_Click(object sender, EventArgs e)
         {
-            btnMostrarLlenado.Enabled = btnMostrarVaciado.Enabled = true;
-
-            dgvFuncion.Rows.Clear();
-            limpiarClientes();
-            dgvFunciones.Rows.Clear();
-            if (frmRKVaciado != null) frmRKVaciado.Close();
-
-
-
-            resetearAcumuladores();
             if (validarCampos())
             {
+                btnMostrarLlenado.Enabled = btnMostrarVaciado.Enabled = true;
+                dgvFuncion.Rows.Clear();
+                limpiarClientes();
+                dgvFunciones.Rows.Clear();
+                if (frmRKVaciado != null) frmRKVaciado.Close();
+
+                resetearAcumuladores();
+
                 frmRKLlenado = new frmRungeKutta(h, alfa, desb1, desb2, desb3);
                 tiemposLlenado = frmRKLlenado.rungeKuttaGraficoLlenado();
 
@@ -748,7 +746,7 @@ namespace TP5
                 MessageBox.Show("Revise los valores del Runge Kutta.", "Valores Runge Kutta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if(prob1 + prob2 + prob3 != 100)
+            if(prob1 + prob2 + prob3 != 1)
             {
                 MessageBox.Show("Revise los valores del Runge Kutta.", "Valores Runge Kutta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
