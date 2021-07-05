@@ -28,13 +28,17 @@ namespace TP7
         private double zl3h;
         private double k4;
         private double l4;
+        private double alfa;
+        private double beta;
 
-        public VectorRungeKutta(double eo, double To, double Zo, double h)
+        public VectorRungeKutta(double eo, double To, double Zo, double h, double alfa, double beta)
         {
             this.E = eo;
             this.T = To;
             this.Z = Zo;
             this.H = h;
+            this.Alfa = alfa;
+            this.Beta = beta;
         }
 
         public double H { get => h; set => h = value; }
@@ -57,12 +61,14 @@ namespace TP7
         public double Zl3h { get => zl3h; set => zl3h = value; }
         public double K4 { get => k4; set => k4 = value; }
         public double L4 { get => l4; set => l4 = value; }
+        public double Alfa { get => alfa; set => alfa = value; }
+        public double Beta { get => beta; set => beta = value; }
 
         public VectorRungeKutta siguiente()
         {
             double incT = H / 6 * (K1 + 2 * K2 + 2 * K3 + K4);
             double incZ = H / 6 * (L1 + 2 * L2 + 2 * L3 + L4);
-            VectorRungeKutta siguiente = new VectorRungeKutta(E + H, T + incT, Z + incZ, H);
+            VectorRungeKutta siguiente = new VectorRungeKutta(E + H, T + incT, Z + incZ, H, Alfa, Beta);
             siguiente.calcularValores();
             return siguiente;
         }
@@ -97,7 +103,7 @@ namespace TP7
 
         private double funcZ(double e, double T, double Z)
         {
-            return 0.0219 * (Math.Sqrt(Z)) + 0.102 * T;
+            return Alfa * (Math.Sqrt(Z)) + Beta * T;
         }
     }
 }

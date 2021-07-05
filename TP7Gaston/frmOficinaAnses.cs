@@ -15,14 +15,15 @@ namespace TP7
     {
         // parámetros
         public Boolean todas;
-        public int lineas, mostrarDesde, tiempoSimulacion;
+        public int lineas, mostrarDesde, N;
 
         public double probMayorEdad;
         public int rangoEdadDesde, rangoEdadHasta;
         public double tasaClientes;
         public int rangoEntenderDesde, rangoEntenderHasta, minutosOtrasTareas, rangoTareaDesde, rangoTareaHasta;
 
-        public double t0, z0, h = 1;
+        public double t0, z0, h, alfa, beta;
+        double[] tiemposAtencion;
 
         VectorEstado anterior;
         VectorEstado actual;
@@ -30,10 +31,19 @@ namespace TP7
         ExponencialNegativa expNeg;
         Uniforme unifHacerEntender, unifOtraTarea;
 
-
         frmRungeKutta frmRungeKutta;
 
-        Boolean empezoSimulacion;
+        Boolean empezoSimulacion, terminoSimulacion;
+
+        private void dgvClientes_Scroll(object sender, ScrollEventArgs e)
+        {
+            this.dgvFuncion.FirstDisplayedScrollingRowIndex = this.dgvClientes.FirstDisplayedScrollingRowIndex;
+        }
+
+        private void dgvFuncion_Scroll(object sender, ScrollEventArgs e)
+        {
+            this.dgvClientes.FirstDisplayedScrollingRowIndex = this.dgvFuncion.FirstDisplayedScrollingRowIndex;
+        }
 
         public frmOficinaAnses()
         {
@@ -49,7 +59,8 @@ namespace TP7
                 limpiarClientes();
                 if (frmRungeKutta != null) frmRungeKutta.Close();
 
-                frmRungeKutta = new frmRungeKutta(h, rangoEdadDesde, t0, z0);
+                frmRungeKutta = new frmRungeKutta(h, rangoEdadDesde, t0, z0, rangoEdadHasta, alfa, beta);
+                tiemposAtencion = frmRungeKutta.rungeKutta();
 
                 //comienzo de la simulacion en sí
                 tasaClientes = tasaClientes / 60; // se pasa la tasa de clientes a clientes/minuto
@@ -68,9 +79,9 @@ namespace TP7
                 actual.ColaAtencion = new Queue<Cliente>();
                 List<Cliente> clientes = new List<Cliente>();
                 
-                empezoSimulacion = false;
+                empezoSimulacion = terminoSimulacion = false;
 
-                while (actual.Reloj < tiempoSimulacion*60)
+                while (actual.Linea <= N && !terminoSimulacion)
                 {
                     anterior = actual;
                     actual = new VectorEstado();
@@ -96,6 +107,7 @@ namespace TP7
 
                             empezoSimulacion = true;
                             break;
+
                         case "llegada_cliente":
                             actual.RndLlegadaCliente = random.NextDouble();
                             actual.TiempoLlegadaCliente = expNeg.getRandomVar(actual.RndLlegadaCliente);
@@ -112,13 +124,25 @@ namespace TP7
                             {
                                 actual.Edad = 0;
                             }
-                            // en el caso de que no sea mayor de edad, la edad queda como -1 (y termina asignándose este valor a la edad del nuevo cliente)
+                            // en el caso de que no sea mayor de edad, la edad queda como 0
+                            int pos = buscarClienteNulo(clientes);
+                            Cliente nuevo;
+                            if (pos == -1)
+                            {
+                                nuevo = new Cliente(actual.Edad);
+                                nuevo.HoraEntradaCola = actual.Reloj;
 
-                            Cliente nuevo = new Cliente(actual.Edad);
-                            nuevo.HoraEntradaCola = actual.Reloj;
+                                nuevo.Nombre = "Cliente" + (clientes.Count + 1);
+                                clientes.Add(nuevo);
+                            }
+                            else
+                            {
+                                nuevo = clientes.ElementAt(pos);
+                                nuevo.Edad = actual.Edad;
+                                nuevo.HoraEntradaCola = actual.Reloj;
+                                nuevo.Atendido = false;
+                            }
 
-                            nuevo.Nombre = "Cliente" + (clientes.Count + 1);
-                            clientes.Add(nuevo);
                             bool encontro = false;
 
                             //se busca un dependiente libre para atender al cliente nuevo
@@ -131,7 +155,6 @@ namespace TP7
                                     // sumo los acumuladores para el tiempo de espera y los clientes que pasaron por la cola.
                                     actual.AcTiempoEspera += actual.Reloj - nuevo.HoraEntradaCola;
                                     actual.AcClientesCola++;
-                                    actual.EsperaPromedioCola = actual.AcTiempoEspera / (double)actual.AcClientesCola;
 
                                     dependiente.ClienteAtendido = nuevo;
                                     dependiente.Estado = "Atendiendo";
@@ -140,7 +163,7 @@ namespace TP7
                                     // si es mayor de edad, calculo el tiempo para hacer entender con runge kutta
                                     if (nuevo.Edad > 0)
                                     {
-                                        actual.TiempoFinHacerEntender = frmRungeKutta.rungeKutta(nuevo.Edad);
+                                        actual.TiempoFinHacerEntender = tiemposAtencion[nuevo.Edad - rangoEdadDesde];
                                     }
                                     else //si no es mayor de edad, el tiempo está en un intervalo uniforme
                                     {
@@ -175,9 +198,6 @@ namespace TP7
                             }
 
                             //se calculan las estadísticas
-                            actual.GradoOcupacionDependiente1 = 100 * (actual.AcTiempoOcupacion1 / actual.Reloj);
-                            actual.PorcentajeClientesAtendidosMayoresEdad = 100 * (actual.AcPersonasAtendidasMayoresEdad / actual.CantidadPersonasAtendidas);
-                            actual.PorcentajeOcupacionIrrelevante1 = 100 * (actual.AcTiempoOcupacionIrrelevante1 / actual.AcTiempoOcupacion1);
                             if (actual.TiempoMaximoPermanenciaSistemaMayorEdad < actual.Reloj - actual.Dependientes[0].ClienteAtendido.HoraEntradaCola)
                             {
                                 actual.TiempoMaximoPermanenciaSistemaMayorEdad = actual.Reloj - actual.Dependientes[0].ClienteAtendido.HoraEntradaCola;
@@ -187,6 +207,7 @@ namespace TP7
                             actual.Dependientes[0].ClienteAtendido.Estado = "";
                             actual.Dependientes[0].ClienteAtendido.HoraEntradaCola = -1;
                             actual.Dependientes[0].ClienteAtendido.Edad = -1;
+                            actual.Dependientes[0].ClienteAtendido.Atendido = true;
                             actual.Dependientes[0].ClienteAtendido = null; // saco al cliente del sistema
 
                             // si el dependiente tiene tareas para hacer
@@ -214,12 +235,10 @@ namespace TP7
                                     actual.AcTiempoEspera += actual.Reloj - actual.Dependientes[0].ClienteAtendido.HoraEntradaCola;
                                     actual.AcClientesCola++;
 
-                                    actual.EsperaPromedioCola = actual.AcTiempoEspera / (double)actual.AcClientesCola;
-
                                     // si es mayor de edad, calculo el tiempo para hacer entender con runge kutta
                                     if (actual.Dependientes[0].ClienteAtendido.Edad > 0)
                                     {
-                                        actual.TiempoFinHacerEntender = frmRungeKutta.rungeKutta(actual.Dependientes[0].ClienteAtendido.Edad);
+                                        actual.TiempoFinHacerEntender = tiemposAtencion[actual.Dependientes[0].ClienteAtendido.Edad - rangoEdadDesde];
                                     }
                                     else //si no es mayor de edad, el tiempo está en un intervalo uniforme
                                     {
@@ -252,9 +271,7 @@ namespace TP7
                             }
 
                             //se calculan las estadísticas
-                            actual.GradoOcupacionDependiente2 = 100 * (actual.AcTiempoOcupacion2 / actual.Reloj);
-                            actual.PorcentajeClientesAtendidosMayoresEdad = 100 * (actual.AcPersonasAtendidasMayoresEdad / actual.CantidadPersonasAtendidas);
-                            actual.PorcentajeOcupacionIrrelevante2 = 100 * (actual.AcTiempoOcupacionIrrelevante2 / actual.AcTiempoOcupacion2);
+                           
                             if (actual.TiempoMaximoPermanenciaSistemaMayorEdad < actual.Reloj - actual.Dependientes[1].ClienteAtendido.HoraEntradaCola)
                             {
                                 actual.TiempoMaximoPermanenciaSistemaMayorEdad = actual.Reloj - actual.Dependientes[1].ClienteAtendido.HoraEntradaCola;
@@ -264,6 +281,7 @@ namespace TP7
                             actual.Dependientes[1].ClienteAtendido.Estado = "";
                             actual.Dependientes[1].ClienteAtendido.HoraEntradaCola = -1;
                             actual.Dependientes[1].ClienteAtendido.Edad = -1;
+                            actual.Dependientes[1].ClienteAtendido.Atendido = true;
                             actual.Dependientes[1].ClienteAtendido = null; // saco al cliente del sistema
 
                             // si el dependiente tiene tareas para hacer
@@ -291,12 +309,10 @@ namespace TP7
                                     actual.AcTiempoEspera += actual.Reloj - actual.Dependientes[1].ClienteAtendido.HoraEntradaCola;
                                     actual.AcClientesCola++;
 
-                                    actual.EsperaPromedioCola = actual.AcTiempoEspera / (double)actual.AcClientesCola;
-
                                     // si es mayor de edad, calculo el tiempo para hacer entender con runge kutta
                                     if (actual.Dependientes[1].ClienteAtendido.Edad > 0)
                                     {
-                                        actual.TiempoFinHacerEntender = frmRungeKutta.rungeKutta(actual.Dependientes[1].ClienteAtendido.Edad);
+                                        actual.TiempoFinHacerEntender = tiemposAtencion[actual.Dependientes[1].ClienteAtendido.Edad - rangoEdadDesde];
                                     }
                                     else //si no es mayor de edad, el tiempo está en un intervalo uniforme
                                     {
@@ -328,9 +344,6 @@ namespace TP7
                             }
 
                             //se calculan las estadísticas
-                            actual.GradoOcupacionDependiente3 = 100 * (actual.AcTiempoOcupacion3 / actual.Reloj);
-                            actual.PorcentajeClientesAtendidosMayoresEdad = 100 * (actual.AcPersonasAtendidasMayoresEdad / actual.CantidadPersonasAtendidas);
-                            actual.PorcentajeOcupacionIrrelevante3 = 100 * (actual.AcTiempoOcupacionIrrelevante3 / actual.AcTiempoOcupacion3);
                             if (actual.TiempoMaximoPermanenciaSistemaMayorEdad < actual.Reloj - actual.Dependientes[2].ClienteAtendido.HoraEntradaCola)
                             {
                                 actual.TiempoMaximoPermanenciaSistemaMayorEdad = actual.Reloj - actual.Dependientes[2].ClienteAtendido.HoraEntradaCola;
@@ -340,6 +353,7 @@ namespace TP7
                             actual.Dependientes[2].ClienteAtendido.Estado = "";
                             actual.Dependientes[2].ClienteAtendido.HoraEntradaCola = -1;
                             actual.Dependientes[2].ClienteAtendido.Edad = -1;
+                            actual.Dependientes[2].ClienteAtendido.Atendido = true;
                             actual.Dependientes[2].ClienteAtendido = null; // saco al cliente del sistema
 
                             // si el dependiente tiene tareas para hacer
@@ -367,12 +381,10 @@ namespace TP7
                                     actual.AcTiempoEspera += actual.Reloj - actual.Dependientes[2].ClienteAtendido.HoraEntradaCola;
                                     actual.AcClientesCola++;
 
-                                    actual.EsperaPromedioCola = actual.AcTiempoEspera / (double)actual.AcClientesCola;
-
                                     // si es mayor de edad, calculo el tiempo para hacer entender con runge kutta
                                     if (actual.Dependientes[2].ClienteAtendido.Edad > 0)
                                     {
-                                        actual.TiempoFinHacerEntender = frmRungeKutta.rungeKutta(actual.Dependientes[2].ClienteAtendido.Edad);
+                                        actual.TiempoFinHacerEntender = tiemposAtencion[actual.Dependientes[2].ClienteAtendido.Edad - rangoEdadDesde];
                                     }
                                     else //si no es mayor de edad, el tiempo está en un intervalo uniforme
                                     {
@@ -420,10 +432,6 @@ namespace TP7
                             actual.AcTiempoOcupacion1 += actual.Reloj - actual.Dependientes[0].HoraInicioOcupacion;
                             actual.AcTiempoOcupacionIrrelevante1 += actual.Reloj - actual.Dependientes[0].HoraInicioOcupacion;
 
-                            // se calculan las estadísticas
-                            actual.GradoOcupacionDependiente1 = 100 * (actual.AcTiempoOcupacion1 / actual.Reloj);
-                            actual.PorcentajeOcupacionIrrelevante1 = 100 * (actual.AcTiempoOcupacionIrrelevante1 / actual.AcTiempoOcupacion1);
-
                             // si el dependiente tiene tareas para hacer
                             if (actual.Dependientes[0].TareasDependiente > 0)
                             {
@@ -447,15 +455,12 @@ namespace TP7
 
                                     //sumo los acumuladores y calculo las estadísticas con el cliente que saco de la cola
                                     actual.AcTiempoEspera += actual.Reloj - actual.Dependientes[0].ClienteAtendido.HoraEntradaCola;
-                                    actual.AcClientesCola++;
-
-                                    actual.EsperaPromedioCola = actual.AcTiempoEspera / (double)actual.AcClientesCola;
-                                    
+                                    actual.AcClientesCola++;                                    
 
                                     // si es mayor de edad, calculo el tiempo para hacer entender con runge kutta
                                     if (actual.Dependientes[0].ClienteAtendido.Edad > 0)
                                     {
-                                        actual.TiempoFinHacerEntender = frmRungeKutta.rungeKutta(actual.Dependientes[0].ClienteAtendido.Edad);
+                                        actual.TiempoFinHacerEntender = tiemposAtencion[actual.Dependientes[0].ClienteAtendido.Edad - rangoEdadDesde];
                                     }
                                     else //si no es mayor de edad, el tiempo está en un intervalo uniforme
                                     {
@@ -483,10 +488,6 @@ namespace TP7
                             actual.AcTiempoOcupacion2 += actual.Reloj - actual.Dependientes[1].HoraInicioOcupacion;
                             actual.AcTiempoOcupacionIrrelevante2 += actual.Reloj - actual.Dependientes[1].HoraInicioOcupacion;
 
-                            // se calculan las estadísticas
-                            actual.GradoOcupacionDependiente2 = 100 * (actual.AcTiempoOcupacion2 / actual.Reloj);
-                            actual.PorcentajeOcupacionIrrelevante2 = 100 * (actual.AcTiempoOcupacionIrrelevante2 / actual.AcTiempoOcupacion2);
-
                             // si el dependiente tiene tareas para hacer
                             if (actual.Dependientes[1].TareasDependiente > 0)
                             {
@@ -512,12 +513,10 @@ namespace TP7
                                     actual.AcTiempoEspera += actual.Reloj - actual.Dependientes[1].ClienteAtendido.HoraEntradaCola;
                                     actual.AcClientesCola++;
 
-                                    actual.EsperaPromedioCola = actual.AcTiempoEspera / (double)actual.AcClientesCola;
-
                                     // si es mayor de edad, calculo el tiempo para hacer entender con runge kutta
                                     if (actual.Dependientes[1].ClienteAtendido.Edad > 0)
                                     {
-                                        actual.TiempoFinHacerEntender = frmRungeKutta.rungeKutta(actual.Dependientes[1].ClienteAtendido.Edad);
+                                        actual.TiempoFinHacerEntender = tiemposAtencion[actual.Dependientes[1].ClienteAtendido.Edad - rangoEdadDesde];
                                     }
                                     else //si no es mayor de edad, el tiempo está en un intervalo uniforme
                                     {
@@ -545,10 +544,6 @@ namespace TP7
                             actual.AcTiempoOcupacion3 += actual.Reloj - actual.Dependientes[2].HoraInicioOcupacion;
                             actual.AcTiempoOcupacionIrrelevante3 += actual.Reloj - actual.Dependientes[2].HoraInicioOcupacion;
 
-                            // se calculan las estadísticas
-                            actual.GradoOcupacionDependiente3 = 100 * (actual.AcTiempoOcupacion3 / actual.Reloj);
-                            actual.PorcentajeOcupacionIrrelevante3 = 100 * (actual.AcTiempoOcupacionIrrelevante3 / actual.AcTiempoOcupacion3);
-
                             // si el dependiente tiene tareas para hacer
                             if (actual.Dependientes[2].TareasDependiente > 0)
                             {
@@ -574,12 +569,10 @@ namespace TP7
                                     actual.AcTiempoEspera += actual.Reloj - actual.Dependientes[2].ClienteAtendido.HoraEntradaCola;
                                     actual.AcClientesCola++;
 
-                                    actual.EsperaPromedioCola = actual.AcTiempoEspera / (double)actual.AcClientesCola;
-
                                     // si es mayor de edad, calculo el tiempo para hacer entender con runge kutta
                                     if (actual.Dependientes[2].ClienteAtendido.Edad > 0)
                                     {
-                                        actual.TiempoFinHacerEntender = frmRungeKutta.rungeKutta(actual.Dependientes[2].ClienteAtendido.Edad);
+                                        actual.TiempoFinHacerEntender = tiemposAtencion[actual.Dependientes[2].ClienteAtendido.Edad - rangoEdadDesde];
                                     }
                                     else //si no es mayor de edad, el tiempo está en un intervalo uniforme
                                     {
@@ -628,17 +621,11 @@ namespace TP7
                                 }
                             }
 
-                            actual.GradoOcupacionDependiente1 = actual.AcTiempoOcupacion1 / actual.Reloj;
-                            actual.GradoOcupacionDependiente2 = actual.AcTiempoOcupacion2 / actual.Reloj;
-                            actual.GradoOcupacionDependiente3 = actual.AcTiempoOcupacion3 / actual.Reloj;
-
-                            actual.PorcentajeOcupacionIrrelevante1 = actual.AcTiempoOcupacionIrrelevante1 / actual.AcTiempoOcupacion1;
-                            actual.PorcentajeOcupacionIrrelevante2 = actual.AcTiempoOcupacionIrrelevante2 / actual.AcTiempoOcupacion2;
-                            actual.PorcentajeOcupacionIrrelevante3 = actual.AcTiempoOcupacionIrrelevante3 / actual.AcTiempoOcupacion3;
-
+                            terminoSimulacion = true;
                             break;
                     }
-                    if (rbtTodas.Checked || (rbtAlgunas.Checked && actual.Linea >= lineas && actual.Linea <= lineas+mostrarDesde))
+                    calcularEstadisticas(actual);
+                    if (rbtTodas.Checked || (rbtAlgunas.Checked && actual.Linea >= mostrarDesde && actual.Linea < mostrarDesde + lineas) || terminoSimulacion)
                     {
                         agregarDatosDGV(actual);
 
@@ -649,6 +636,37 @@ namespace TP7
             }
         }
 
+        private int buscarClienteNulo(List<Cliente> clientes)
+        {
+            int res = -1;
+            for (int i = 0; i < clientes.Count; i++)
+            {
+                Cliente c = clientes.ElementAt(i);
+                if (c.Estado == "")
+                {
+                    res = i;
+                    break;
+                }
+            }
+            return res;
+        }
+        private void calcularEstadisticas(VectorEstado actual)
+        {
+            actual.GradoOcupacionDependiente1 = actual.Reloj == 0 ? 0 : 100 * actual.AcTiempoOcupacion1 / actual.Reloj;
+            actual.GradoOcupacionDependiente2 = actual.Reloj == 0 ? 0 : 100 * actual.AcTiempoOcupacion2 / actual.Reloj;
+            actual.GradoOcupacionDependiente3 = actual.Reloj == 0 ? 0 : 100 * actual.AcTiempoOcupacion3 / actual.Reloj;
+
+            actual.EsperaPromedioCola = actual.AcClientesCola == 0 ? 0 : actual.AcTiempoEspera / (double)actual.AcClientesCola;
+
+            // la cantidad de personas atendidas se tiene que calcular en los fines de atención de clientes.
+
+            actual.PorcentajeClientesAtendidosMayoresEdad = actual.CantidadPersonasAtendidas == 0 ? 0 : 100 * actual.AcPersonasAtendidasMayoresEdad / actual.CantidadPersonasAtendidas;
+            actual.PorcentajeOcupacionIrrelevante1 = actual.AcTiempoOcupacion1 == 0 ? 0 : 100 * actual.AcTiempoOcupacionIrrelevante1 / actual.AcTiempoOcupacion1;
+            actual.PorcentajeOcupacionIrrelevante2 = actual.AcTiempoOcupacion2 == 0 ? 0 : 100 * actual.AcTiempoOcupacionIrrelevante2 / actual.AcTiempoOcupacion2;
+            actual.PorcentajeOcupacionIrrelevante3 = actual.AcTiempoOcupacion3 == 0 ? 0 : 100 * actual.AcTiempoOcupacionIrrelevante3 / actual.AcTiempoOcupacion3;
+
+            // el tiempo máximo de permanencia en sistema para mayores de edad se tiene que calcular en los fines de atención.
+        }
         private void agregarDatosDGV(VectorEstado actual)
         {
             String linea = actual.Linea.ToString();
@@ -672,7 +690,7 @@ namespace TP7
             if (actual.TiempoLlegadaCliente > 0) tiempoLlegadaCliente = Math.Round(actual.TiempoLlegadaCliente, 2).ToString();
             if (actual.ProximaLlegadaCliente > 0) proximaLlegadaCliente = Math.Round(actual.ProximaLlegadaCliente, 2).ToString();
             if (actual.RndMayorEdad > 0) rndMayorEdad = Math.Round(actual.RndMayorEdad, 2).ToString();
-            if (actual.EsMayorEdad >= 0) esMayorEdad = actual.EsMayorEdad.ToString();
+            esMayorEdad = actual.EsMayorEdad > 0 ? "Sí" : (actual.EsMayorEdad == 0 ? "No":"");
             if (actual.RndEdad > 0) rndEdad = Math.Round(actual.RndEdad, 2).ToString();
             edad = actual.Edad > 0 ? actual.Edad.ToString() : (actual.Edad == 0 ? "<70":"");
             if (actual.RndFinHacerEntender > 0) rndFinHacerEntender = Math.Round(actual.RndFinHacerEntender, 2).ToString();
@@ -699,15 +717,15 @@ namespace TP7
             if (actual.Dependientes[1].HoraInicioOcupacion > 0) horaComienzoOcupacion2 = Math.Round(actual.Dependientes[1].HoraInicioOcupacion, 2).ToString();
             if (actual.Dependientes[2].HoraInicioOcupacion > 0) horaComienzoOcupacion3 = Math.Round(actual.Dependientes[2].HoraInicioOcupacion, 2).ToString();
             colaAtencion = actual.ColaAtencion.Count.ToString();
-            gradoOcupacionDependiente1 = Math.Round(actual.GradoOcupacionDependiente1, 2).ToString();
-            gradoOcupacionDependiente2 = Math.Round(actual.GradoOcupacionDependiente2, 2).ToString();
-            gradoOcupacionDependiente3 = Math.Round(actual.GradoOcupacionDependiente3, 2).ToString();
+            gradoOcupacionDependiente1 = Math.Round(actual.GradoOcupacionDependiente1, 2).ToString() + "%";
+            gradoOcupacionDependiente2 = Math.Round(actual.GradoOcupacionDependiente2, 2).ToString() + "%";
+            gradoOcupacionDependiente3 = Math.Round(actual.GradoOcupacionDependiente3, 2).ToString() + "%";
             esperaPromedioCola = Math.Round(actual.EsperaPromedioCola, 2).ToString();
             cantidadPersonasAtendidas = actual.CantidadPersonasAtendidas.ToString();
-            porcentajeClientesAtendidosMayoresEdad = Math.Round(actual.PorcentajeClientesAtendidosMayoresEdad, 2).ToString();
-            porcentajeOcupacionIrrelevante1 = Math.Round(actual.PorcentajeOcupacionIrrelevante1, 2).ToString();
-            porcentajeOcupacionIrrelevante2 = Math.Round(actual.PorcentajeOcupacionIrrelevante2, 2).ToString();
-            porcentajeOcupacionIrrelevante3 = Math.Round(actual.PorcentajeOcupacionIrrelevante3, 2).ToString();
+            porcentajeClientesAtendidosMayoresEdad = Math.Round(actual.PorcentajeClientesAtendidosMayoresEdad, 2).ToString() + "%";
+            porcentajeOcupacionIrrelevante1 = Math.Round(actual.PorcentajeOcupacionIrrelevante1, 2).ToString() + "%";
+            porcentajeOcupacionIrrelevante2 = Math.Round(actual.PorcentajeOcupacionIrrelevante2, 2).ToString() + "%";
+            porcentajeOcupacionIrrelevante3 = Math.Round(actual.PorcentajeOcupacionIrrelevante3, 2).ToString() + "%";
             tiempoMaximoPermanenciaSistemaMayorEdad = Math.Round(actual.TiempoMaximoPermanenciaSistemaMayorEdad, 2).ToString();
             acTiempoOcupacion1 = Math.Round(actual.AcTiempoOcupacion1, 2).ToString();
             acTiempoOcupacion2 = Math.Round(actual.AcTiempoOcupacion2, 2).ToString();
@@ -873,6 +891,11 @@ namespace TP7
                 Cliente c = clientes.ElementAt(k);
                 if (c.Estado == "")
                 {
+                    if (c.Atendido && (rbtTodas.Checked))
+                    {
+                        dgvClientes.Rows[dgvClientes.Rows.Count - 1].Cells[k + 1].Style.BackColor = Color.LightGreen;
+                        c.Atendido = false;
+                    }
                     continue;
                 }
                 StringBuilder sb = new StringBuilder();
@@ -904,7 +927,13 @@ namespace TP7
         private void buscarEvento()
         {
             String evento = "fin_simulacion";
-            double minimo = tiempoSimulacion*60;
+            
+            if (actual.Linea == N)
+            {
+                actual.Evento = evento;
+                return;
+            }
+            double minimo = actual.ProximaLlegadaCliente;
 
             if (actual.Reloj == 0 && !empezoSimulacion)
             {
@@ -1009,11 +1038,11 @@ namespace TP7
 
         private void limpiarClientes()
         {
-            int columnas = dgvClientes.Columns.Count;
-            for (int i = 1 /*la primera columna es la columna de línea, por eso no se borra */; i < columnas; )
+            for (int i = 1 /*la primera columna es la columna de línea, por eso no se borra */; i < dgvClientes.Columns.Count; )
             {
                 dgvClientes.Columns.RemoveAt(1);
             }
+            dgvClientes.Rows.Clear();
         }
 
         private bool validarCampos()
@@ -1029,9 +1058,9 @@ namespace TP7
                 MessageBox.Show("El número de lína desde dónde mostrar debe ser un número positivo mayor que 0", "Mostrar desde X línea", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (!(int.TryParse(txtTiempoSimulacion.Text, out tiempoSimulacion) && tiempoSimulacion > 0))
+            if (!(int.TryParse(txtN.Text, out N) && N > 0))
             {
-                MessageBox.Show("El tiempo de simulación debe ser un número positivo mayor que 0", "Tiempo de simulación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El número de lineas a simular debe ser un número positivo mayor que 0", "Tiempo de simulación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             if (!(double.TryParse(txtProbMayorEdad.Text, out probMayorEdad) && 1 > probMayorEdad && probMayorEdad >= 0 ))
@@ -1087,6 +1116,21 @@ namespace TP7
             if (!(double.TryParse(txtZo.Text, out z0) && z0 > 0))
             {
                 MessageBox.Show("El valor de z0 ser un número positivo mayor a 0", "T0", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!(double.TryParse(txtH.Text, out h) && h > 0 && 1%h == 0))
+            {
+                MessageBox.Show("El valor de h debe ser mayor a 0, y debe ser tal que 1/h dé como resultado un número entero.", "H", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!(double.TryParse(txtAlfa.Text, out alfa) && alfa > 0))
+            {
+                MessageBox.Show("El valor de Alfa debe ser un número positivo mayor a 0", "Alfa", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!(double.TryParse(txtBeta.Text, out beta) && beta > 0))
+            {
+                MessageBox.Show("El valor de Beta debe ser un número positivo mayor a 0", "Beta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;

@@ -33,8 +33,8 @@ namespace TP7
             this.lblLineas1 = new System.Windows.Forms.Label();
             this.txtLineas = new System.Windows.Forms.TextBox();
             this.gbxSimulacion = new System.Windows.Forms.GroupBox();
-            this.txtTiempoSimulacion = new System.Windows.Forms.TextBox();
-            this.lblTiempoSimulacion = new System.Windows.Forms.Label();
+            this.txtN = new System.Windows.Forms.TextBox();
+            this.lblN = new System.Windows.Forms.Label();
             this.txtMostrarDesde = new System.Windows.Forms.TextBox();
             this.lblLineas2 = new System.Windows.Forms.Label();
             this.rbtAlgunas = new System.Windows.Forms.RadioButton();
@@ -63,7 +63,12 @@ namespace TP7
             this.txtProbMayorEdad = new System.Windows.Forms.TextBox();
             this.lblProbMayorEdad = new System.Windows.Forms.Label();
             this.dgvClientes = new System.Windows.Forms.DataGridView();
+            this.linea2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSimular = new System.Windows.Forms.Button();
+            this.txtAlfa = new System.Windows.Forms.TextBox();
+            this.lblAlfa = new System.Windows.Forms.Label();
+            this.txtBeta = new System.Windows.Forms.TextBox();
+            this.lblBeta = new System.Windows.Forms.Label();
             this.linea1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.reloj = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -117,7 +122,6 @@ namespace TP7
             this.acTiempoOcupacionIrrelevante1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.acTiempoOcupacionIrrelevante2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.acTiempoOcupacionIrrelevante3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.linea2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFuncion)).BeginInit();
             this.gbxSimulacion.SuspendLayout();
             this.gbxParametros.SuspendLayout();
@@ -183,16 +187,17 @@ namespace TP7
             this.acTiempoOcupacionIrrelevante1,
             this.acTiempoOcupacionIrrelevante2,
             this.acTiempoOcupacionIrrelevante3});
-            this.dgvFuncion.Location = new System.Drawing.Point(12, 258);
+            this.dgvFuncion.Location = new System.Drawing.Point(12, 274);
             this.dgvFuncion.Name = "dgvFuncion";
             this.dgvFuncion.ReadOnly = true;
-            this.dgvFuncion.Size = new System.Drawing.Size(1880, 315);
+            this.dgvFuncion.Size = new System.Drawing.Size(1880, 320);
             this.dgvFuncion.TabIndex = 0;
+            this.dgvFuncion.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dgvFuncion_Scroll);
             // 
             // lblLineas1
             // 
             this.lblLineas1.AutoSize = true;
-            this.lblLineas1.Location = new System.Drawing.Point(94, 39);
+            this.lblLineas1.Location = new System.Drawing.Point(93, 71);
             this.lblLineas1.Name = "lblLineas1";
             this.lblLineas1.Size = new System.Drawing.Size(42, 13);
             this.lblLineas1.TabIndex = 1;
@@ -200,7 +205,7 @@ namespace TP7
             // 
             // txtLineas
             // 
-            this.txtLineas.Location = new System.Drawing.Point(142, 36);
+            this.txtLineas.Location = new System.Drawing.Point(141, 68);
             this.txtLineas.Name = "txtLineas";
             this.txtLineas.Size = new System.Drawing.Size(100, 20);
             this.txtLineas.TabIndex = 2;
@@ -208,9 +213,9 @@ namespace TP7
             // 
             // gbxSimulacion
             // 
-            this.gbxSimulacion.Controls.Add(this.txtTiempoSimulacion);
-            this.gbxSimulacion.Controls.Add(this.lblTiempoSimulacion);
+            this.gbxSimulacion.Controls.Add(this.txtN);
             this.gbxSimulacion.Controls.Add(this.txtMostrarDesde);
+            this.gbxSimulacion.Controls.Add(this.lblN);
             this.gbxSimulacion.Controls.Add(this.lblLineas2);
             this.gbxSimulacion.Controls.Add(this.rbtAlgunas);
             this.gbxSimulacion.Controls.Add(this.rbtTodas);
@@ -223,26 +228,25 @@ namespace TP7
             this.gbxSimulacion.TabStop = false;
             this.gbxSimulacion.Text = "Simulación";
             // 
-            // txtTiempoSimulacion
+            // txtN
             // 
-            this.txtTiempoSimulacion.Location = new System.Drawing.Point(311, 72);
-            this.txtTiempoSimulacion.Name = "txtTiempoSimulacion";
-            this.txtTiempoSimulacion.Size = new System.Drawing.Size(100, 20);
-            this.txtTiempoSimulacion.TabIndex = 8;
-            this.txtTiempoSimulacion.Text = "8";
+            this.txtN.Location = new System.Drawing.Point(307, 19);
+            this.txtN.Name = "txtN";
+            this.txtN.Size = new System.Drawing.Size(100, 20);
+            this.txtN.TabIndex = 8;
             // 
-            // lblTiempoSimulacion
+            // lblN
             // 
-            this.lblTiempoSimulacion.AutoSize = true;
-            this.lblTiempoSimulacion.Location = new System.Drawing.Point(161, 75);
-            this.lblTiempoSimulacion.Name = "lblTiempoSimulacion";
-            this.lblTiempoSimulacion.Size = new System.Drawing.Size(144, 13);
-            this.lblTiempoSimulacion.TabIndex = 7;
-            this.lblTiempoSimulacion.Text = "Tiempo de simulación (horas)";
+            this.lblN.AutoSize = true;
+            this.lblN.Location = new System.Drawing.Point(163, 22);
+            this.lblN.Name = "lblN";
+            this.lblN.Size = new System.Drawing.Size(138, 13);
+            this.lblN.TabIndex = 7;
+            this.lblN.Text = "Número de líneas a simular:";
             // 
             // txtMostrarDesde
             // 
-            this.txtMostrarDesde.Location = new System.Drawing.Point(378, 36);
+            this.txtMostrarDesde.Location = new System.Drawing.Point(377, 68);
             this.txtMostrarDesde.Name = "txtMostrarDesde";
             this.txtMostrarDesde.Size = new System.Drawing.Size(100, 20);
             this.txtMostrarDesde.TabIndex = 6;
@@ -251,7 +255,7 @@ namespace TP7
             // lblLineas2
             // 
             this.lblLineas2.AutoSize = true;
-            this.lblLineas2.Location = new System.Drawing.Point(248, 39);
+            this.lblLineas2.Location = new System.Drawing.Point(247, 71);
             this.lblLineas2.Name = "lblLineas2";
             this.lblLineas2.Size = new System.Drawing.Size(124, 13);
             this.lblLineas2.TabIndex = 5;
@@ -260,7 +264,7 @@ namespace TP7
             // rbtAlgunas
             // 
             this.rbtAlgunas.AutoSize = true;
-            this.rbtAlgunas.Location = new System.Drawing.Point(272, 13);
+            this.rbtAlgunas.Location = new System.Drawing.Point(271, 45);
             this.rbtAlgunas.Name = "rbtAlgunas";
             this.rbtAlgunas.Size = new System.Drawing.Size(171, 17);
             this.rbtAlgunas.TabIndex = 4;
@@ -271,7 +275,7 @@ namespace TP7
             // 
             this.rbtTodas.AutoSize = true;
             this.rbtTodas.Checked = true;
-            this.rbtTodas.Location = new System.Drawing.Point(129, 13);
+            this.rbtTodas.Location = new System.Drawing.Point(128, 45);
             this.rbtTodas.Name = "rbtTodas";
             this.rbtTodas.Size = new System.Drawing.Size(137, 17);
             this.rbtTodas.TabIndex = 3;
@@ -281,6 +285,10 @@ namespace TP7
             // 
             // gbxParametros
             // 
+            this.gbxParametros.Controls.Add(this.txtBeta);
+            this.gbxParametros.Controls.Add(this.lblBeta);
+            this.gbxParametros.Controls.Add(this.txtAlfa);
+            this.gbxParametros.Controls.Add(this.lblAlfa);
             this.gbxParametros.Controls.Add(this.txtH);
             this.gbxParametros.Controls.Add(this.lblH);
             this.gbxParametros.Controls.Add(this.btnRungeKutta);
@@ -303,16 +311,16 @@ namespace TP7
             this.gbxParametros.Controls.Add(this.lblRangoEdades);
             this.gbxParametros.Controls.Add(this.txtProbMayorEdad);
             this.gbxParametros.Controls.Add(this.lblProbMayorEdad);
-            this.gbxParametros.Location = new System.Drawing.Point(176, 127);
+            this.gbxParametros.Location = new System.Drawing.Point(104, 127);
             this.gbxParametros.Name = "gbxParametros";
-            this.gbxParametros.Size = new System.Drawing.Size(1651, 86);
+            this.gbxParametros.Size = new System.Drawing.Size(1697, 86);
             this.gbxParametros.TabIndex = 4;
             this.gbxParametros.TabStop = false;
             this.gbxParametros.Text = "Parámetros";
             // 
             // txtH
             // 
-            this.txtH.Location = new System.Drawing.Point(1452, 23);
+            this.txtH.Location = new System.Drawing.Point(1425, 23);
             this.txtH.Name = "txtH";
             this.txtH.Size = new System.Drawing.Size(51, 20);
             this.txtH.TabIndex = 21;
@@ -321,7 +329,7 @@ namespace TP7
             // lblH
             // 
             this.lblH.AutoSize = true;
-            this.lblH.Location = new System.Drawing.Point(1430, 26);
+            this.lblH.Location = new System.Drawing.Point(1403, 26);
             this.lblH.Name = "lblH";
             this.lblH.Size = new System.Drawing.Size(16, 13);
             this.lblH.TabIndex = 20;
@@ -330,7 +338,7 @@ namespace TP7
             // btnRungeKutta
             // 
             this.btnRungeKutta.Enabled = false;
-            this.btnRungeKutta.Location = new System.Drawing.Point(1516, 23);
+            this.btnRungeKutta.Location = new System.Drawing.Point(1587, 23);
             this.btnRungeKutta.Name = "btnRungeKutta";
             this.btnRungeKutta.Size = new System.Drawing.Size(77, 46);
             this.btnRungeKutta.TabIndex = 19;
@@ -340,7 +348,7 @@ namespace TP7
             // 
             // txtRangoTareaHasta
             // 
-            this.txtRangoTareaHasta.Location = new System.Drawing.Point(1247, 49);
+            this.txtRangoTareaHasta.Location = new System.Drawing.Point(1220, 49);
             this.txtRangoTareaHasta.Name = "txtRangoTareaHasta";
             this.txtRangoTareaHasta.Size = new System.Drawing.Size(51, 20);
             this.txtRangoTareaHasta.TabIndex = 18;
@@ -348,7 +356,7 @@ namespace TP7
             // 
             // txtRangoTareaDesde
             // 
-            this.txtRangoTareaDesde.Location = new System.Drawing.Point(1190, 49);
+            this.txtRangoTareaDesde.Location = new System.Drawing.Point(1163, 49);
             this.txtRangoTareaDesde.Name = "txtRangoTareaDesde";
             this.txtRangoTareaDesde.Size = new System.Drawing.Size(51, 20);
             this.txtRangoTareaDesde.TabIndex = 17;
@@ -357,7 +365,7 @@ namespace TP7
             // lblRangoTarea
             // 
             this.lblRangoTarea.AutoSize = true;
-            this.lblRangoTarea.Location = new System.Drawing.Point(854, 52);
+            this.lblRangoTarea.Location = new System.Drawing.Point(827, 52);
             this.lblRangoTarea.Name = "lblRangoTarea";
             this.lblRangoTarea.Size = new System.Drawing.Size(330, 13);
             this.lblRangoTarea.TabIndex = 16;
@@ -365,7 +373,7 @@ namespace TP7
             // 
             // txtTiempoOtraTarea
             // 
-            this.txtTiempoOtraTarea.Location = new System.Drawing.Point(1190, 23);
+            this.txtTiempoOtraTarea.Location = new System.Drawing.Point(1163, 23);
             this.txtTiempoOtraTarea.Name = "txtTiempoOtraTarea";
             this.txtTiempoOtraTarea.Size = new System.Drawing.Size(51, 20);
             this.txtTiempoOtraTarea.TabIndex = 15;
@@ -374,7 +382,7 @@ namespace TP7
             // lblTiempoOtraTarea
             // 
             this.lblTiempoOtraTarea.AutoSize = true;
-            this.lblTiempoOtraTarea.Location = new System.Drawing.Point(1052, 26);
+            this.lblTiempoOtraTarea.Location = new System.Drawing.Point(1025, 26);
             this.lblTiempoOtraTarea.Name = "lblTiempoOtraTarea";
             this.lblTiempoOtraTarea.Size = new System.Drawing.Size(132, 13);
             this.lblTiempoOtraTarea.TabIndex = 14;
@@ -382,7 +390,7 @@ namespace TP7
             // 
             // txtZo
             // 
-            this.txtZo.Location = new System.Drawing.Point(1359, 49);
+            this.txtZo.Location = new System.Drawing.Point(1332, 49);
             this.txtZo.Name = "txtZo";
             this.txtZo.Size = new System.Drawing.Size(51, 20);
             this.txtZo.TabIndex = 13;
@@ -391,7 +399,7 @@ namespace TP7
             // lblZo
             // 
             this.lblZo.AutoSize = true;
-            this.lblZo.Location = new System.Drawing.Point(1330, 52);
+            this.lblZo.Location = new System.Drawing.Point(1303, 52);
             this.lblZo.Name = "lblZo";
             this.lblZo.Size = new System.Drawing.Size(23, 13);
             this.lblZo.TabIndex = 12;
@@ -399,7 +407,7 @@ namespace TP7
             // 
             // txtTo
             // 
-            this.txtTo.Location = new System.Drawing.Point(1359, 23);
+            this.txtTo.Location = new System.Drawing.Point(1332, 23);
             this.txtTo.Name = "txtTo";
             this.txtTo.Size = new System.Drawing.Size(51, 20);
             this.txtTo.TabIndex = 11;
@@ -408,7 +416,7 @@ namespace TP7
             // lblTo
             // 
             this.lblTo.AutoSize = true;
-            this.lblTo.Location = new System.Drawing.Point(1330, 26);
+            this.lblTo.Location = new System.Drawing.Point(1303, 26);
             this.lblTo.Name = "lblTo";
             this.lblTo.Size = new System.Drawing.Size(23, 13);
             this.lblTo.TabIndex = 10;
@@ -416,7 +424,7 @@ namespace TP7
             // 
             // txtRangoEntenderHasta
             // 
-            this.txtRangoEntenderHasta.Location = new System.Drawing.Point(784, 49);
+            this.txtRangoEntenderHasta.Location = new System.Drawing.Point(757, 49);
             this.txtRangoEntenderHasta.Name = "txtRangoEntenderHasta";
             this.txtRangoEntenderHasta.Size = new System.Drawing.Size(51, 20);
             this.txtRangoEntenderHasta.TabIndex = 9;
@@ -424,7 +432,7 @@ namespace TP7
             // 
             // txtRangoEntenderDesde
             // 
-            this.txtRangoEntenderDesde.Location = new System.Drawing.Point(727, 49);
+            this.txtRangoEntenderDesde.Location = new System.Drawing.Point(700, 49);
             this.txtRangoEntenderDesde.Name = "txtRangoEntenderDesde";
             this.txtRangoEntenderDesde.Size = new System.Drawing.Size(51, 20);
             this.txtRangoEntenderDesde.TabIndex = 8;
@@ -433,7 +441,7 @@ namespace TP7
             // lblRangoEntender
             // 
             this.lblRangoEntender.AutoSize = true;
-            this.lblRangoEntender.Location = new System.Drawing.Point(393, 52);
+            this.lblRangoEntender.Location = new System.Drawing.Point(366, 52);
             this.lblRangoEntender.Name = "lblRangoEntender";
             this.lblRangoEntender.Size = new System.Drawing.Size(328, 13);
             this.lblRangoEntender.TabIndex = 7;
@@ -441,7 +449,7 @@ namespace TP7
             // 
             // txtTasaLlegada
             // 
-            this.txtTasaLlegada.Location = new System.Drawing.Point(727, 23);
+            this.txtTasaLlegada.Location = new System.Drawing.Point(700, 23);
             this.txtTasaLlegada.Name = "txtTasaLlegada";
             this.txtTasaLlegada.Size = new System.Drawing.Size(51, 20);
             this.txtTasaLlegada.TabIndex = 6;
@@ -450,7 +458,7 @@ namespace TP7
             // lblTasaLlegada
             // 
             this.lblTasaLlegada.AutoSize = true;
-            this.lblTasaLlegada.Location = new System.Drawing.Point(495, 26);
+            this.lblTasaLlegada.Location = new System.Drawing.Point(468, 26);
             this.lblTasaLlegada.Name = "lblTasaLlegada";
             this.lblTasaLlegada.Size = new System.Drawing.Size(226, 13);
             this.lblTasaLlegada.TabIndex = 5;
@@ -458,7 +466,7 @@ namespace TP7
             // 
             // txtRangoEdadesHasta
             // 
-            this.txtRangoEdadesHasta.Location = new System.Drawing.Point(325, 49);
+            this.txtRangoEdadesHasta.Location = new System.Drawing.Point(298, 49);
             this.txtRangoEdadesHasta.Name = "txtRangoEdadesHasta";
             this.txtRangoEdadesHasta.Size = new System.Drawing.Size(51, 20);
             this.txtRangoEdadesHasta.TabIndex = 4;
@@ -466,7 +474,7 @@ namespace TP7
             // 
             // txtRangoEdadesDesde
             // 
-            this.txtRangoEdadesDesde.Location = new System.Drawing.Point(268, 49);
+            this.txtRangoEdadesDesde.Location = new System.Drawing.Point(241, 49);
             this.txtRangoEdadesDesde.Name = "txtRangoEdadesDesde";
             this.txtRangoEdadesDesde.Size = new System.Drawing.Size(51, 20);
             this.txtRangoEdadesDesde.TabIndex = 3;
@@ -475,7 +483,7 @@ namespace TP7
             // lblRangoEdades
             // 
             this.lblRangoEdades.AutoSize = true;
-            this.lblRangoEdades.Location = new System.Drawing.Point(59, 52);
+            this.lblRangoEdades.Location = new System.Drawing.Point(32, 52);
             this.lblRangoEdades.Name = "lblRangoEdades";
             this.lblRangoEdades.Size = new System.Drawing.Size(203, 13);
             this.lblRangoEdades.TabIndex = 2;
@@ -483,7 +491,7 @@ namespace TP7
             // 
             // txtProbMayorEdad
             // 
-            this.txtProbMayorEdad.Location = new System.Drawing.Point(268, 23);
+            this.txtProbMayorEdad.Location = new System.Drawing.Point(241, 23);
             this.txtProbMayorEdad.Name = "txtProbMayorEdad";
             this.txtProbMayorEdad.Size = new System.Drawing.Size(51, 20);
             this.txtProbMayorEdad.TabIndex = 1;
@@ -492,7 +500,7 @@ namespace TP7
             // lblProbMayorEdad
             // 
             this.lblProbMayorEdad.AutoSize = true;
-            this.lblProbMayorEdad.Location = new System.Drawing.Point(72, 26);
+            this.lblProbMayorEdad.Location = new System.Drawing.Point(45, 26);
             this.lblProbMayorEdad.Name = "lblProbMayorEdad";
             this.lblProbMayorEdad.Size = new System.Drawing.Size(190, 13);
             this.lblProbMayorEdad.TabIndex = 0;
@@ -505,21 +513,63 @@ namespace TP7
             this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.linea2});
-            this.dgvClientes.Location = new System.Drawing.Point(12, 579);
+            this.dgvClientes.Location = new System.Drawing.Point(12, 629);
             this.dgvClientes.Name = "dgvClientes";
             this.dgvClientes.ReadOnly = true;
-            this.dgvClientes.Size = new System.Drawing.Size(1880, 270);
+            this.dgvClientes.Size = new System.Drawing.Size(1880, 320);
             this.dgvClientes.TabIndex = 5;
+            this.dgvClientes.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dgvClientes_Scroll);
+            // 
+            // linea2
+            // 
+            this.linea2.HeaderText = "Línea";
+            this.linea2.Name = "linea2";
+            this.linea2.ReadOnly = true;
+            this.linea2.Width = 50;
             // 
             // btnSimular
             // 
             this.btnSimular.Location = new System.Drawing.Point(917, 219);
             this.btnSimular.Name = "btnSimular";
-            this.btnSimular.Size = new System.Drawing.Size(75, 33);
+            this.btnSimular.Size = new System.Drawing.Size(75, 49);
             this.btnSimular.TabIndex = 20;
             this.btnSimular.Text = "Simular";
             this.btnSimular.UseVisualStyleBackColor = true;
             this.btnSimular.Click += new System.EventHandler(this.btnSimular_Click);
+            // 
+            // txtAlfa
+            // 
+            this.txtAlfa.Location = new System.Drawing.Point(1530, 23);
+            this.txtAlfa.Name = "txtAlfa";
+            this.txtAlfa.Size = new System.Drawing.Size(51, 20);
+            this.txtAlfa.TabIndex = 23;
+            this.txtAlfa.Text = "0,0219";
+            // 
+            // lblAlfa
+            // 
+            this.lblAlfa.AutoSize = true;
+            this.lblAlfa.Location = new System.Drawing.Point(1496, 26);
+            this.lblAlfa.Name = "lblAlfa";
+            this.lblAlfa.Size = new System.Drawing.Size(28, 13);
+            this.lblAlfa.TabIndex = 22;
+            this.lblAlfa.Text = "Alfa:";
+            // 
+            // txtBeta
+            // 
+            this.txtBeta.Location = new System.Drawing.Point(1530, 49);
+            this.txtBeta.Name = "txtBeta";
+            this.txtBeta.Size = new System.Drawing.Size(51, 20);
+            this.txtBeta.TabIndex = 25;
+            this.txtBeta.Text = "0,102";
+            // 
+            // lblBeta
+            // 
+            this.lblBeta.AutoSize = true;
+            this.lblBeta.Location = new System.Drawing.Point(1496, 52);
+            this.lblBeta.Name = "lblBeta";
+            this.lblBeta.Size = new System.Drawing.Size(32, 13);
+            this.lblBeta.TabIndex = 24;
+            this.lblBeta.Text = "Beta:";
             // 
             // linea1
             // 
@@ -554,12 +604,14 @@ namespace TP7
             this.tiempoLlegadaCliente.HeaderText = "Tiempo Llegada Cliente";
             this.tiempoLlegadaCliente.Name = "tiempoLlegadaCliente";
             this.tiempoLlegadaCliente.ReadOnly = true;
+            this.tiempoLlegadaCliente.Width = 50;
             // 
             // proximaLlegadaCliente
             // 
             this.proximaLlegadaCliente.HeaderText = "Próxima Llegada Cliente";
             this.proximaLlegadaCliente.Name = "proximaLlegadaCliente";
             this.proximaLlegadaCliente.ReadOnly = true;
+            this.proximaLlegadaCliente.Width = 50;
             // 
             // rndMayorEdad
             // 
@@ -601,36 +653,42 @@ namespace TP7
             this.tiempoFinHacerEntender.HeaderText = "Tiempo Fin Hacer Entender";
             this.tiempoFinHacerEntender.Name = "tiempoFinHacerEntender";
             this.tiempoFinHacerEntender.ReadOnly = true;
+            this.tiempoFinHacerEntender.Width = 80;
             // 
             // proximoFinHacerEntender1
             // 
             this.proximoFinHacerEntender1.HeaderText = "Próximo fin hacer entender 1";
             this.proximoFinHacerEntender1.Name = "proximoFinHacerEntender1";
             this.proximoFinHacerEntender1.ReadOnly = true;
+            this.proximoFinHacerEntender1.Width = 80;
             // 
             // proximoFinHacerEntender2
             // 
             this.proximoFinHacerEntender2.HeaderText = "Próximo fin hacer entender 2";
             this.proximoFinHacerEntender2.Name = "proximoFinHacerEntender2";
             this.proximoFinHacerEntender2.ReadOnly = true;
+            this.proximoFinHacerEntender2.Width = 80;
             // 
             // proximoFinHacerEntender3
             // 
             this.proximoFinHacerEntender3.HeaderText = "Próximo fin hacer entender 3";
             this.proximoFinHacerEntender3.Name = "proximoFinHacerEntender3";
             this.proximoFinHacerEntender3.ReadOnly = true;
+            this.proximoFinHacerEntender3.Width = 80;
             // 
             // tiempoProximaTarea
             // 
             this.tiempoProximaTarea.HeaderText = "Tiempo Próxima Tarea";
             this.tiempoProximaTarea.Name = "tiempoProximaTarea";
             this.tiempoProximaTarea.ReadOnly = true;
+            this.tiempoProximaTarea.Width = 80;
             // 
             // proximaTarea
             // 
             this.proximaTarea.HeaderText = "Próxima tarea";
             this.proximaTarea.Name = "proximaTarea";
             this.proximaTarea.ReadOnly = true;
+            this.proximaTarea.Width = 80;
             // 
             // rndDependienteTarea
             // 
@@ -679,126 +737,147 @@ namespace TP7
             this.tiempoFinOtraTarea.HeaderText = "Tiempo fin otra tarea";
             this.tiempoFinOtraTarea.Name = "tiempoFinOtraTarea";
             this.tiempoFinOtraTarea.ReadOnly = true;
+            this.tiempoFinOtraTarea.Width = 80;
             // 
             // proximoFinOtraTarea1
             // 
             this.proximoFinOtraTarea1.HeaderText = "Próximo fin otra tarea 1";
             this.proximoFinOtraTarea1.Name = "proximoFinOtraTarea1";
             this.proximoFinOtraTarea1.ReadOnly = true;
+            this.proximoFinOtraTarea1.Width = 80;
             // 
             // proximoFinOtraTarea2
             // 
             this.proximoFinOtraTarea2.HeaderText = "Próximo fin otra tarea 2";
             this.proximoFinOtraTarea2.Name = "proximoFinOtraTarea2";
             this.proximoFinOtraTarea2.ReadOnly = true;
+            this.proximoFinOtraTarea2.Width = 80;
             // 
             // proximoFinOtraTarea3
             // 
             this.proximoFinOtraTarea3.HeaderText = "Próximo fin otra tarea 3";
             this.proximoFinOtraTarea3.Name = "proximoFinOtraTarea3";
             this.proximoFinOtraTarea3.ReadOnly = true;
+            this.proximoFinOtraTarea3.Width = 80;
             // 
             // estadoDependiente1
             // 
             this.estadoDependiente1.HeaderText = "Estado dependiente 1";
             this.estadoDependiente1.Name = "estadoDependiente1";
             this.estadoDependiente1.ReadOnly = true;
+            this.estadoDependiente1.Width = 80;
             // 
             // horaComienzoOcupacion1
             // 
             this.horaComienzoOcupacion1.HeaderText = "Hora comienzo ocupación 1";
             this.horaComienzoOcupacion1.Name = "horaComienzoOcupacion1";
             this.horaComienzoOcupacion1.ReadOnly = true;
+            this.horaComienzoOcupacion1.Width = 80;
             // 
             // estadoDependiente2
             // 
             this.estadoDependiente2.HeaderText = "Estado dependiente 2";
             this.estadoDependiente2.Name = "estadoDependiente2";
             this.estadoDependiente2.ReadOnly = true;
+            this.estadoDependiente2.Width = 80;
             // 
             // horaComienzoOcupacion2
             // 
             this.horaComienzoOcupacion2.HeaderText = "Hora comienzo ocupación 2";
             this.horaComienzoOcupacion2.Name = "horaComienzoOcupacion2";
             this.horaComienzoOcupacion2.ReadOnly = true;
+            this.horaComienzoOcupacion2.Width = 80;
             // 
             // estadoDependiente3
             // 
             this.estadoDependiente3.HeaderText = "Estado dependiente 3";
             this.estadoDependiente3.Name = "estadoDependiente3";
             this.estadoDependiente3.ReadOnly = true;
+            this.estadoDependiente3.Width = 80;
             // 
             // horaComienzoOcupacion3
             // 
             this.horaComienzoOcupacion3.HeaderText = "Hora comienzo ocupación 3";
             this.horaComienzoOcupacion3.Name = "horaComienzoOcupacion3";
             this.horaComienzoOcupacion3.ReadOnly = true;
+            this.horaComienzoOcupacion3.Width = 80;
             // 
             // colaAtencion
             // 
             this.colaAtencion.HeaderText = "Cola atención";
             this.colaAtencion.Name = "colaAtencion";
             this.colaAtencion.ReadOnly = true;
+            this.colaAtencion.Width = 50;
             // 
             // gradoOcupacionDependiente1
             // 
             this.gradoOcupacionDependiente1.HeaderText = "Grado de ocupación dependiente 1";
             this.gradoOcupacionDependiente1.Name = "gradoOcupacionDependiente1";
             this.gradoOcupacionDependiente1.ReadOnly = true;
+            this.gradoOcupacionDependiente1.Width = 80;
             // 
             // gradoOcupacionDependiente2
             // 
             this.gradoOcupacionDependiente2.HeaderText = "Grado de ocupación Dependiente 2";
             this.gradoOcupacionDependiente2.Name = "gradoOcupacionDependiente2";
             this.gradoOcupacionDependiente2.ReadOnly = true;
+            this.gradoOcupacionDependiente2.Width = 80;
             // 
             // gradoOcupacionDependiente3
             // 
             this.gradoOcupacionDependiente3.HeaderText = "Grado de ocupación Dependiente 3";
             this.gradoOcupacionDependiente3.Name = "gradoOcupacionDependiente3";
             this.gradoOcupacionDependiente3.ReadOnly = true;
+            this.gradoOcupacionDependiente3.Width = 80;
             // 
             // esperaPromedioCola
             // 
             this.esperaPromedioCola.HeaderText = "Espera promedio en cola";
             this.esperaPromedioCola.Name = "esperaPromedioCola";
             this.esperaPromedioCola.ReadOnly = true;
+            this.esperaPromedioCola.Width = 80;
             // 
             // cantidadPersonasAtendidas
             // 
             this.cantidadPersonasAtendidas.HeaderText = "Cantidad de personas atendidas";
             this.cantidadPersonasAtendidas.Name = "cantidadPersonasAtendidas";
             this.cantidadPersonasAtendidas.ReadOnly = true;
+            this.cantidadPersonasAtendidas.Width = 60;
             // 
             // porcentajeClientesAtendidosMayoresEdad
             // 
             this.porcentajeClientesAtendidosMayoresEdad.HeaderText = "Porcentaje clientes atendidos mayores de edad";
             this.porcentajeClientesAtendidosMayoresEdad.Name = "porcentajeClientesAtendidosMayoresEdad";
             this.porcentajeClientesAtendidosMayoresEdad.ReadOnly = true;
+            this.porcentajeClientesAtendidosMayoresEdad.Width = 80;
             // 
             // porcentajeOcupacionIrrelevante1
             // 
             this.porcentajeOcupacionIrrelevante1.HeaderText = "Porcentaje Ocupación Irrelevante 1";
             this.porcentajeOcupacionIrrelevante1.Name = "porcentajeOcupacionIrrelevante1";
             this.porcentajeOcupacionIrrelevante1.ReadOnly = true;
+            this.porcentajeOcupacionIrrelevante1.Width = 80;
             // 
             // porcentajeOcupacionIrrelevante2
             // 
             this.porcentajeOcupacionIrrelevante2.HeaderText = "Porcentaje Ocupación Irrelevante 2";
             this.porcentajeOcupacionIrrelevante2.Name = "porcentajeOcupacionIrrelevante2";
             this.porcentajeOcupacionIrrelevante2.ReadOnly = true;
+            this.porcentajeOcupacionIrrelevante2.Width = 80;
             // 
             // porcentajeOcupacionIrrelevante3
             // 
             this.porcentajeOcupacionIrrelevante3.HeaderText = "Porcentaje Ocupación Irrelevante 3";
             this.porcentajeOcupacionIrrelevante3.Name = "porcentajeOcupacionIrrelevante3";
             this.porcentajeOcupacionIrrelevante3.ReadOnly = true;
+            this.porcentajeOcupacionIrrelevante3.Width = 80;
             // 
             // tiempoMaximoPermanenciaSistemaMayorEdad
             // 
             this.tiempoMaximoPermanenciaSistemaMayorEdad.HeaderText = "Tiempo máximo de permanencia en sistema de Mayor de edad";
             this.tiempoMaximoPermanenciaSistemaMayorEdad.Name = "tiempoMaximoPermanenciaSistemaMayorEdad";
             this.tiempoMaximoPermanenciaSistemaMayorEdad.ReadOnly = true;
+            this.tiempoMaximoPermanenciaSistemaMayorEdad.Width = 80;
             // 
             // acTiempoOcupacion1
             // 
@@ -829,12 +908,14 @@ namespace TP7
             this.acClientesCola.HeaderText = "AC clientes en cola";
             this.acClientesCola.Name = "acClientesCola";
             this.acClientesCola.ReadOnly = true;
+            this.acClientesCola.Width = 80;
             // 
             // acPersonasAtendidasMayoresEdad
             // 
             this.acPersonasAtendidasMayoresEdad.HeaderText = "AC personas atendidas mayores de edad";
             this.acPersonasAtendidasMayoresEdad.Name = "acPersonasAtendidasMayoresEdad";
             this.acPersonasAtendidasMayoresEdad.ReadOnly = true;
+            this.acPersonasAtendidasMayoresEdad.Width = 80;
             // 
             // acTiempoOcupacionIrrelevante1
             // 
@@ -854,18 +935,11 @@ namespace TP7
             this.acTiempoOcupacionIrrelevante3.Name = "acTiempoOcupacionIrrelevante3";
             this.acTiempoOcupacionIrrelevante3.ReadOnly = true;
             // 
-            // linea2
-            // 
-            this.linea2.HeaderText = "Línea";
-            this.linea2.Name = "linea2";
-            this.linea2.ReadOnly = true;
-            this.linea2.Width = 50;
-            // 
             // frmOficinaAnses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1904, 861);
+            this.ClientSize = new System.Drawing.Size(1904, 961);
             this.Controls.Add(this.btnSimular);
             this.Controls.Add(this.dgvClientes);
             this.Controls.Add(this.gbxParametros);
@@ -873,6 +947,7 @@ namespace TP7
             this.Controls.Add(this.dgvFuncion);
             this.Name = "frmOficinaAnses";
             this.Text = "Oficina ANSES";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dgvFuncion)).EndInit();
             this.gbxSimulacion.ResumeLayout(false);
             this.gbxSimulacion.PerformLayout();
@@ -913,13 +988,18 @@ namespace TP7
         private System.Windows.Forms.TextBox txtRangoTareaHasta;
         private System.Windows.Forms.TextBox txtRangoTareaDesde;
         private System.Windows.Forms.Label lblRangoTarea;
-        private System.Windows.Forms.TextBox txtTiempoSimulacion;
-        private System.Windows.Forms.Label lblTiempoSimulacion;
+        private System.Windows.Forms.TextBox txtN;
+        private System.Windows.Forms.Label lblN;
         private System.Windows.Forms.DataGridView dgvClientes;
         private System.Windows.Forms.Button btnRungeKutta;
         private System.Windows.Forms.Button btnSimular;
         private System.Windows.Forms.TextBox txtH;
         private System.Windows.Forms.Label lblH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn linea2;
+        private System.Windows.Forms.TextBox txtBeta;
+        private System.Windows.Forms.Label lblBeta;
+        private System.Windows.Forms.TextBox txtAlfa;
+        private System.Windows.Forms.Label lblAlfa;
         private System.Windows.Forms.DataGridViewTextBoxColumn linea1;
         private System.Windows.Forms.DataGridViewTextBoxColumn evento;
         private System.Windows.Forms.DataGridViewTextBoxColumn reloj;
@@ -973,7 +1053,6 @@ namespace TP7
         private System.Windows.Forms.DataGridViewTextBoxColumn acTiempoOcupacionIrrelevante1;
         private System.Windows.Forms.DataGridViewTextBoxColumn acTiempoOcupacionIrrelevante2;
         private System.Windows.Forms.DataGridViewTextBoxColumn acTiempoOcupacionIrrelevante3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn linea2;
     }
 }
 
