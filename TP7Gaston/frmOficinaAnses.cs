@@ -45,6 +45,18 @@ namespace TP7
             this.dgvClientes.FirstDisplayedScrollingRowIndex = this.dgvFuncion.FirstDisplayedScrollingRowIndex;
         }
 
+        private void rbtAlgunas_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtAlgunas.Checked)
+            {
+                txtLineas.Enabled = txtMostrarDesde.Enabled = true;
+            }
+            else
+            {
+                txtLineas.Enabled = txtMostrarDesde.Enabled = false;
+            }
+        }
+
         public frmOficinaAnses()
         {
             InitializeComponent();
@@ -207,7 +219,7 @@ namespace TP7
                             actual.Dependientes[0].ClienteAtendido.Estado = "";
                             actual.Dependientes[0].ClienteAtendido.HoraEntradaCola = -1;
                             actual.Dependientes[0].ClienteAtendido.Edad = -1;
-                            actual.Dependientes[0].ClienteAtendido.Atendido = true;
+                            actual.Dependientes[0].ClienteAtendido.Atendido = (rbtTodas.Checked || (rbtAlgunas.Checked && actual.Linea >= mostrarDesde && actual.Linea < mostrarDesde + lineas) || terminoSimulacion) ? true: false;
                             actual.Dependientes[0].ClienteAtendido = null; // saco al cliente del sistema
 
                             // si el dependiente tiene tareas para hacer
@@ -281,7 +293,7 @@ namespace TP7
                             actual.Dependientes[1].ClienteAtendido.Estado = "";
                             actual.Dependientes[1].ClienteAtendido.HoraEntradaCola = -1;
                             actual.Dependientes[1].ClienteAtendido.Edad = -1;
-                            actual.Dependientes[1].ClienteAtendido.Atendido = true;
+                            actual.Dependientes[1].ClienteAtendido.Atendido = (rbtTodas.Checked || (rbtAlgunas.Checked && actual.Linea >= mostrarDesde && actual.Linea < mostrarDesde + lineas) || terminoSimulacion) ? true : false;
                             actual.Dependientes[1].ClienteAtendido = null; // saco al cliente del sistema
 
                             // si el dependiente tiene tareas para hacer
@@ -353,7 +365,7 @@ namespace TP7
                             actual.Dependientes[2].ClienteAtendido.Estado = "";
                             actual.Dependientes[2].ClienteAtendido.HoraEntradaCola = -1;
                             actual.Dependientes[2].ClienteAtendido.Edad = -1;
-                            actual.Dependientes[2].ClienteAtendido.Atendido = true;
+                            actual.Dependientes[2].ClienteAtendido.Atendido = (rbtTodas.Checked || (rbtAlgunas.Checked && actual.Linea >= mostrarDesde && actual.Linea < mostrarDesde + lineas) || terminoSimulacion) ? true : false;
                             actual.Dependientes[2].ClienteAtendido = null; // saco al cliente del sistema
 
                             // si el dependiente tiene tareas para hacer
@@ -622,6 +634,11 @@ namespace TP7
                             }
 
                             terminoSimulacion = true;
+                            for (int i = 34; i < 44; i++)
+                            {
+                                dgvFuncion.Rows[dgvFuncion.Rows.Count - 1].Cells[i].Style.BackColor = Color.LightGreen;
+                            }
+                            
                             break;
                     }
                     calcularEstadisticas(actual);
@@ -891,7 +908,7 @@ namespace TP7
                 Cliente c = clientes.ElementAt(k);
                 if (c.Estado == "")
                 {
-                    if (c.Atendido && (rbtTodas.Checked))
+                    if (c.Atendido && (rbtTodas.Checked || (rbtAlgunas.Checked && actual.Linea >= mostrarDesde && actual.Linea < mostrarDesde + lineas) || terminoSimulacion))
                     {
                         dgvClientes.Rows[dgvClientes.Rows.Count - 1].Cells[k + 1].Style.BackColor = Color.LightGreen;
                         c.Atendido = false;
