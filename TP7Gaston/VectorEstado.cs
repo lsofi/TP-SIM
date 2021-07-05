@@ -50,6 +50,7 @@ namespace TP7
         private double acTiempoOcupacionIrrelevante1;
         private double acTiempoOcupacionIrrelevante2;
         private double acTiempoOcupacionIrrelevante3;
+        private double acClientesAtendidos;
 
         public int Linea { get => linea; set => linea = value; }
         public string Evento { get => evento; set => evento = value; }
@@ -90,6 +91,6 @@ namespace TP7
         public double AcTiempoOcupacionIrrelevante1 { get => acTiempoOcupacionIrrelevante1; set => acTiempoOcupacionIrrelevante1 = value; }
         public double AcTiempoOcupacionIrrelevante2 { get => acTiempoOcupacionIrrelevante2; set => acTiempoOcupacionIrrelevante2 = value; }
         public double AcTiempoOcupacionIrrelevante3 { get => acTiempoOcupacionIrrelevante3; set => acTiempoOcupacionIrrelevante3 = value; }
-        
+        public double AcClientesAtendidos { get => acClientesAtendidos; set => acClientesAtendidos = value; }
     }
 }

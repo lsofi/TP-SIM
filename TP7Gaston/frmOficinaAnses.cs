@@ -76,7 +76,7 @@ namespace TP7
 
                 //comienzo de la simulacion en sí
                 tasaClientes = tasaClientes / 60; // se pasa la tasa de clientes a clientes/minuto
-                expNeg = new ExponencialNegativa(1 / tasaClientes);
+                expNeg = new ExponencialNegativa(tasaClientes);
                 unifHacerEntender = new Uniforme(rangoEntenderDesde, rangoEntenderHasta);
                 unifOtraTarea = new Uniforme(rangoTareaDesde, rangoTareaHasta);
 
@@ -202,7 +202,8 @@ namespace TP7
                             actual.Dependientes[0].ProximoFinHacerEntender = -1;
 
                             //se suman los acumuladores para las estadísticas
-                            actual.CantidadPersonasAtendidas++;
+                            actual.AcClientesAtendidos++;
+                            if(actual.Reloj <= 8*60) actual.CantidadPersonasAtendidas++;
                             actual.AcTiempoOcupacion1 += actual.Reloj - actual.Dependientes[0].HoraInicioOcupacion;
                             if (actual.Dependientes[0].ClienteAtendido.Edad > 0) //si el cliente que terminó de atender es mayor de edad
                             {
@@ -273,9 +274,10 @@ namespace TP7
 
                             // por defecto, se reinicia el proximo fin de hacer entender del dependiente
                             actual.Dependientes[1].ProximoFinHacerEntender = -1;
-                            
+
                             //se suman los acumuladores para las estadísticas
-                            actual.CantidadPersonasAtendidas++;
+                            actual.AcClientesAtendidos++;
+                            if (actual.Reloj <= 8 * 60) actual.CantidadPersonasAtendidas++;
                             actual.AcTiempoOcupacion2 += actual.Reloj - actual.Dependientes[1].HoraInicioOcupacion;
                             if (actual.Dependientes[1].ClienteAtendido.Edad > 0) //si el cliente que terminó de atender es mayor de edad
                             {
@@ -348,7 +350,8 @@ namespace TP7
                             actual.Dependientes[2].ProximoFinHacerEntender = -1;
 
                             //se suman los acumuladores para las estadísticas
-                            actual.CantidadPersonasAtendidas++;
+                            actual.AcClientesAtendidos++;
+                            if (actual.Reloj <= 8 * 60) actual.CantidadPersonasAtendidas++;
                             actual.AcTiempoOcupacion3 += actual.Reloj - actual.Dependientes[2].HoraInicioOcupacion;
                             if (actual.Dependientes[2].ClienteAtendido.Edad > 0) //si el cliente que terminó de atender es mayor de edad
                             {
@@ -634,10 +637,6 @@ namespace TP7
                             }
 
                             terminoSimulacion = true;
-                            for (int i = 34; i < 44; i++)
-                            {
-                                dgvFuncion.Rows[dgvFuncion.Rows.Count - 1].Cells[i].Style.BackColor = Color.LightGreen;
-                            }
                             
                             break;
                     }
@@ -649,6 +648,10 @@ namespace TP7
                         agregarClientesDGV(actual, clientes);
                     }
 
+                }
+                for (int i = 34; i < 44; i++)
+                {
+                    dgvFuncion.Rows[dgvFuncion.Rows.Count - 1].Cells[i].Style.BackColor = Color.LightGreen;
                 }
             }
         }
@@ -677,7 +680,7 @@ namespace TP7
 
             // la cantidad de personas atendidas se tiene que calcular en los fines de atención de clientes.
 
-            actual.PorcentajeClientesAtendidosMayoresEdad = actual.CantidadPersonasAtendidas == 0 ? 0 : 100 * actual.AcPersonasAtendidasMayoresEdad / actual.CantidadPersonasAtendidas;
+            actual.PorcentajeClientesAtendidosMayoresEdad = actual.AcClientesAtendidos == 0 ? 0 : 100 * actual.AcPersonasAtendidasMayoresEdad / actual.AcClientesAtendidos;
             actual.PorcentajeOcupacionIrrelevante1 = actual.AcTiempoOcupacion1 == 0 ? 0 : 100 * actual.AcTiempoOcupacionIrrelevante1 / actual.AcTiempoOcupacion1;
             actual.PorcentajeOcupacionIrrelevante2 = actual.AcTiempoOcupacion2 == 0 ? 0 : 100 * actual.AcTiempoOcupacionIrrelevante2 / actual.AcTiempoOcupacion2;
             actual.PorcentajeOcupacionIrrelevante3 = actual.AcTiempoOcupacion3 == 0 ? 0 : 100 * actual.AcTiempoOcupacionIrrelevante3 / actual.AcTiempoOcupacion3;
@@ -694,14 +697,14 @@ namespace TP7
                 rndFinOtraTarea, tiempoFinOtraTarea, proximoFinOtraTarea1, proximoFinOtraTarea2, proximoFinOtraTarea3, estadoDependiente1, horaComienzoOcupacion1, estadoDependiente2, horaComienzoOcupacion2, 
                 estadoDependiente3, horaComienzoOcupacion3, colaAtencion, gradoOcupacionDependiente1, gradoOcupacionDependiente2, gradoOcupacionDependiente3, esperaPromedioCola, cantidadPersonasAtendidas, 
                 porcentajeClientesAtendidosMayoresEdad, porcentajeOcupacionIrrelevante1, porcentajeOcupacionIrrelevante2, porcentajeOcupacionIrrelevante3, tiempoMaximoPermanenciaSistemaMayorEdad, acTiempoOcupacion1, 
-                acTiempoOcupacion2, acTiempoOcupacion3, acTiempoEspera, acClientesCola, acPersonasAtendidasMayoresEdad, acTiempoOcupacionIrrelevante1, acTiempoOcupacionIrrelevante2, acTiempoOcupacionIrrelevante3;
+                acTiempoOcupacion2, acTiempoOcupacion3, acTiempoEspera, acClientesCola, acPersonasAtendidasMayoresEdad, acTiempoOcupacionIrrelevante1, acTiempoOcupacionIrrelevante2, acTiempoOcupacionIrrelevante3, acClientesAtendidos;
 
             rndLlegadaCliente = tiempoLlegadaCliente = proximaLlegadaCliente = rndMayorEdad = esMayorEdad = rndEdad = edad = rndFinHacerEntender = tiempoFinHacerEntender = proximoFinHacerEntender1 =
                 proximoFinHacerEntender2 = proximoFinHacerEntender3 = tiempoProximaTarea = proximaTarea = rndDependienteTarea = dependienteTarea = tareasDependiente1 = tareasDependiente2 = tareasDependiente3 =
                 rndFinOtraTarea = tiempoFinOtraTarea = proximoFinOtraTarea1 = proximoFinOtraTarea2 = proximoFinOtraTarea3 = estadoDependiente1 = horaComienzoOcupacion1 = estadoDependiente2 = horaComienzoOcupacion2 =
                 estadoDependiente3 = horaComienzoOcupacion3 = colaAtencion = gradoOcupacionDependiente1 = gradoOcupacionDependiente2 = gradoOcupacionDependiente3 = esperaPromedioCola = cantidadPersonasAtendidas =
                 porcentajeClientesAtendidosMayoresEdad = porcentajeOcupacionIrrelevante1 = porcentajeOcupacionIrrelevante2 = porcentajeOcupacionIrrelevante3 = tiempoMaximoPermanenciaSistemaMayorEdad = acTiempoOcupacion1 =
-                acTiempoOcupacion2 = acTiempoOcupacion3 = acTiempoEspera = acClientesCola = acPersonasAtendidasMayoresEdad = acTiempoOcupacionIrrelevante1 = acTiempoOcupacionIrrelevante2 = acTiempoOcupacionIrrelevante3 = "";
+                acTiempoOcupacion2 = acTiempoOcupacion3 = acTiempoEspera = acClientesCola = acPersonasAtendidasMayoresEdad = acTiempoOcupacionIrrelevante1 = acTiempoOcupacionIrrelevante2 = acTiempoOcupacionIrrelevante3 = acClientesAtendidos = "";
 
             if (actual.RndLlegadaCliente > 0) rndLlegadaCliente = Math.Round(actual.RndLlegadaCliente, 2).ToString();
             if (actual.TiempoLlegadaCliente > 0) tiempoLlegadaCliente = Math.Round(actual.TiempoLlegadaCliente, 2).ToString();
@@ -753,13 +756,14 @@ namespace TP7
             acTiempoOcupacionIrrelevante1 = Math.Round(actual.AcTiempoOcupacionIrrelevante1, 2).ToString();
             acTiempoOcupacionIrrelevante2 = Math.Round(actual.AcTiempoOcupacionIrrelevante2, 2).ToString();
             acTiempoOcupacionIrrelevante3 = Math.Round(actual.AcTiempoOcupacionIrrelevante3, 2).ToString();
+            acClientesAtendidos = actual.AcClientesAtendidos.ToString();
 
             dgvFuncion.Rows.Add(linea, evento, reloj, rndLlegadaCliente, tiempoLlegadaCliente, proximaLlegadaCliente, rndMayorEdad, esMayorEdad, rndEdad, edad, rndFinHacerEntender, tiempoFinHacerEntender, proximoFinHacerEntender1,
                 proximoFinHacerEntender2, proximoFinHacerEntender3, tiempoProximaTarea, proximaTarea, rndDependienteTarea, dependienteTarea, tareasDependiente1, tareasDependiente2, tareasDependiente3,
                 rndFinOtraTarea, tiempoFinOtraTarea, proximoFinOtraTarea1, proximoFinOtraTarea2, proximoFinOtraTarea3, estadoDependiente1, horaComienzoOcupacion1, estadoDependiente2, horaComienzoOcupacion2,
                 estadoDependiente3, horaComienzoOcupacion3, colaAtencion, gradoOcupacionDependiente1, gradoOcupacionDependiente2, gradoOcupacionDependiente3, esperaPromedioCola, cantidadPersonasAtendidas,
                 porcentajeClientesAtendidosMayoresEdad, porcentajeOcupacionIrrelevante1, porcentajeOcupacionIrrelevante2, porcentajeOcupacionIrrelevante3, tiempoMaximoPermanenciaSistemaMayorEdad, acTiempoOcupacion1,
-                acTiempoOcupacion2, acTiempoOcupacion3, acTiempoEspera, acClientesCola, acPersonasAtendidasMayoresEdad, acTiempoOcupacionIrrelevante1, acTiempoOcupacionIrrelevante2, acTiempoOcupacionIrrelevante3);
+                acTiempoOcupacion2, acTiempoOcupacion3, acTiempoEspera, acClientesCola, acPersonasAtendidasMayoresEdad, acTiempoOcupacionIrrelevante1, acTiempoOcupacionIrrelevante2, acTiempoOcupacionIrrelevante3, acClientesAtendidos);
 
         }
         private void agregarClientesDGV(VectorEstado actual, List<Cliente> clientes)
@@ -1029,6 +1033,7 @@ namespace TP7
             actual.AcTiempoOcupacionIrrelevante1 = anterior.AcTiempoOcupacionIrrelevante1;
             actual.AcTiempoOcupacionIrrelevante2 = anterior.AcTiempoOcupacionIrrelevante2;
             actual.AcTiempoOcupacionIrrelevante3 = anterior.AcTiempoOcupacionIrrelevante3;
+            actual.AcClientesAtendidos = anterior.AcClientesAtendidos;
 
         }
 
@@ -1135,7 +1140,7 @@ namespace TP7
                 MessageBox.Show("El valor de z0 ser un número positivo mayor a 0", "T0", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (!(double.TryParse(txtH.Text, out h) && h > 0 && 1%h == 0))
+            if (!(double.TryParse(txtH.Text, out h) && h > 0 && 1.0 % h == 0))
             {
                 MessageBox.Show("El valor de h debe ser mayor a 0, y debe ser tal que 1/h dé como resultado un número entero.", "H", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;

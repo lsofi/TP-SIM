@@ -220,6 +220,7 @@ namespace TP7
             this.ClientSize = new System.Drawing.Size(1484, 661);
             this.Controls.Add(this.dgvRungeKutta);
             this.Name = "frmRungeKutta";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRungeKutta";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmRungeKutta_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRungeKutta)).EndInit();
