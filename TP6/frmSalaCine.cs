@@ -55,7 +55,7 @@ namespace TP5
             if (validarCampos())
             {
                 btnMostrarLlenado.Enabled = btnMostrarVaciado.Enabled = true;
-                dgvFuncion.Rows.Clear();
+                dgvFuncion.Rows.Clear();    
                 limpiarClientes();
                 dgvFunciones.Rows.Clear();
                 if (frmRKVaciado != null) frmRKVaciado.Close();
@@ -195,6 +195,7 @@ namespace TP5
 
                             case "fin_compra":
                                 resetearCampos();
+
                                 if (actual.PersonasEnColaSala == 0 && ingresoASala && actual.EstadoPortero != "interrumpido")
                                 {
                                     actual.RndFinEntrada = random.NextDouble();
@@ -213,6 +214,7 @@ namespace TP5
 
                                 actual.TiempoOcupacionBoletero += actual.Reloj - actual.Boletero.InicioOcupacion;
 
+                                //si hay gente en la cola de la boleteria, y no empezó la pelicula, se toma a un cliente y se hace un nuevo fin compra
                                 if (actual.Boleteria.Count != 0 && !empezoPelicula)
                                 {
                                     clienteAtendido = actual.Boleteria.Dequeue();
@@ -226,7 +228,7 @@ namespace TP5
                                     actual.ProximoFinCompra = actual.Reloj + actual.FinCompra;
                                     actual.Boletero.InicioOcupacion = actual.Reloj;
                                 }
-                                else
+                                else // si no, el boletero queda libre
                                 {
                                     actual.Boletero.Estado = "libre";
                                     actual.ProximoFinCompra = -1;

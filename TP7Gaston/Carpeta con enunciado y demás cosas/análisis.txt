@@ -1,0 +1,35 @@
+Eventos				Distribución
+llegada_cliente			-(65/60')*LN(1-RND)
+fin_hacer_entender		RK o U(1',2')
+inicio_otra_tarea		20'
+fin_otra_tarea			U(5',8')
+fin_simulacion			480'
+
+Objetos		Atributo			Estado
+Cliente		Edad, hora entrada cola, estado	{Esperando atención (EA), Siendo atendido (SA)}
+Dependiente(i)	Hora comienzo ocupación, estado	{Libre, Atendiendo, Otra tarea}
+i=1,2,3
+
+Colas
+cola_atencion
+
+Otros detalles
+Distribución edad mayores U(70,90)
+Runge Kutta:
+d^2T/de^2 = 0,0219*(dT/de)^(1/2) + 0,102*T
+T(70) = 1, dT/de(70) = 0,04
+dT/de = z
+dz/de = 0,0219*Z^(1/2) + 0,102*T
+
+Observaciones
+- Cuando pasan los 20 minutos, se elige a un dependiente random y se espera a que termine su tarea actual, ya sea atendiendo o haciendo otra tarea, para que empiece el tiempo hasta que termine.
+- Las tareas se acumulan, entonces si el dependiente está haciendo una tarea, y llega su hora de hacer otra tarea, la tiene que hacer cuando termine (puede pasar cuando se modifiquen los tiempos iniciales).
+
+Estadísticas
+Grado de ocupación de cada dependiente (acumular el tiempo de ocupación de los dependientes (incluso cuando hacen las tareas)/tiempo total de simulación)
+Espera promedio en cola (Acumular tiempo en cola (contar cuando pasan directo como 0)/Acumular cuántos salen de la cola)
+Cantidad de personas que se atendieron en 8 horas (Acumular los que salen de los servidores en el tiempo)
+Porcentaje de clientes atendidos mayores de edad (Acumular los clientes atendidos que sean mayores de edad/Cantidad de personas que se atendieron)
+Porcentaje de ocupación irrelevante respecto del total (Cuánto tiempo de su ocupación hace otras tareas en vez de atender a los clientes)
+Tiempo máximo de permanencia en sistema para mayores de edad (Tomar el máximo tiempo desde que entra al sistema un cliente mayor de edad)
+
