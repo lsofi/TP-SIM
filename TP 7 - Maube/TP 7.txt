@@ -1,0 +1,53 @@
+Objetos:
+
+Clientes (T) esperando_atencion, siendo_atendido
+Cantinero (P) libre, sirviendo, lavando, recogiendo
+
+Eventos:
+
+llegada_cliente Exp Negativa (0,58) = -0.58*LN(1-RND)
+fin_servir 	U(1;2) = 1 + RND
+fin_lavado 	C = 20 segundos = 0,33 min
+fin_recoger 	Tabla de probabilidades cant vasos uniforme (1;10)
+		1-3 vasos ---- 40 segundos = 0,66 min
+		3-6 vasos ---- 80 segundos = 1,33 min
+		mas de 6  ---- 110 segundos = 1,83 min
+
+fin_consumo 	dB/dt = -0,2B + 0,0002t -1
+
+B inicial = 500ml
+
+Colas:
+
+cola_cantinero 
+
+Metricas:
+Cantidad de clientes que se van sin consumir
+Espera maxima de un cliente
+Cuantos clientes terminan de consumir sus tragos
+Porcentaje de cada uno de los estados del mozo
+
+Observaciones:
+
+-Prioridad: servir, lavar, recoger
+-Siempre habra vasos para recoger
+-Si tiene cliente para atender y no tiene vaso limpio, primero lava un vaso 
+y luego atiende el cliente, si tampoco hay vasos sucios (o sea no hay vasos 
+sucios ni limpios), recoge hasta 10 vasos, luego lava un vaso y luego atiende 
+al cliente. Si no hay clientes para atender, ni vasos que limpiar, entonces 
+recoge vasos sucios.
+-Si cuando está recogiendo o lavando, llega un cliente, deja lo que estaba 
+haciendo y comienza a atenderlo, (si no es que ya hay otro cliente esperando 
+su trago).
+-Si cuando llega un cliente ya hay 1 cliente esperando que lo atiendan, se va. 
+Los clientes que llegan, toman su/s tragos/s en ese bar y luego se van.
+
+Inicio:
+
+4 vasos limpios
+Ningun vaso sucio
+t= 300
+
+
+
+
